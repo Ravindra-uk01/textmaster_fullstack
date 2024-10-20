@@ -299,11 +299,12 @@ export default function TextForm(props) {
         <h2>Your Text Summary</h2>
         <p>
           <b>
-            {textState.text
-              .trim()
-              .split(" ")
-              .filter((value) => value !== "").length
-              }
+            {
+              textState.text
+                .trim()
+                .split(" ")
+                .filter((value) => value !== "").length
+            }
           </b>{" "}
           words,
           <b> {textState.text.trim().length}</b> characters,

@@ -1,5 +1,9 @@
 .rootBody{
     background-color: #e0e0dc;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
 }
 
 .base{
@@ -7,15 +11,115 @@
 }
 
 .sidebar{
-    width: 20%;
-    background-color: aqua;
+    width: 220px;
+    height: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: width 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+.sidebar.collapsed{
+    width: 90px;
+}
+
+.sidebarHead{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+.sidebarLogo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    background-color: black;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 50%;
+    display: none;
+}
+
+.siderbarHeadline{
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.sidebarNewThread{
+    background-color: white;
+    color: #686263;
+    border-radius: 1rem;
+    width: 80%;
+    padding: 0.5rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.sidebarMenu{
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.siderbarMenuItem{
+    width: 100%;
+    padding: 0 0.7rem;
+}
+
+.siderbarMenuItem_div{
+    display: flex;
+    align-items: center;
+    color: #686263;
+    font-size: 1.1rem;
+    font-weight: 500;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+}
+
+.sidebar_endDiv{
+   margin-top: auto;
+   width: 100%;
+}
+
+.sidebar_endDiv > div{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-top: 1px solid #cecbcc;
+}
+
+.siderbar_expand{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #b3adae;
 }
 
 .mainSection{
-    width: 75%;
+    margin: 0.4rem;
+    margin-left: 220px; 
     border-radius: 4px;
-    margin-top: 0.8rem;
     background-color: white;
+    overflow-y: scroll;
+}
+
+.mainSection.collapsed{
+    margin-left: 90px;
+    transition: margin-left 0.3s cubic-bezier(.4, 0, .2, 1);
+    width: 100%;
 }
 
 .navbar{
