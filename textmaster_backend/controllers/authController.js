@@ -29,9 +29,7 @@ const createAndSendToken = (user, statusCode, res, message)=>{
         status: "success",
         message,
         token,
-        data : {
-            user
-        },
+        user
     })
 }
 
@@ -58,11 +56,9 @@ export const signup = catchAsync(async(req, res, next)=>{
     const {email , password , confirm_password, first_name, last_name} = req.body;
 
     const exists = await User.findOne({email});
+
     if(exists){
-        return res.status(400).json({
-            status: "warning",
-            message: "This email is already registered."
-        })
+        return next(new AppError("This email is already registered.", 400));
     }
 
     const newUser = await User.create({

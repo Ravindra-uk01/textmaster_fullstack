@@ -1,4 +1,9 @@
-.navbar_main-container{
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.login_main-container{
     width: 100%;
     height: 100%;
     display: flex;
@@ -8,7 +13,7 @@
     background-color: #e0e0dc;
 }
 
-.navbar_container{
+.login_container{
     width: 950px;
     height: 570px; 
     display: flex;

@@ -3,11 +3,17 @@ import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import { registrationSchema } from "../../schemas/authSchema";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate,  } from "react-router-dom";
+import "./login.css";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../reducers/userReducer";
+import { ToastContainer } from "react-toastify";
 
 const Signup = () => {
 
   const [isFocus, setIsFocus] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -16,9 +22,18 @@ const Signup = () => {
   } = useForm({
     resolver: yupResolver(registrationSchema),
   })
-  const onSubmit = async(data) => {
+
+  const onSubmit = async(data, e) => {
     console.log(data);
-    // const response = await axios.post()
+    e.preventDefault();
+    try{
+      dispatch(addUser(data));
+      window.setTimeout(() => {
+        navigate('/');
+      }, 1500);
+    }catch(error){
+      console.error('Failed to add user:', error);
+    }
   }
 
   const handleFocus = (name) =>{
@@ -31,8 +46,9 @@ const Signup = () => {
   }
 
   return (
-    <div className="main-container">
-      <div className="container">
+    <div className="login_main-container">
+      <ToastContainer />
+      <div className="login_container">
         <div className="container_div1">
           <div className="login_heading_content">
             <p className="login_heading_content_logo">Textmaster</p>
@@ -66,11 +82,11 @@ const Signup = () => {
                 <label className={isFocus === "password" ? 'active' : ''} onBlur={handleBlur} onClick={()=>handleFocus('password')} >Enter password</label>
               </div>
               <p className="err_msg">{errors.password?.message}</p>
-            </div>
               <div className="login_input_tags_div"> 
-                <input type="text" name="confirm_password" id="confirm_password" {...register("confirm_password")}  />
-                <label className={isFocus == "confirm_password" ? 'active' : ''} onBlur={handleBlur} onClick={()=>handleFocus('confirm_password')} >Enter email</label>
+                <input type="password" name="confirm_password" id="confirm_password" {...register("confirm_password")}  />
+                <label className={isFocus == "confirm_password" ? 'active' : ''} onBlur={handleBlur} onClick={()=>handleFocus('confirm_password')} >Confirm Password</label>
               </div>
+            </div>
             <Link>forgor password?</Link>
             <button className="btn btn-secondary " type="submit" >Sign Up</button>
             <p>

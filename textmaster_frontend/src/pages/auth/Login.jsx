@@ -1,17 +1,32 @@
 import "./login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LuLanguages } from "react-icons/lu";
 import { useState } from "react";
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import { loginSchema } from "../../schemas/authSchema";
+import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { setProfile } from "../../reducers/userReducer";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const [isFocus, setIsFocus] = useState('');
-  // const [formData, setFormData] = useState({
-  //   email: "",
-  //   password: ""
-  // });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+ 
+  const API = import.meta.env.VITE_API;
+  const toastData = {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
 
   const {
     register,
@@ -22,7 +37,33 @@ const Login = () => {
   })
   const onSubmit = async(data) => {
     console.log(data);
-    // const response = await axios.post()
+    try{
+      const res = await axios.post(`${API}/auth/login`, data);
+
+      const {status, message, user} = res.data;
+      if(status === "success"){
+        toast.success(message, { ...toastData });
+        dispatch(setProfile(user))
+        window.setTimeout(() => {
+          navigate('/');
+        }, 1500);
+      }else{
+        toast.warn(message, { ...toastData });
+      }
+
+    }catch(err){
+      console.log('System Internal Error')
+      const {status, message} = err.response.data;
+      if (status === "warning") {
+        toast.warn(message, {
+          ...toastData,
+        });
+      } else {
+        toast.error(message, {
+            ...toastData
+        })
+      }
+    }
   }
 
   const handleFocus = (name) =>{
@@ -46,8 +87,8 @@ const Login = () => {
   // console.log('form data is ', formData);
 
   return (
-    <div className="navbar_main-container">
-      <div className="navbar_container">
+    <div className="login_main-container">
+      <div className="login_container">
         <div className="container_div1">
           <div className="login_heading_content">
             <p className="login_heading_content_logo">Textmaster</p>

@@ -11,6 +11,7 @@ import { GiCircleCage } from "react-icons/gi";
 import "./base.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Bounce, ToastContainer } from "react-toastify";
 
 const Base = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -41,8 +42,25 @@ const Base = ({ children }) => {
   return (
     <div className="rootBody">
       {/* <Sidebar/> */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition="Bounce"
+      />
+
       <div className={`sidebar ${collapsed ? "collapsed" : ""}`}>
-        <div className="sidebarHead " style={{ width: collapsed ? "auto" : "100%" }} >
+        <div
+          className="sidebarHead "
+          style={{ width: collapsed ? "auto" : "100%" }}
+        >
           <div
             className="sidebarLogo"
             style={{ display: collapsed ? "flex" : "none" }}
@@ -80,7 +98,10 @@ const Base = ({ children }) => {
             return (
               <div key={idx} className="siderbarMenuItem">
                 <Link style={{ textDecoration: "none" }} to={element.link}>
-                  <div className="siderbarMenuItem_div " style={{ justifyContent: collapsed ? "center" : "start" }}>
+                  <div
+                    className="siderbarMenuItem_div "
+                    style={{ justifyContent: collapsed ? "center" : "start" }}
+                  >
                     <span>
                       <element.icon size={25} />
                     </span>
@@ -97,26 +118,30 @@ const Base = ({ children }) => {
           })}
         </div>
 
-        <div className="sidebar_endDiv" >
-          <div style={{ display: collapsed ? "" : "none", justifyContent: collapsed ? "center" :"" }}>
-              <div  className="siderbar_expand">
-                <BiArrowToRight
-                  size={20}
-                  color="#454545"
-                  title="expand"
-                  onClick={() => setCollapsed(false)}
-                />
-              </div> 
+        <div className="sidebar_endDiv">
+          <div
+            style={{
+              display: collapsed ? "" : "none",
+              justifyContent: collapsed ? "center" : "",
+            }}
+          >
+            <div className="siderbar_expand">
+              <BiArrowToRight
+                size={20}
+                color="#454545"
+                title="expand"
+                onClick={() => setCollapsed(false)}
+              />
+            </div>
           </div>
-          <div style={{ justifyContent: collapsed ? "center" :"" }}>
-            
+          <div style={{ justifyContent: collapsed ? "center" : "" }}>
             <span style={{ display: collapsed ? "none" : "" }}>
               <FaUser />
               <span className="ms-2">Ravindra Rayal</span>
             </span>
             <IoSettingsOutline size={20} />
           </div>
-          <div style={{ justifyContent: collapsed ? "center" :"" }}>
+          <div style={{ justifyContent: collapsed ? "center" : "" }}>
             <span style={{ display: collapsed ? "none" : "" }}>Contact Me</span>
             <Link
               to="https://x.com/Ravindra_uk01"

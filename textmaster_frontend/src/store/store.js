@@ -3,6 +3,7 @@ import {configureStore, createListenerMiddleware} from '@reduxjs/toolkit'
 import textReducer, { textActions } from './features/text/textSlice';
 import themeReducer from './features/theme/themeSlice';
 import alertReducer, { alertActions } from './features/alert/alertSlice';
+import userReducer from "../reducers/userReducer.js"
 import messages from './alertMessages.json';
 
 const textListenerMiddleware = createListenerMiddleware();
@@ -66,7 +67,8 @@ const store = configureStore({
     reducer:{ 
         alert : alertReducer,
         text : textReducer,
-        theme : themeReducer
+        theme : themeReducer,
+        user: userReducer,
     },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
