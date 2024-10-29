@@ -60,7 +60,9 @@ const userReducer = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(addUser.fulfilled , (state, action) => {
+        console.log( "action.payload is ",  action.payload);
         const {status, user} = action.payload;
+        console.log('user is ', user );
         if(status === "success"){
             state.user = user;
             state.loggedIn = true;

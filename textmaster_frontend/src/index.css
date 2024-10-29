@@ -1,3 +1,7 @@
+#root {
+  min-height: 100vh; /* Ensure it takes at least full viewport height */
+}
+
 .accordian-button::after{
   filter: invert(1);
 }

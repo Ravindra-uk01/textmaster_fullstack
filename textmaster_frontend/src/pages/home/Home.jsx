@@ -15,12 +15,10 @@ const Home = () => {
   return (
     <Base>
       <ToastContainer />
-      {/* <Navbar/>
-      <hr/> */}
       <div className="home_navbar">
         <div>
           <LiaUserCircle background="grey" size={25} />
-          {/* <p>{user.display_name}</p> */}
+          <p>{user?.display_name}</p>
         </div>
         <div>
           content details

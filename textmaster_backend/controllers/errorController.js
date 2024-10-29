@@ -29,7 +29,7 @@ const handleTokenExpiredError = () => {
 
 const sendErrorToDev = (err, res) =>{
     return res.status(err.statusCode).json({
-        status : 'error',
+        status : err.status,
         message : err.message,
         error : err,
         stack : err.stack
@@ -41,7 +41,7 @@ const sendErrorToProd = (err, res) =>{
     // Operational Error :- Trusted Error , send message to client
     if(err.isOperational){
         return res.status(err.statusCode).json({
-            status : 'error',
+            status : err.statusCode || 'error',
             message : err.message
         })
 

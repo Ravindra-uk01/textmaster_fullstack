@@ -38,13 +38,13 @@ export const login = catchAsync(async(req, res, next)=>{
     const {email , password } = req.body;
     
     if(!email || !password){
-        return next(new AppError("Email and password is required"));
+        return next(new AppError("Email and password is required", 401));
     }
 
     const user = await User.findOne({email}).select('+password');
 
     if(!user || !(await user.checkPassword(password, user.password))){
-        return next(new AppError("Invalid login Credentials!! "));
+        return next(new AppError("Invalid login Credentials!! ", 401));
     }
 
     createAndSendToken(user, 200, res, "logged in Successfully")
@@ -69,6 +69,9 @@ export const signup = catchAsync(async(req, res, next)=>{
         first_name,
         last_name
     });
+
+    newUser.password = undefined;
+    newUser.passwordChangedAt = undefined;
 
     createAndSendToken(newUser, 201, res, "User Signup Successfully");
 })
