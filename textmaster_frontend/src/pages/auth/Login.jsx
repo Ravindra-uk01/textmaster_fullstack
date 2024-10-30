@@ -12,10 +12,17 @@ import { setProfile } from "../../reducers/userReducer";
 import { useDispatch } from "react-redux";
 import { IoEye } from "react-icons/io5";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import loginImg1 from "../../assets/loginImages/loginImg1.webp";
+import loginImg2 from "../../assets/loginImages/loginImg2.webp";
+import loginImg3 from "../../assets/loginImages/loginImg3.webp";
+
+// Default theme
+import "@splidejs/react-splide/css";
 
 const Login = () => {
   const [isFocus, setIsFocus] = useState("");
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -85,6 +92,7 @@ const Login = () => {
   // }
 
   // console.log('isFocus is ', isFocus);
+  console.log("loginImg1 is ", loginImg1);
 
   return (
     <div className="login_main-container">
@@ -126,7 +134,7 @@ const Login = () => {
               <div className="login_input_tags_div">
                 {/* <input type="password" name="password" id="password" {...register("password")} value={formData.password} onChange={handleInputChange}/> */}
                 <input
-                  type={isPasswordVisible ? "text": "password"}
+                  type={isPasswordVisible ? "text" : "password"}
                   name="password"
                   id="password"
                   {...register("password")}
@@ -141,7 +149,7 @@ const Login = () => {
                 </label>
                 <button
                   type="button"
-                  onClick={()=>setIsPasswordVisible(!isPasswordVisible)}
+                  onClick={() => setIsPasswordVisible(!isPasswordVisible)}
                   className="toggle-password"
                 >
                   {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
@@ -159,7 +167,42 @@ const Login = () => {
           </form>
         </div>
 
-        <div className="container_div2"></div>
+        <div className="container_div2">
+          <Splide
+            aria-label="Login form images"
+            options={{
+              autoplay: true,
+              rewind: true,
+              interaval: 400,
+              width: 500,
+              height: 500,
+              gap: "1rem",
+              arrows: false,
+              pagination: false,
+              perPage: 1,
+              speed: 400,
+            }}
+          >
+            <SplideSlide>
+              <img
+                src={loginImg1}
+                alt="login image profile1"
+              />
+            </SplideSlide>
+            <SplideSlide>
+              <img
+                src={loginImg2}
+                alt="login image profile2"
+              />
+            </SplideSlide>
+            <SplideSlide>
+              <img
+                src={loginImg3}
+                alt="login image profile3"
+              />
+            </SplideSlide>
+          </Splide>
+        </div>
       </div>
     </div>
   );

@@ -12,6 +12,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@reduxjs/toolkit": "^2.2.1",
+    "@splidejs/react-splide": "^0.7.12",
     "axios": "^1.7.7",
     "buffer": "^6.0.3",
     "react": "^18.2.0",
