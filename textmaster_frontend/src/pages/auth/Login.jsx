@@ -10,7 +10,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setProfile } from "../../reducers/userReducer";
 import { useDispatch } from "react-redux";
-import { IoEye } from "react-icons/io5";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import loginImg1 from "../../assets/loginImages/loginImg1.webp";

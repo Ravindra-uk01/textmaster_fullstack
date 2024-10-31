@@ -20,7 +20,6 @@ export const addUser = createAsyncThunk("user/addUser", async (data) => {
     const response = await axios.post(`${API}/auth/signup`, data );
 
     const { status, message } = response.data;
-    console.log("response is ", response.data);
     if (status === "success") {
       toast.success(message, { ...toastData });
     } else {
@@ -28,7 +27,6 @@ export const addUser = createAsyncThunk("user/addUser", async (data) => {
     }
     return response.data;
   } catch (error) {
-    console.log("error is ", error);
     const { status, message } = error.response.data;
 
     if (status === "warning") {
@@ -42,6 +40,18 @@ export const addUser = createAsyncThunk("user/addUser", async (data) => {
     }
   }
 });
+
+export const getProfile = createAsyncThunk(
+  "user/getProfile",
+  async() => {
+    try {
+      const response = await axios.get(`${API}/auth/getProfile`);
+      return response.data;
+    } catch (error) {
+      console.log('System Internal Error', error)
+    }
+  }
+) 
 
 const initialState = {
   loggedIn: false,
@@ -60,9 +70,7 @@ const userReducer = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(addUser.fulfilled , (state, action) => {
-        console.log( "action.payload is ",  action.payload);
         const {status, user} = action.payload;
-        console.log('user is ', user );
         if(status === "success"){
             state.user = user;
             state.loggedIn = true;

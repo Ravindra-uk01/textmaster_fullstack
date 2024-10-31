@@ -38,7 +38,7 @@
     flex: 1;
     height: 500px;
     width: 100%;
-    background-color: rgb(118, 118, 172);
+    /* background-color: rgb(118, 118, 172); */
     border-top-right-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
 }
@@ -131,7 +131,7 @@
     padding: 0 2px;
 }
 
-input{
+.login_input_tags_div > input{
     padding: 0.8rem;
     border-radius: 1rem;
     font-size: 1rem;
@@ -177,6 +177,22 @@ input{
     }
 
     .container_div2{
-        display: hidden;
+        display: none;
+    }
+
+    .login_input_tags{
+        width: 100%;
+    }
+
+    .login_input_tags_div{
+        margin-top: 1.3rem;
+    }
+
+    .login_input_tags_div > input{
+        padding: 0.6rem;
+    }
+
+    .login_content>a{
+        padding-right: 1.5rem;
     }
 }

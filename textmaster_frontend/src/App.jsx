@@ -7,8 +7,17 @@ import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
+
+  const {user, loggedIn} = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProfile());
+  }, [dispatch, loggedIn]);
  
   return (
     <>

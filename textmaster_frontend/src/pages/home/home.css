@@ -1,4 +1,32 @@
 .home_navbar{
     display: flex;
-    
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    border-bottom: 1px solid rgb(206, 205, 205);
+    padding: 0.5rem 1rem;
+}
+
+.home_navbar_div1{
+    display: flex;
+}
+
+.home_navbar_div1 > div{
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    margin-right: 0.5rem;
+}
+
+.home_navbar_div3{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.home_navbar_div3 > div{
+    background-color: #21808d;
+    padding: 0.4rem 0.6rem;
+    color: white;
+    cursor: pointer;
+    border-radius: 0.3rem;
 }

@@ -1,0 +1,11 @@
+.signup_msg_div{
+    margin-top: 0.5rem;
+}
+
+.signup_input_tags_div{
+    margin-top: 1.3rem;
+}
+
+.signup_input_tags_div > input{
+    padding: 0.6rem;
+}

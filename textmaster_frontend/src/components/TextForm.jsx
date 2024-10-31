@@ -260,17 +260,17 @@ export default function TextForm(props) {
   return (
     <>
       <div
-        className="container"
+        className="container mt-4"
         style={{
           color: themeState.color,
         }}
       >
-        <h1 className="mb-2">Enter The Text To Analyze Below</h1>
-        <div className="mb-3">
+        <h2 className="mb-2 ">Enter The Text To Analyze Below</h2>
+        <div className="mb-3 ">
           <textarea
             className="form-control"
             id="myBox"
-            rows="8"
+            rows="9"
             value={textState.text}
             onChange={handleOnChange}
             style={{
@@ -285,8 +285,6 @@ export default function TextForm(props) {
           if (supported === false) {
             return;
           }
-          // console.log("action is ", action);
-
           return <Button key={action.label} action={action} />;
         })}
       </div>
@@ -296,7 +294,7 @@ export default function TextForm(props) {
           color: themeState.color,
         }}
       >
-        <h2>Your Text Summary</h2>
+        <h3>Your Text Summary</h3>
         <p>
           <b>
             {
@@ -328,7 +326,7 @@ export default function TextForm(props) {
             }).length}{" "}
           Minutes read
         </p>
-        <h2>Preview</h2>
+        <h3>Preview</h3>
         <p>
           {textState.text.length > 0 ? textState.text : "Nothing to preview!!"}
         </p>

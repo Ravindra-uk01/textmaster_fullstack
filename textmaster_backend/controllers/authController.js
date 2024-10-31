@@ -179,3 +179,7 @@ export const updatePasssword = catchAsync(async(req, res, next)=>{
     // send jwt token 
     createAndSendToken(user, 200, res, "Password updated Successfully");
 })
+
+export const getMyProfile = catchAsync(async(req, res, next) => {
+    
+})
