@@ -320,10 +320,10 @@ export default function TextForm(props) {
           <b>{textState.text.split("!").length - 1}</b> exclamations.
         </p>
         <p>
-          {0.08 *
+          {(0.08 *
             textState.text.split(" ").filter((element) => {
               return element.length !== 0;
-            }).length}{" "}
+            }).length).toFixed(2)}{" "}
           Minutes read
         </p>
         <h3>Preview</h3>

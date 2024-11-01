@@ -10,7 +10,7 @@ export default function AboutComp() {
 
   return (
     <div className="container" style={{ color }}>
-      <h1 className="my-3">About Us</h1>
+      <h2 className="my-3">About Us</h2>
       <p>
         <b>TextMaster</b> is a ReactJs website built primarily to do various
         operations on regular typed text. You can safely use WordPad or NotePad

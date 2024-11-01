@@ -10,7 +10,7 @@ export class Footer extends Component {
     };
     
     return (
-      <div>
+     
         <footer className="footer mt-auto py-3 bg-light">
           <div className="container text-center">
             <span className="text-muted">
@@ -21,7 +21,7 @@ export class Footer extends Component {
             </span>
           </div>
         </footer>
-      </div>
+    
     );
   }
 }

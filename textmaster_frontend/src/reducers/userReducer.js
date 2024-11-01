@@ -76,6 +76,13 @@ const userReducer = createSlice({
             state.loggedIn = true;
         }
     })
+    builder.addCase(getProfile.fulfilled, (state, action) => {
+        const {status, user} = action.payload;
+        if(status == "success"){
+          state.user = user;
+          state.loggedIn = true;
+        }
+    })
   },
 });
 

@@ -7,7 +7,7 @@ export default function Alert(props) {
 
   return (
 
-    <div style={{ height: "50px", position: "absolute" , width: "100%" }}>
+    <div style={{ height: "50px", position: "absolute" , width: "auto" }}>
       {alert.show && (
         <div
           className={`alert alert-${alert.type} alert-dismissible fade show `}

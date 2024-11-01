@@ -61,18 +61,22 @@ const Base = ({ children }) => {
           className="sidebarHead "
           style={{ width: collapsed ? "auto" : "100%" }}
         >
-          <div
-            className="sidebarLogo"
-            style={{ display: collapsed ? "flex" : "none" }}
-          >
-            T
-          </div>
-          <p
-            className="siderbarHeadline"
-            style={{ display: collapsed ? "none" : "" }}
-          >
-            Textmaster
-          </p>
+          <Link to={"/"} style={{ textDecoration: "none",display: collapsed ? "flex" : "none"}}>
+            <div
+              className="sidebarLogo"
+              style={{display: collapsed ? "flex" : "none"  }}
+            >
+              T
+            </div>
+          </Link>
+
+          <Link to={"/"} style={{ textDecoration: "none", display: collapsed ? "none" : "" }}>
+            <p
+              className="siderbarHeadline"
+            >
+              Textmaster
+            </p>
+          </Link>
           <p style={{ display: collapsed ? "none" : "" }}>
             <BiArrowToLeft
               size={20}
@@ -135,11 +139,11 @@ const Base = ({ children }) => {
             </div>
           </div>
           <div style={{ justifyContent: collapsed ? "center" : "" }}>
-            <span style={{ display: collapsed ? "none" : "" }}>
+            <span style={{ display: collapsed ? "none" : "" }} className="sidebar_user" >
               <FaUser />
               <span className="ms-2">Ravindra Rayal</span>
             </span>
-            <IoSettingsOutline size={20} />
+            <IoSettingsOutline size={20} className="sidebar_settings" />
           </div>
           <div style={{ justifyContent: collapsed ? "center" : "" }}>
             <span style={{ display: collapsed ? "none" : "" }}>Contact Me</span>
@@ -166,9 +170,6 @@ const Base = ({ children }) => {
             >
               <GiCircleCage size={25} />
             </Link>
-            {/* <RiTwitterXLine />
-            <FaLinkedinIn />
-            <GiCircleCage /> */}
           </div>
         </div>
       </div>
@@ -177,6 +178,25 @@ const Base = ({ children }) => {
         <Alert />
         <div className="content ">{children}</div>
         <Footer />
+      </div>
+
+      {/* bottom sidebar for smaller screens  */}
+
+      <div className="bottomSidebar">
+        {menuItem.map((element, idx) => {
+          return (
+            <div key={idx} className="bottomSiderbarMenuItem">
+              <Link style={{ textDecoration: "none" }} to={element.link}>
+                <div className="bottomSiderbarMenuItem_div ">
+                  <span>
+                    <element.icon size={25} />
+                  </span>
+                  <span className="capitalize ">{element.name}</span>
+                </div>
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

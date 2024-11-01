@@ -181,5 +181,44 @@ export const updatePasssword = catchAsync(async(req, res, next)=>{
 })
 
 export const getMyProfile = catchAsync(async(req, res, next) => {
-    
+
+    let token ;
+    if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
+        token = req.headers.authorization.split(' ')[1];
+    }
+
+    console.log('token is ', token);
+
+    if(!token){
+        return next(new AppError("You are not logged in! please log in to get access.", 401));
+    }
+
+    // Verification of token
+    const decode = jwt.verify(token, process.env.JWT_SECRET_KEY);
+
+    if(!decode){
+        return next(new AppError("Token is not valid.", 401));
+    }
+
+    // checking if user exists 
+    const {_id, iat }  = decode;
+    const user = await User.findById(_id);
+
+    console.log("user is ", user);
+
+
+    if(!user){
+        return next(new AppError("The user belonging to this token does no longer exists.", 401));
+    }
+
+    // checking if user has changed the password after the token is assigned
+    if(user.changedPasswordAfter(iat)){
+        return next(new AppError("User Changed the password, Please login again.", 401));
+    }
+
+    return res.status(200).json({
+        status: "success",
+        user,
+        message:  "Profile fetched successfully."
+    })
 })

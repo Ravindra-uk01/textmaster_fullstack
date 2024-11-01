@@ -9,6 +9,7 @@ import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getProfile } from "./reducers/userReducer";
 
 function App() {
 
