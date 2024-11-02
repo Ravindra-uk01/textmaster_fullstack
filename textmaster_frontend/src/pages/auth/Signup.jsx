@@ -11,9 +11,9 @@ import { addUser } from "../../reducers/userReducer";
 import { ToastContainer } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import loginImg1 from "../../assets/loginImages/loginImg1.webp";
+import loginImg5 from "../../assets/loginImages/loginImg5.webp";
 import loginImg2 from "../../assets/loginImages/loginImg2.webp";
-import loginImg3 from "../../assets/loginImages/loginImg3.webp";
+import loginImg6 from "../../assets/loginImages/loginImg6.webp";
 
 const Signup = () => {
 
@@ -138,19 +138,19 @@ const Signup = () => {
           >
             <SplideSlide>
               <img
-                src={loginImg1}
+                src={loginImg5}
                 alt="login image profile1"
               />
             </SplideSlide>
             <SplideSlide>
               <img
-                src={loginImg2}
+                src={loginImg6}
                 alt="login image profile2"
               />
             </SplideSlide>
             <SplideSlide>
               <img
-                src={loginImg3}
+                src={loginImg2}
                 alt="login image profile3"
               />
             </SplideSlide>

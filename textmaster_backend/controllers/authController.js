@@ -204,9 +204,6 @@ export const getMyProfile = catchAsync(async(req, res, next) => {
     const {_id, iat }  = decode;
     const user = await User.findById(_id);
 
-    console.log("user is ", user);
-
-
     if(!user){
         return next(new AppError("The user belonging to this token does no longer exists.", 401));
     }

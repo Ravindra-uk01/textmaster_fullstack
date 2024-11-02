@@ -13,8 +13,8 @@ import { useDispatch } from "react-redux";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import loginImg1 from "../../assets/loginImages/loginImg1.webp";
-import loginImg2 from "../../assets/loginImages/loginImg2.webp";
 import loginImg3 from "../../assets/loginImages/loginImg3.webp";
+import loginImg4 from "../../assets/loginImages/loginImg4.webp";
 
 // Default theme
 import "@splidejs/react-splide/css";
@@ -49,10 +49,11 @@ const Login = () => {
     try {
       const res = await axios.post(`${API}/auth/login`, data);
 
-      const { status, message, user } = res.data;
+      const { status, message, user , token} = res.data;
 
       if (status === "success") {
         toast.success(message, { ...toastData });
+        localStorage.setItem("token", token);
         dispatch(setProfile(user));
         window.setTimeout(() => {
           navigate("/");
@@ -82,16 +83,6 @@ const Login = () => {
     console.log("heyy");
     setIsFocus("");
   };
-
-  // const handleInputChange = (e) =>{
-  //   setFormData(prev => ({
-  //     ...prev,
-  //     [e.target.name]: e.target.value
-  //   }))
-  // }
-
-  // console.log('isFocus is ', isFocus);
-  console.log("loginImg1 is ", loginImg1);
 
   return (
     <div className="login_main-container">
@@ -190,7 +181,7 @@ const Login = () => {
             </SplideSlide>
             <SplideSlide>
               <img
-                src={loginImg2}
+                src={loginImg4}
                 alt="login image profile2"
               />
             </SplideSlide>
