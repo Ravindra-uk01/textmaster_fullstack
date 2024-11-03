@@ -5,6 +5,7 @@ import cors from "cors";
 import {rateLimit} from 'express-rate-limit';
 import mongoSanitize from "express-mongo-sanitize";
 import xss from 'xss-clean';
+import cookieParser from "cookie-parser";
 const app = express();
 
 import userRoutes from './routes/userRoutes.js';
@@ -17,6 +18,7 @@ import {globalErrorHandler} from "./controllers/errorController.js"
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit : '50kb'}));
 app.use(express.urlencoded({extended: true}));
+app.use(cookieParser());
 
 // Data sanitization against NoSql queries - it should always be done after above middleware , when we get data 
 app.use(mongoSanitize());  // it prevents from $gt sign or other technique of injection
@@ -25,7 +27,31 @@ app.use(mongoSanitize());  // it prevents from $gt sign or other technique of in
 app.use(xss())  // it prevents from malicious html code 
 
 app.use(express.static(`../textmaster_frontend/index.html`));  // for serving static files
-app.use(cors());        // enable secure cross-origin requests between web applications
+
+
+// Define allowed origins
+// const allowedOrigins = [
+//     "http://localhost:5173", // Development
+//     "https://your-production-domain.com" // Production
+// ];
+
+// // CORS options
+// const corsOptions = {
+//     origin: function (origin, callback) {
+//         // Allow requests with no origin (like mobile apps or curl requests)
+//         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+//             callback(null, true);
+//         } else {
+//             callback(new Error('Not allowed by CORS'));
+//         }
+//     },
+//     credentials: true // Allow credentials (cookies, authorization headers)
+// };
+
+// // Use CORS middleware with options
+// app.use(cors(corsOptions));
+
+app.use(cors({ origin: "http://localhost:5173", credentials: true}));        // enable secure cross-origin requests between web applications
 app.use(helmet());      // Set security HTTP headers
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'));

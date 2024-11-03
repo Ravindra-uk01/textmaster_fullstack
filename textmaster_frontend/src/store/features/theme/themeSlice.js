@@ -4,6 +4,9 @@ const initialState = {
     mode: 'light',
     color : '#042743',
     backgroundColor : 'white'
+    // mode: 'dark',
+    // color : 'white',
+    // backgroundColor : '#042743'
 }
 
 const themeSlice = createSlice({

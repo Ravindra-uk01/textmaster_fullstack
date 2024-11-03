@@ -12,9 +12,11 @@ import "./base.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Bounce, ToastContainer } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const Base = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
+  const { user, loggedIn } = useSelector((state) => state.user);
 
   const menuItem = [
     {
@@ -23,14 +25,14 @@ const Base = ({ children }) => {
       icon: IoHomeOutline,
     },
     {
-      name: "about",
-      link: "/about",
-      icon: BsInfoCircle,
-    },
-    {
       name: "library",
       link: "/library",
       icon: RiStackLine,
+    },
+    {
+      name: "about",
+      link: "/about",
+      icon: BsInfoCircle,
     },
     {
       name: "login",
@@ -41,7 +43,6 @@ const Base = ({ children }) => {
 
   return (
     <div className="rootBody">
-      {/* <Sidebar/> */}
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -99,8 +100,10 @@ const Base = ({ children }) => {
         </div>
         <div className="sidebarMenu">
           {menuItem.map((element, idx) => {
+
+            if(element.name === 'login' && loggedIn)return null;
             return (
-              <div key={idx} className="siderbarMenuItem">
+             <div key={idx} className="siderbarMenuItem">
                 <Link style={{ textDecoration: "none" }} to={element.link}>
                   <div
                     className="siderbarMenuItem_div "
@@ -141,7 +144,7 @@ const Base = ({ children }) => {
           <div style={{ justifyContent: collapsed ? "center" : "" }}>
             <span style={{ display: collapsed ? "none" : "" }} className="sidebar_user" >
               <FaUser />
-              <span className="ms-2">Ravindra Rayal</span>
+              <span className="ms-2 capitalize">{user?.first_name + " " + user?.last_name?.charAt(0)+"."}</span>
             </span>
             <IoSettingsOutline size={20} className="sidebar_settings" />
           </div>
@@ -181,9 +184,10 @@ const Base = ({ children }) => {
       </div>
 
       {/* bottom sidebar for smaller screens  */}
-
       <div className="bottomSidebar">
         {menuItem.map((element, idx) => {
+
+          if(element.name === 'login' && loggedIn)return null;
           return (
             <div key={idx} className="bottomSiderbarMenuItem">
               <Link style={{ textDecoration: "none" }} to={element.link}>

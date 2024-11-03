@@ -45,7 +45,7 @@ export const getProfile = createAsyncThunk(
   "user/getProfile",
   async() => {
     try {
-      const response = await axios.get(`${API}/auth/getProfile`);
+      const response = await axios.get(`${API}/auth/getProfile`, {withCredentials: true});
       return response.data;
     } catch (error) {
       console.log('System Internal Error', error)
@@ -64,6 +64,7 @@ const userReducer = createSlice({
   reducers: {
     setProfile: (state, action)=>{
       const {user} = action.payload;
+      console.log('user is frontend reducer', user);
       state.user = user;
       state.loggedIn = true;
     }

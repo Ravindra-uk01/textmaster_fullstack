@@ -17,8 +17,31 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    
     dispatch(getProfile());
   }, [dispatch, loggedIn]);
+
+  
+//   useEffect(() => {
+//     const getTokenFromCookies = () => {
+//         const value = `; ${document.cookie}`;
+//         const parts = value.split(`; token=`);
+//         if (parts.length === 2) return parts.pop().split(';').shift();
+//     };
+
+//     const token = getTokenFromCookies();
+//     if (token) {
+//         // Make an API call to fetch user details
+//         axios.get(`${API}/auth/user`, { headers: { Authorization: `Bearer ${token}` } })
+//             .then(res => {
+//                 const { user } = res.data;
+//                 dispatch(setProfile(user)); // Update Redux state with user details
+//             })
+//             .catch(err => {
+//                 console.error("Failed to fetch user data:", err);
+//             });
+//     }
+// }, [dispatch]);
  
   return (
     <>

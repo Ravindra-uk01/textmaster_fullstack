@@ -22,8 +22,12 @@ const createAndSendToken = (user, statusCode, res, message)=>{
     }
 
     const token = signToken(data);
+    user.password = undefined;
 
-    res.set('Authorization', `Bearer ${token}`);
+    // res.set('Authorization', `Bearer ${token}`);
+    res.cookie("accessToken", token, {
+        httpOnly: true,
+    })
 
     return res.status(statusCode).json({
         status: "success",
@@ -75,6 +79,18 @@ export const signup = catchAsync(async(req, res, next)=>{
 
     createAndSendToken(newUser, 201, res, "User Signup Successfully");
 })
+
+export const logout = async(req, res, next) => {
+
+    res.clearCookie("accessToken", {
+        sameSite : "none",
+        secure: true,
+    })
+    .status(200).json({
+        status : "success",
+        message: "User has been logged out successfully."
+    })
+}
 
 export const forgetPassword = catchAsync(async(req, res, next) =>{
     
@@ -183,11 +199,16 @@ export const updatePasssword = catchAsync(async(req, res, next)=>{
 export const getMyProfile = catchAsync(async(req, res, next) => {
 
     let token ;
-    if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
-        token = req.headers.authorization.split(' ')[1];
-    }
+    // if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
+    //     token = req.headers.authorization.split(' ')[1];
+    // }
 
-    console.log('token is ', token);
+    // console.log('req.cookies here is ', req.cookies);
+    // console.log('req.cookies here is ', req.cookies.accessToken);
+
+    if(req.headers[token] || req.cookies.accessToken){
+        token = req.headers[token] || req.cookies.accessToken;
+    }
 
     if(!token){
         return next(new AppError("You are not logged in! please log in to get access.", 401));
@@ -195,7 +216,6 @@ export const getMyProfile = catchAsync(async(req, res, next) => {
 
     // Verification of token
     const decode = jwt.verify(token, process.env.JWT_SECRET_KEY);
-
     if(!decode){
         return next(new AppError("Token is not valid.", 401));
     }

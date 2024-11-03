@@ -55,15 +55,13 @@ export const deleteUser = catchAsync(async (req, res, next)=>{
     const {id} = req.params;
     const {_id, role} = req.user;
 
-    console.log('id is ', _id);
-    console.log('role is ', role);
+    // write a validtype function for authorization so that only admin can delete it 
+    // if(validType)
 
     const user = await User.findByIdAndDelete(id);
 
-    console.log('user is ', user );
-
     if(!user) {
-      return new AppError("No User found with this Id.", 400);
+      return next(new AppError("No User found with this Id.", 400));
     }
 
     return res.status(200).json({

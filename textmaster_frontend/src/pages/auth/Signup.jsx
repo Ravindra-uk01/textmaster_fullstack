@@ -49,7 +49,6 @@ const Signup = () => {
   }
 
   const handleBlur = ()=>{
-    console.log('heyy')
     setIsFocus('');
   }
 
@@ -58,19 +57,13 @@ const Signup = () => {
       <ToastContainer />
       <div className="login_container">
         <div className="container_div1">
-          {/* <div className="login_heading_content">
-            <p className="login_heading_content_logo">Textmaster</p>
-            <div className="login_heading_content_language">
-              <p><LuLanguages size={20}/> En</p>
-            </div>
-          </div> */}
+        
           <form className="login_content" onSubmit={handleSubmit(onSubmit)}>
             
             <div className="login_content_msg_div signup_msg_div">
               <span>Welcome to Textmaster</span>
             </div>
     
-            {/* <div className="signup_mainDiv"> */}
             <div className="login_input_tags">
               <div className="login_input_tags_div signup_input_tags_div"> 
                 <input type="text" name="first_name" id="first_name" {...register("first_name")}  />

@@ -6,9 +6,12 @@ import User from "../models/user_schema.js";
 export const verifyToken = catchAsync(async(req, res, next) =>{
     
     let token ;
-    if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
-        token = req.headers.authorization.split(' ')[1];
-    }
+    // if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
+    //     token = req.headers.authorization.split(' ')[1];
+    // }
+
+    token = req.cookies.accessToken;
+    console.log('token is ', token)
 
     if(!token){
         return next(new AppError("You are not logged in! please log in to get access.", 401));
@@ -24,6 +27,8 @@ export const verifyToken = catchAsync(async(req, res, next) =>{
     // checking if user exists 
     const {_id, iat }  = decode;
     const user = await User.findById(_id);
+
+    console.log('user is current ', user);
 
     if(!user){
         return next(new AppError("The user belonging to this token does no longer exists.", 401));

@@ -1,5 +1,5 @@
 import express from "express";
-import { login, signup, forgetPassword, resetPassword, updatePasssword, getMyProfile } from "../controllers/authController.js";
+import { login, signup, forgetPassword, resetPassword, updatePasssword, getMyProfile, logout } from "../controllers/authController.js";
 import { verifyToken } from "../middlewares/verifyToken.js";
 
 
@@ -9,6 +9,7 @@ router.get('/getProfile', getMyProfile);
 
 router.post('/login', login);
 router.post('/signup', signup);
+router.post('/logout', logout);
 
 router.post('/forget_password', forgetPassword);
 router.patch('/reset_password/:token', resetPassword);

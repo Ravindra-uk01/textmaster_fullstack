@@ -44,17 +44,20 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
+
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      const res = await axios.post(`${API}/auth/login`, data);
+      const res = await axios.post(`${API}/auth/login`, data, {
+        withCredentials: true
+      });
 
       const { status, message, user , token} = res.data;
 
       if (status === "success") {
         toast.success(message, { ...toastData });
         localStorage.setItem("token", token);
-        dispatch(setProfile(user));
+        dispatch(setProfile({user}));
         window.setTimeout(() => {
           navigate("/");
         }, 1500);
@@ -80,7 +83,6 @@ const Login = () => {
   };
 
   const handleBlur = () => {
-    console.log("heyy");
     setIsFocus("");
   };
 
