@@ -10,6 +10,7 @@ const app = express();
 
 import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import threadRoutes from './routes/threadRoutes.js';
 import AppError from "./utils/appError.js";
 import {globalErrorHandler} from "./controllers/errorController.js"
 
@@ -67,6 +68,7 @@ const limiter = rateLimit({
 // routes 
 app.use('/api/v1/users', userRoutes)
 app.use('/api/v1/auth',limiter, authRoutes)
+app.use('api/v1/thread', threadRoutes)
 
 app.all('*', (req, res, next)=>{
     next(new AppError(`Can't find ${req.originalUrl} on the server!`));

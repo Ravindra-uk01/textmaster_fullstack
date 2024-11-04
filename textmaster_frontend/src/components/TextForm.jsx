@@ -2,14 +2,37 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { textActions } from "../store/features/text/textSlice";
 import Button from "./ui/Button";
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ThreadModal from "./modals/ThreadModal";
 
 export default function TextForm(props) {
   const textState = useSelector((state) => state.text);
   const themeState = useSelector((state) => state.theme);
+  const {user, loggedIn} = useSelector(state => state.user);
   const dispatch = useDispatch();
+
   const [isListening, setIsListening] = useState(false);
+  const [showThreadForm, setShowThreadForm] = useState(false);
+  const [threadData, setThreadData] = useState({
+    title: "",
+    description: "",
+    bookmarked: false,
+  });
+  const toastData = {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
 
   const handleOnChange = (event) => {
+    setThreadData((prev)=>({...prev, description: event.target.value}));
     dispatch(textActions.updateText({ text: event.target.value }));
   };
 
@@ -257,8 +280,46 @@ export default function TextForm(props) {
     },
   ];
 
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setThreadData((prev)=> ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleAddThread = () => {
+    if(threadData.description === ''){
+      toast.warn("Please ensure that content is added to the text analyzer thread before saving it.", {
+        ...toastData
+      })
+      return;
+    }
+    setShowThreadForm(true)
+  }
+
+  console.log('thread Data is ', threadData);
+
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <ThreadModal
+        visible={showThreadForm}
+        onClose={()=>setShowThreadForm(false)}
+        threadData={threadData}
+        setThreadData={setThreadData}
+      />
       <div
         className="container mt-4"
         style={{
@@ -288,6 +349,12 @@ export default function TextForm(props) {
           return <Button key={action.label} action={action} />;
         })}
       </div>
+
+      <div className="m-3">
+        <button type="button" className="btn btn-danger" onClick={handleAddThread} > Add Thread </button>
+      </div>
+
+
       <div
         className="container my-3"
         style={{
@@ -309,7 +376,7 @@ export default function TextForm(props) {
           <b>
             {" "}
             {
-              textState.text
+              textState.text.trim()
                 .replace(/\n/g, ".")
                 .split(".")
                 .filter((value) => value !== "").length

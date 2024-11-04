@@ -142,7 +142,6 @@ export const resetPassword = catchAsync( async(req, res, next) =>{
         const {password, confirm_password} = req.body;
 
         const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
-        //console.log('hashed token is ', hashedToken)
 
         const user = await User.findOne({
              passwordResetToken: hashedToken,
@@ -202,9 +201,6 @@ export const getMyProfile = catchAsync(async(req, res, next) => {
     // if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
     //     token = req.headers.authorization.split(' ')[1];
     // }
-
-    // console.log('req.cookies here is ', req.cookies);
-    // console.log('req.cookies here is ', req.cookies.accessToken);
 
     if(req.headers[token] || req.cookies.accessToken){
         token = req.headers[token] || req.cookies.accessToken;
