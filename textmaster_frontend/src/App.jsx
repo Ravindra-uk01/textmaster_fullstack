@@ -7,6 +7,7 @@ import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
+import Library from "./pages/library/Library";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "./reducers/userReducer";
@@ -17,7 +18,6 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    
     dispatch(getProfile());
   }, [dispatch, loggedIn]);
 
@@ -47,6 +47,7 @@ function App() {
     <>
       <Routes>
         <Route exact path="/" element={<Home/>} />
+        <Route exact path="/library" element={<Library/>} />
         <Route exact path="/about" element={<About/>} />
         <Route exact path="/login" element={<Login/>} />
         <Route exact path="/signup" element={<Signup/>} />

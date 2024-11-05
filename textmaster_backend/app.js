@@ -68,7 +68,7 @@ const limiter = rateLimit({
 // routes 
 app.use('/api/v1/users', userRoutes)
 app.use('/api/v1/auth',limiter, authRoutes)
-app.use('api/v1/thread', threadRoutes)
+app.use('/api/v1/thread', threadRoutes)
 
 app.all('*', (req, res, next)=>{
     next(new AppError(`Can't find ${req.originalUrl} on the server!`));

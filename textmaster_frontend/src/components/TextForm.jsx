@@ -298,7 +298,7 @@ export default function TextForm(props) {
     setShowThreadForm(true)
   }
 
-  console.log('thread Data is ', threadData);
+  // console.log('thread Data is ', threadData);
 
   return (
     <>

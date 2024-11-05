@@ -8,6 +8,7 @@ const thread_schema = new Schema({
     slug: {
         type: String,
         required: true,
+        unique: true,
     },
     description: {
         type: String,

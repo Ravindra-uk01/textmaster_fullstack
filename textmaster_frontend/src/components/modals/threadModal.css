@@ -8,6 +8,7 @@
    display: flex;
    align-items: center;
    justify-content: center;
+   z-index: 555;
 }
 
 .modal-content{
@@ -29,4 +30,66 @@
 
 .close-button:hover{
     color:rgb(219, 21, 21);
+}
+
+.threadModal_form {
+    display: flex;
+    flex-direction: column; 
+}
+
+.threadModal_form > div {
+    margin-bottom: 15px;
+}
+
+.modal_title > label {
+    font-weight: bold; 
+    margin-bottom: 5px;
+}
+
+.threadModal_form input[type="text"] {
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    width: 100%; 
+}
+
+.threadModal_form input[type="radio"] {
+    margin-right: 5px; 
+}
+
+.modal_bookmark{
+    display: flex;
+    gap: 1rem;
+}
+
+.modal_bookmark > span{
+    font-size: large;
+    font-weight: bold;
+}
+
+/* Button Styles */
+.threadModal_button > button {
+    padding: 10px 15px; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+}
+
+.threadModal_button > button[type="submit"] {
+    background-color: #28a745; 
+    color: white; 
+    margin-right: 1rem;
+}
+
+.threadModal_button >button[type="submit"]:hover {
+    background-color: #218838; 
+}
+
+.threadModal_button >button[type="button"] {
+    background-color: #dc3545; 
+    color: white;
+}
+
+.threadModal_button >button[type="button"]:hover {
+    background-color: #c82333; 
 }

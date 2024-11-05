@@ -1,0 +1,41 @@
+.library_navbar{
+    display : flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 64px;
+    width: 100%;
+    border-bottom: 1px solid rgb(206, 205, 205);
+    padding: 0.5rem 1rem;
+}
+
+.library_navbar-heading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.library_navbar-search{
+    position: relative;
+    width: 300px;
+}
+
+.library_navbar-search input{
+    padding: 10px 15px;
+    border-radius: 1.5rem;
+    border: 1px solid rgb(201, 194, 194);
+    width: 100%;
+}
+
+.library_navbar-search > svg{
+    position: absolute;
+    left: 10px;
+    top: 15px;
+}
+
+.library_navbar-search > label{
+    position: absolute;
+    left: 35px;
+    top: 12px;
+    color: grey;
+}

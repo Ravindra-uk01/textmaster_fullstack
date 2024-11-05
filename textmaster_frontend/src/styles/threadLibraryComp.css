@@ -1,0 +1,27 @@
+.thread_library{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(218, 96, 96);
+}
+
+.thread_library-headers{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.thread_library-headers > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:0.5rem;
+}
+
+.thread_library-headersIcons > svg{
+    background-color: #ece6e8;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+}
