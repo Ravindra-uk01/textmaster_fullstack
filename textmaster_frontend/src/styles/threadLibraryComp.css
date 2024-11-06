@@ -1,16 +1,27 @@
+.thread_library-mainDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
 .thread_library{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: rgb(218, 96, 96);
+    padding: 1rem 0.5rem;
+    width : 80%;
 }
 
 .thread_library-headers{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ece6e8;;
 }
 
 .thread_library-headers > div {
@@ -20,8 +31,9 @@
     gap:0.5rem;
 }
 
-.thread_library-headersIcons > svg{
+.thread_library-headersIcons > div{
     background-color: #ece6e8;
-    padding: 0.5rem;
+    padding: 0.25rem 0.5rem;
     border-radius: 0.2rem;
+    color: black;
 }

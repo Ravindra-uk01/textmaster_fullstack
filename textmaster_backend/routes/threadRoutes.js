@@ -4,8 +4,7 @@ import { verifyToken } from "../middlewares/verifyToken.js";
 
 const router = express.Router();
 
-router.get('/', getAllThreads);
-
+router.get('/',verifyToken, getAllThreads);
 router.post('/', verifyToken , addThread);
 
 router.route('/id/:id')
