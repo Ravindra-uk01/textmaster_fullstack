@@ -15,7 +15,7 @@ const ThreadLibraryComp = () => {
     dispatch(getMyThreads());
   },[dispatch])
 
-  console.log('allThreads are ', allThreads);
+  // console.log('allThreads are ', allThreads);
 
   return (
     <div className="thread_library-mainDiv" >

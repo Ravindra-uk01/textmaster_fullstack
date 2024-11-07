@@ -29,7 +29,6 @@ export const getMyThreads = createAsyncThunk(
       return response.data;
     } catch (error) {
 
-      console.log('error ', error)
       const { status, message } = error.response.data;
 
       if (status === "warning") {
