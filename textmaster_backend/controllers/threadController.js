@@ -13,7 +13,7 @@ export const getAllThreads = catchAsync(async(req, res, next) => {
         })
     }
 
-    const allThreads = await Thread.find({created_by: _id});
+    const allThreads = await Thread.find({created_by: _id}).sort({createdAt: -1});
 
     if(allThreads.length <= 0){
         return next(new AppError("Currently, you do not have any threads in your account.", 401) );

@@ -1,3 +1,13 @@
+* {
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+  }
+
+  h1, h2, h3, h4,  p {
+    margin: 0; 
+  }
+
 .thread_library-mainDiv{
     display: flex;
     align-items: center;
@@ -10,9 +20,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgb(218, 96, 96);
+    /* background-color: rgb(218, 96, 96); */
     padding: 1rem 0.5rem;
-    width : 80%;
+    width : 70%;
 }
 
 .thread_library-headers{
@@ -21,7 +31,7 @@
     justify-content: space-between;
     width: 100%;
     padding: 0.5rem;
-    border-bottom: 1px solid #ece6e8;;
+    margin: 1rem;
 }
 
 .thread_library-headers > div {
@@ -36,4 +46,80 @@
     padding: 0.25rem 0.5rem;
     border-radius: 0.2rem;
     color: black;
+    cursor: pointer;
+}
+
+.thread_library-content {
+    width: 100%;
+
+}
+
+.thread_library-item{
+    width: 100%;
+    border-top: 1px solid #ece6e8;
+    padding: 1rem;
+}
+
+.thread_library-itemDetails{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.thread_library-itemtTitle{
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.thread_library-itemtTitle:hover{
+    color: #21808d;
+}
+
+.thread_library-itemDescription{
+    margin-bottom: 0.25rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;     
+    -webkit-line-clamp: 2;            
+    line-clamp: 2;            
+    overflow: hidden;               
+    text-overflow: ellipsis; 
+    color: #686263;
+}
+
+.thread_library-itemcreationTime{
+    color:  #686263;
+}
+
+.thread_library-itemDetailIcons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.3rem;
+}
+
+.thread_library-itemBookmarkIcon{
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ece6e8;
+    padding: 0.2rem 0.5rem;
+    border-radius: 1rem;
+    /* background-color: ; */
+}
+
+.thread_library-menuIcons{
+    padding:  0.3rem;
+    border-radius: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #686263;
+}
+
+.thread_library-menuIcons:hover {
+    background-color: #ece6e8;
+    color:black;
 }

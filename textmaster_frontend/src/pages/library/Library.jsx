@@ -13,7 +13,7 @@ const Library = () => {
     <Base> 
       <div className="library_navbar">
             <div className="library_navbar-heading" >
-                <RiStackLine size={35} />
+                <RiStackLine size={25} />
                 <h2>Library</h2>
             </div>
             <div className="library_navbar-search" >

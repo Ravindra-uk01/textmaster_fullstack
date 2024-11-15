@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const toastData = {
   position: "top-right",
-  autoClose: 5000,
+  autoClose: 2000,
   hideProgressBar: false,
   closeOnClick: true,
   pauseOnHover: true,
@@ -18,19 +18,17 @@ export const getMyThreads = createAsyncThunk(
   "thread/getMyThreads",
   async () => {
     try {
-      const response = newRequest.get("/thread");
+      const response = await newRequest.get("/thread");
 
-      const { status, message } = response.data;
-      if (status === "success") {
-        toast.success(message, { ...toastData });
-      } else {
-        toast.warn(message, { ...toastData });
-      }
+      // const { status, message } = response.data;
+      // if (status === "success") {
+      //   toast.success(message, { ...toastData });
+      // } else {
+      //   toast.warn(message, { ...toastData });
+      // }
       return response.data;
     } catch (error) {
-
       const { status, message } = error.response.data;
-
       if (status === "warning") {
         toast.warn(message, {
           ...toastData,

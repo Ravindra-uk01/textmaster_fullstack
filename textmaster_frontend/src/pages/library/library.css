@@ -1,3 +1,4 @@
+
 .library_navbar{
     display : flex;
     align-items: center;
@@ -15,13 +16,17 @@
     gap: 0.5rem;
 }
 
+.library_navbar-heading > h2{
+    margin-bottom: 0;
+}
+
 .library_navbar-search{
     position: relative;
     width: 300px;
 }
 
 .library_navbar-search input{
-    padding: 10px 15px;
+    padding: 6px 10px;
     border-radius: 1.5rem;
     border: 1px solid rgb(201, 194, 194);
     width: 100%;
@@ -30,12 +35,12 @@
 .library_navbar-search > svg{
     position: absolute;
     left: 10px;
-    top: 15px;
+    top: 10px;
 }
 
 .library_navbar-search > label{
     position: absolute;
     left: 35px;
-    top: 12px;
+    top: 6px;
     color: grey;
 }

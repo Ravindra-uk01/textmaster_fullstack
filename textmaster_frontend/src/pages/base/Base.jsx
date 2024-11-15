@@ -48,13 +48,12 @@ const Base = ({ children }) => {
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
-        closeOnClick
+        closeOnClick={true}
         rtl={false}
         pauseOnFocusLoss
         draggable
         pauseOnHover
         theme="light"
-        transition="Bounce"
       />
 
       <div className={`sidebar ${collapsed ? "collapsed" : ""}`}>
@@ -62,7 +61,7 @@ const Base = ({ children }) => {
           className="sidebarHead "
           style={{ width: collapsed ? "auto" : "100%" }}
         >
-          <Link to={"/"} style={{ textDecoration: "none",display: collapsed ? "flex" : "none"}}>
+          <Link to={"/"} style={{ textDecoration: "none", display: collapsed ? "flex" : "none"}}>
             <div
               className="sidebarLogo"
               style={{display: collapsed ? "flex" : "none"  }}
