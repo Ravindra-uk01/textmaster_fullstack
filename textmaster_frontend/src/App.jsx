@@ -20,33 +20,12 @@ function App() {
   useEffect(() => {
     dispatch(getProfile());
   }, [dispatch, loggedIn]);
-
-  
-//   useEffect(() => {
-//     const getTokenFromCookies = () => {
-//         const value = `; ${document.cookie}`;
-//         const parts = value.split(`; token=`);
-//         if (parts.length === 2) return parts.pop().split(';').shift();
-//     };
-
-//     const token = getTokenFromCookies();
-//     if (token) {
-//         // Make an API call to fetch user details
-//         axios.get(`${API}/auth/user`, { headers: { Authorization: `Bearer ${token}` } })
-//             .then(res => {
-//                 const { user } = res.data;
-//                 dispatch(setProfile(user)); // Update Redux state with user details
-//             })
-//             .catch(err => {
-//                 console.error("Failed to fetch user data:", err);
-//             });
-//     }
-// }, [dispatch]);
  
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<Home/>} />
+        <Route exact path="/home" element={<Home/>} />
+        <Route exact path="/home/:slug" element={<Home/>} />
         <Route exact path="/library" element={<Library/>} />
         <Route exact path="/about" element={<About/>} />
         <Route exact path="/login" element={<Login/>} />

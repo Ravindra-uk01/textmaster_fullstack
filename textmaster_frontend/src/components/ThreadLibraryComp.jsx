@@ -8,12 +8,15 @@ import { getMyThreads } from "../reducers/threadReducer";
 import { IoMdTime } from "react-icons/io";
 import { IoBookmarks } from "react-icons/io5";
 import { GoPlus } from "react-icons/go";
+import { timesAgo } from "../utils/dateFormat";
+import { useNavigate } from "react-router-dom";
+import NoDataFound from "../utils/NoDataFound";
 
 const ThreadLibraryComp = () => {
-  const {
-    myThreads: { allThreads },
-  } = useSelector((state) => state.thread);
+
+  const { myThreads: { allThreads }, } = useSelector((state) => state.thread);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getMyThreads());
@@ -40,19 +43,18 @@ const ThreadLibraryComp = () => {
         </div>
 
         <div className="thread_library-content">
-          {allThreads &&
-            allThreads.length > 0 &&
+          {(allThreads && allThreads.length > 0) ? 
             allThreads.map((thread) => {
               return (
                 <div key={thread._id} className="thread_library-item">
-                  <div>
+                  <div onClick={()=>navigate(`/home/${thread?.slug}`)} >
                     <div className="thread_library-itemtTitle capitalize ">{thread.title}</div>
                     <div className="thread_library-itemDescription" >{thread.description}</div>
                   </div>
                   <div className="thread_library-itemDetails" >
                     <div className="thread_library-itemcreationTime" >
                       <IoMdTime size={20} />
-                      <span className="ms-0">1h</span>
+                      <span className="ms-0"> {timesAgo(new Date(thread.createdAt))} </span>
                     </div>
                     <div className="thread_library-itemDetailIcons">
                       {thread.bookmarked ? (
@@ -73,7 +75,10 @@ const ThreadLibraryComp = () => {
                   </div>
                 </div>
               );
-            })}
+            })
+            : 
+             <NoDataFound/>
+          }
         </div>
       </div>
     </div>

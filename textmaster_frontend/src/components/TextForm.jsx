@@ -6,11 +6,15 @@ import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ThreadModal from "./modals/ThreadModal";
+import { useParams } from "react-router-dom";
+import { getThreadById } from "../reducers/threadReducer";
 
 export default function TextForm(props) {
   const textState = useSelector((state) => state.text);
   const themeState = useSelector((state) => state.theme);
   const {user, loggedIn} = useSelector(state => state.user);
+  const {currentThread } = useSelector(state => state.thread);
+  const {slug} = useParams();
   const dispatch = useDispatch();
 
   const [isListening, setIsListening] = useState(false);
@@ -280,15 +284,23 @@ export default function TextForm(props) {
     },
   ];
 
-  const handleInputChange = (e) => {
-    const {name, value} = e.target;
-    setThreadData((prev)=> ({
-      ...prev,
-      [name]: value
-    }))
-  }
+  // const handleInputChange = (e) => {
+  //   const {name, value} = e.target;
+  //   setThreadData((prev)=> ({
+  //     ...prev,
+  //     [name]: value
+  //   }))
+  // }
 
   const handleAddThread = () => {
+
+    if(!loggedIn){
+      toast.warn("To proceed, please log in to your account. ", {
+        ...toastData
+      })
+      return;
+    }
+
     if(threadData.description === ''){
       toast.warn("Please ensure that content is added to the text analyzer thread before saving it.", {
         ...toastData
@@ -298,7 +310,19 @@ export default function TextForm(props) {
     setShowThreadForm(true)
   }
 
-  // console.log('thread Data is ', threadData);
+  useEffect(()=>{
+    if(slug){
+      dispatch(getThreadById({slug}));
+    }
+  },[slug, dispatch])
+
+  useEffect(()=>{
+    setThreadData(currentThread);
+    dispatch(textActions.updateText({ text: threadData.description || "" }));
+  },[currentThread])
+
+  console.log('thread Data is ', threadData);
+  console.log('currentThread Data is ', currentThread);
 
   return (
     <>
@@ -351,7 +375,7 @@ export default function TextForm(props) {
       </div>
 
       <div className="m-3">
-        <button type="button" className="btn btn-danger" onClick={handleAddThread} > Add Thread </button>
+        <button type="button" className="btn btn-danger" onClick={handleAddThread} > { slug ? "Update Thread" : "Add Thread"} </button>
       </div>
 
 

@@ -37,7 +37,7 @@ const Signup = () => {
     try{
       dispatch(addUser(data));
       window.setTimeout(() => {
-        navigate('/');
+        navigate('/home');
       }, 1500);
     }catch(error){
       console.error('Failed to add user:', error);

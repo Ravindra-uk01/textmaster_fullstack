@@ -4,12 +4,17 @@ import { verifyToken } from "../middlewares/verifyToken.js";
 
 const router = express.Router();
 
-router.get('/',verifyToken, getAllThreads);
-router.post('/', verifyToken , addThread);
+// router.get('/',verifyToken, getAllThreads);
+// router.post('/', verifyToken , addThread);
 
-router.route('/id/:id')
+router
+    .route('/')
+    .get(verifyToken, getAllThreads)
+    .post(verifyToken , addThread)
+
+router.route('/slug/:slug')
     .get(getThread)
-    .patch(updateThread)
-    .delete(deleteThread)
+    .patch(verifyToken, updateThread)
+    .delete(verifyToken, deleteThread)
 
 export default router;

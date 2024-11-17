@@ -23,7 +23,7 @@ export default function ErrorPage() {
           Error Not Found!
         </h2>
         <p>
-          Go to <Link to="/">Home</Link>
+          Go to <Link to="/home">Home</Link>
         </p>
       </div>
     </div>

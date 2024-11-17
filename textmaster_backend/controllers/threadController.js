@@ -28,6 +28,18 @@ export const getAllThreads = catchAsync(async(req, res, next) => {
 
 export const getThread = catchAsync(async(req, res, next) => {
 
+    const {slug} = req.params;
+    const thread = await Thread.findOne({slug: slug});
+
+    if(!thread){
+        return next(new AppError("No Thread found.", 400) );
+    }
+
+    return res.status(200).json({
+        status : "success",
+        message : "Thread fetched successfully. ",
+        thread
+    })
 })
 
 export const addThread = catchAsync(async(req, res, next) => {
@@ -56,7 +68,36 @@ export const addThread = catchAsync(async(req, res, next) => {
 })
 
 export const updateThread = catchAsync(async(req, res, next) => {
+    const {_id, role} = req.user;
 
+    const {slug} = req.params;
+    const {...allData} = req.body;
+
+    const thread = await Thread.findOne({slug: slug});
+
+    if(!thread){
+        return next(new AppError("No Thread found.", 400) );
+    }
+
+    if(thread.created_by.toString() !== _id.toString()){
+        return next(new AppError("You are not authorised to update this thread.", 400) )
+    }
+
+    const updatedThread = await Thread.findOneAndUpdate(
+        {slug: slug},
+        {
+            ...allData
+        },{
+            new: true,
+            runValidators: true
+        }
+    )
+
+    return res.status(200).json({
+        status : "success",
+        message : "Updated Thread successfully. ",
+        updatedThread
+    })
 })
 
 export const deleteThread = catchAsync(async(req, res, next) => {

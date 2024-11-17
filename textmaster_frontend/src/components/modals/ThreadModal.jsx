@@ -3,9 +3,12 @@ import "./threadModal.css";
 import newRequest from "../../utils/newRequest";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useParams } from "react-router-dom";
 
 const ThreadModal = ({ visible, onClose, threadData, setThreadData }) => {
   if (!visible) return null;
+
+  const {slug} = useParams();
 
   const toastData = {
     position: "top-center",
@@ -45,9 +48,6 @@ const ThreadModal = ({ visible, onClose, threadData, setThreadData }) => {
          })
 
          onClose();
-        //  setTimeout(()=>{
-        //    onClose();
-        //  }, 2000); 
       }else {
         toast.warn(message, {
           ...toastData
@@ -67,23 +67,62 @@ const ThreadModal = ({ visible, onClose, threadData, setThreadData }) => {
         })
       }
     }
-
-    
   };
 
+  const updateThread = async(e) => {
+    try {
+      e.preventDefault();
+      console.log('came to update part ');
+      const response = await newRequest.patch(`/thread/slug/${slug}`, threadData);
+
+      const {status , message } = response.data;
+      if(status === 'success'){
+         toast.success(message, {
+            ...toastData
+         })
+
+         setThreadData({
+          title: "",
+          description: "",
+          bookmarked: false,
+
+         })
+
+         onClose();
+      }else {
+        toast.warn(message, {
+          ...toastData
+        })
+      }
+
+    } catch (error) {
+      const {status , message } = error.response.data;
+      if(status === "warning"){
+        toast.warn(message, {
+          ...toastData
+        })
+      }else{
+        toast.error(message, {
+          ...toastData
+        })
+      }
+    }
+  }
+
   console.log("thread data is ", threadData);
+  console.log('slug in model ', slug);
 
   return (  
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div>
-          <h3> Thread Details</h3>
+          <h4> Thread Details</h4>
           <div className="close-button" onClick={onClose}>
             X
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="threadModal_form" >
+        <form onSubmit={ slug ? updateThread : handleSubmit} className="threadModal_form" >
           <div className="modal_title">
             <label htmlFor="title" >Title</label>
             <input type="text" name="title" value={threadData.title} onChange={handleInputChange} required  />

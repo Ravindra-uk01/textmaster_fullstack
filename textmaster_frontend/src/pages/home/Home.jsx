@@ -4,7 +4,7 @@ import Base from "../Base/Base";
 import { LiaUserCircle } from "react-icons/lia";
 import { IoMdTime } from "react-icons/io";
 import "./home.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import {
   FaLink,
@@ -15,11 +15,23 @@ import {
 } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
 import { IoBookmarkOutline, IoBookmarkSharp } from "react-icons/io5";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { getThreadById } from "../../reducers/threadReducer";
+import { timesAgoShort } from "../../utils/dateFormat";
 
 const Home = () => {
-  const { user } = useSelector((state) => state.user);
 
-  console.log("user is ", user);
+  const { user } = useSelector((state) => state.user);
+  const { currentThread } = useSelector((state) => state.thread);
+  const {slug} = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    if(slug){
+      dispatch(getThreadById({slug}));
+    }
+  },[slug, dispatch])
 
   return (
     <Base>
@@ -28,17 +40,17 @@ const Home = () => {
         <div className="home_navbar_div1">
           <div>
             <FaUser size={18} />
-            <span className="ms-1">
+            <span className="ms-1 capitalize">
               {" "}
-              {user?.display_name || "  Ravindra"}
+              {user?.display_name || "User@9556"}
             </span>
           </div>
           <div>
             <IoMdTime size={20} />
-            <span className="ms-0">1h</span>
+            <span className="ms-0">{currentThread.createdAt ? timesAgoShort(new Date(currentThread.createdAt)) : "1h"}</span>
           </div>
         </div>
-        <div className="home_navbar_div2">Title - New Space</div>
+        <div className="home_navbar_div2">Title - {currentThread.title ? currentThread.title : "New Space"}</div>
         <div className="home_navbar_div3">
           <div>
             <BsThreeDots />

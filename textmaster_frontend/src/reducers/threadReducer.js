@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import newRequest from "../utils/newRequest";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -42,10 +42,33 @@ export const getMyThreads = createAsyncThunk(
   }
 );
 
+export const getThreadById = createAsyncThunk(
+  "thread/getThreadById",
+  async({slug}) => {
+    try {
+      const response = await newRequest.get(`/thread/slug/${slug}`);
+      return response.data;
+    } catch (error) {
+      console.log("error is ", error);
+      const { status, message } = error.response.data;
+      if (status === "warning") {
+        toast.warn(message, {
+          ...toastData,
+        });
+      } else {
+        toast.error(message, {
+          ...toastData,
+        });
+      }
+    }
+  }
+)
+
 const initialState = {
   myThreads: {
     allThreads: [],
   },
+  currentThread: {}
 };
 
 const threadReducer = createSlice({
@@ -59,6 +82,12 @@ const threadReducer = createSlice({
         state.myThreads.allThreads = allThreads;
       }
     });
+    builder.addCase(getThreadById.fulfilled, (state, action) => {
+      const {status, thread } = action.payload;
+      if(status === 'success'){
+        state.currentThread = thread;
+      }
+    })
   },
 });
 

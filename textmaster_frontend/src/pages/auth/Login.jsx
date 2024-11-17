@@ -59,7 +59,7 @@ const Login = () => {
         localStorage.setItem("token", token);
         dispatch(setProfile({user}));
         window.setTimeout(() => {
-          navigate("/");
+          navigate("/home");
         }, 1500);
       } else {
         toast.warn(message, { ...toastData });

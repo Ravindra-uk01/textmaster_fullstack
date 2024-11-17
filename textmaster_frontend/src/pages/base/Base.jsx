@@ -9,19 +9,20 @@ import { FaLinkedinIn, FaUser } from "react-icons/fa";
 import { GiCircleCage } from "react-icons/gi";
 
 import "./base.css";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Bounce, ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 
 const Base = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
   const { user, loggedIn } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const menuItem = [
     {
       name: "home",
-      link: "/",
+      link: "/home",
       icon: IoHomeOutline,
     },
     {
@@ -40,6 +41,7 @@ const Base = ({ children }) => {
       icon: FiLogIn,
     },
   ];
+
 
   return (
     <div className="rootBody">
@@ -61,21 +63,26 @@ const Base = ({ children }) => {
           className="sidebarHead "
           style={{ width: collapsed ? "auto" : "100%" }}
         >
-          <Link to={"/"} style={{ textDecoration: "none", display: collapsed ? "flex" : "none"}}>
+          <Link
+            to={"/home"}
+            style={{
+              textDecoration: "none",
+              display: collapsed ? "flex" : "none",
+            }}
+          >
             <div
               className="sidebarLogo"
-              style={{display: collapsed ? "flex" : "none"  }}
+              style={{ display: collapsed ? "flex" : "none" }}
             >
               T
             </div>
           </Link>
 
-          <Link to={"/"} style={{ textDecoration: "none", display: collapsed ? "none" : "" }}>
-            <p
-              className="siderbarHeadline"
-            >
-              Textmaster
-            </p>
+          <Link
+            to={"/home"}
+            style={{ textDecoration: "none", display: collapsed ? "none" : "" }}
+          >
+            <p className="siderbarHeadline">Textmaster</p>
           </Link>
           <p style={{ display: collapsed ? "none" : "" }}>
             <BiArrowToLeft
@@ -90,6 +97,7 @@ const Base = ({ children }) => {
         <div
           className="sidebarNewThread"
           style={{ display: collapsed ? "none" : "" }}
+          onClick={()=>navigate('/home')}
         >
           New Thread
           <span className="ms-1">
@@ -99,10 +107,9 @@ const Base = ({ children }) => {
         </div>
         <div className="sidebarMenu">
           {menuItem.map((element, idx) => {
-
-            if(element.name === 'login' && loggedIn)return null;
+            if (element.name === "login" && loggedIn) return null;
             return (
-             <div key={idx} className="siderbarMenuItem">
+              <div key={idx} className="siderbarMenuItem">
                 <Link style={{ textDecoration: "none" }} to={element.link}>
                   <div
                     className="siderbarMenuItem_div "
@@ -124,6 +131,7 @@ const Base = ({ children }) => {
           })}
         </div>
 
+        {loggedIn ? 
         <div className="sidebar_endDiv">
           <div
             style={{
@@ -141,9 +149,16 @@ const Base = ({ children }) => {
             </div>
           </div>
           <div style={{ justifyContent: collapsed ? "center" : "" }}>
-            <span style={{ display: collapsed ? "none" : "" }} className="sidebar_user" >
+            <span
+              style={{ display: collapsed ? "none" : "" }}
+              className="sidebar_user"
+            >
               <FaUser />
-              <span className="ms-2 capitalize">{user?.first_name + " " + user?.last_name?.charAt(0)+"."}</span>
+              <span className="ms-2 capitalize">
+                {user.first_name
+                  ? user?.first_name + " " + user?.last_name?.charAt(0) + "."
+                  : "User@9556"}
+              </span>
             </span>
             <IoSettingsOutline size={20} className="sidebar_settings" />
           </div>
@@ -174,6 +189,14 @@ const Base = ({ children }) => {
             </Link>
           </div>
         </div>
+        :
+        <div className="sidebar_endDiv2 " >
+          <div className="sidebar_loginDiv" onClick={()=>navigate("/login")} >Login</div>
+          <div className="siderbar_signupDiv" onClick={()=>navigate("/signup")} >SignUp</div>
+        </div>
+        }
+
+
       </div>
 
       <div className={`p-0 mainSection ${collapsed ? "collapsed" : ""}`}>
@@ -185,8 +208,7 @@ const Base = ({ children }) => {
       {/* bottom sidebar for smaller screens  */}
       <div className="bottomSidebar">
         {menuItem.map((element, idx) => {
-
-          if(element.name === 'login' && loggedIn)return null;
+          if (element.name === "login" && loggedIn) return null;
           return (
             <div key={idx} className="bottomSiderbarMenuItem">
               <Link style={{ textDecoration: "none" }} to={element.link}>

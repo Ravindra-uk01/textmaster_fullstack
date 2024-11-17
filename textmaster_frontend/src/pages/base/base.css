@@ -103,6 +103,7 @@
    margin-top: auto;
    width: 100%;
    transition: all 0.3s cubic-bezier(.4,0,.2,1);
+   margin-bottom: 0.5rem;
 }
 
 .sidebar_endDiv > div{
@@ -112,6 +113,42 @@
     justify-content: space-between;
     padding: 1rem;
     border-top: 1px solid #cecbcc;
+}
+
+.sidebar_endDiv2{
+    margin-top: auto;
+    width: 100%;
+    transition: all 0.3s cubic-bezier(.4,0,.2,1);
+    margin-bottom: 1rem;
+}
+
+.sidebar_endDiv2 > div{
+    display: flex;
+    margin: 0.5rem 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+
+.sidebar_loginDiv {
+    background-color: #21808d;
+    color: white;
+}
+
+.sidebar_loginDiv:hover{
+    background-color: #4897a1;
+}
+
+.siderbar_signupDiv{
+    background-color:#cecbcc;
+    color: black;
+}
+
+.siderbar_signupDiv:hover{
+    color: #686263;
 }
 
 .siderbar_expand{

@@ -49,6 +49,10 @@
     cursor: pointer;
 }
 
+.thread_library-headersIcons > div:hover{
+    color: #8a8484;
+}
+
 .thread_library-content {
     width: 100%;
 
@@ -64,6 +68,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 0.5rem;
 }
 
 .thread_library-itemtTitle{
@@ -88,7 +93,11 @@
 }
 
 .thread_library-itemcreationTime{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color:  #686263;
+    gap: 0.25rem;
 }
 
 .thread_library-itemDetailIcons{
@@ -106,7 +115,11 @@
     border: 1px solid #ece6e8;
     padding: 0.2rem 0.5rem;
     border-radius: 1rem;
-    /* background-color: ; */
+    cursor: pointer;
+}
+
+.thread_library-itemBookmarkIcon:hover{
+    color: #21808d;
 }
 
 .thread_library-menuIcons{
