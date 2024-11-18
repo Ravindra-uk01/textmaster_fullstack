@@ -3,12 +3,13 @@ import "./threadModal.css";
 import newRequest from "../../utils/newRequest";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ThreadModal = ({ visible, onClose, threadData, setThreadData }) => {
   if (!visible) return null;
 
   const {slug} = useParams();
+  const navigate = useNavigate();
 
   const toastData = {
     position: "top-center",
@@ -35,17 +36,12 @@ const ThreadModal = ({ visible, onClose, threadData, setThreadData }) => {
       console.log('ready to submit');
       const response = await newRequest.post('/thread', threadData);
 
-      const {status , message } = response.data;
+      const {status , message , slug } = response.data;
       if(status === 'success'){
          toast.success(message, {
             ...toastData
          })
-
-         setThreadData({
-          title: "",
-          description: "",
-          bookmarked: false
-         })
+         navigate(`/home/${slug}`);
 
          onClose();
       }else {

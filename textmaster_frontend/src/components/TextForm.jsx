@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ThreadModal from "./modals/ThreadModal";
 import { useParams } from "react-router-dom";
-import { getThreadById } from "../reducers/threadReducer";
+import { clearCurrentThread, getThreadById } from "../reducers/threadReducer";
 
 export default function TextForm(props) {
   const textState = useSelector((state) => state.text);
@@ -314,6 +314,9 @@ export default function TextForm(props) {
     if(slug){
       dispatch(getThreadById({slug}));
     }
+    // else {
+    //   dispatch(clearCurrentThread());
+    // }
   },[slug, dispatch])
 
   useEffect(()=>{
@@ -326,18 +329,6 @@ export default function TextForm(props) {
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <ThreadModal
         visible={showThreadForm}
         onClose={()=>setShowThreadForm(false)}
