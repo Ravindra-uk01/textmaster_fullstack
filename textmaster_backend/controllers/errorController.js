@@ -62,6 +62,7 @@ export const globalErrorHandler =  (err, req, res, next)=>{
     err.status = err.status || "error";
     
     if(process.env.NODE_ENV === 'development'){
+
         sendErrorToDev(err, res);
     }
     else if(process.env.NODE_ENV === 'production'){

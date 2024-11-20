@@ -77,6 +77,9 @@ const threadReducer = createSlice({
   reducers: {
     clearCurrentThread : (state)=>{
       state.currentThread = {};
+    },
+    setCurrentThread: (state, action) => {
+      state.currentThread = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -95,5 +98,5 @@ const threadReducer = createSlice({
   },
 });
 
-export const {clearCurrentThread} = threadReducer.actions;
+export const {clearCurrentThread, setCurrentThread} = threadReducer.actions;
 export default threadReducer.reducer;

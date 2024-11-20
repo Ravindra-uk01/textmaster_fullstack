@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { textActions } from "../store/features/text/textSlice";
 import Button from "./ui/Button";
-import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ThreadModal from "./modals/ThreadModal";

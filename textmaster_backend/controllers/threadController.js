@@ -102,5 +102,48 @@ export const updateThread = catchAsync(async(req, res, next) => {
 })
 
 export const deleteThread = catchAsync(async(req, res, next) => {
+    const {_id, role} = req.user;
+    const {slug} = req.params;
 
+    const thread = await Thread.findOne({slug: slug});
+
+    if(!thread){
+        return next(new AppError("No Thread found.", 400) );
+    }
+
+    if(thread.created_by.toString() !== _id.toString()){
+        return next(new AppError("You are not authorised to Delete this thread.", 400) )
+    }
+
+    const deleteThread = await Thread.findOneAndDelete({slug: slug});
+
+    return res.status(200).json({
+        status: "success",
+        message: "Thread is deleted successfully. "
+    })
+
+})
+
+export const toggleThreadBookmark = catchAsync(async(req, res, next) => {
+    const {_id, role} = req.user;
+    const {slug} = req.params;
+
+    const thread = await Thread.findOne({slug: slug});
+
+    if(!thread){
+        return next(new AppError("No Thread found.", 400) );
+    }
+
+    if(thread.created_by.toString() !== _id.toString()){
+        return next(new AppError("You are not authorised to update this thread.", 400) )
+    }
+
+    thread.bookmarked = !thread.bookmarked;
+    thread.save();
+
+    return res.status(200).json({
+        status: "success",
+        message: "Thread is updated successfully. ",
+        thread
+    })
 })
