@@ -11,6 +11,8 @@ import Library from "./pages/library/Library";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "./reducers/userReducer";
+import UserAccount from "./pages/setting/UserAccount";
+import Profile from "./pages/setting/Profile";
 
 function App() {
 
@@ -30,6 +32,8 @@ function App() {
         <Route exact path="/about" element={<About/>} />
         <Route exact path="/login" element={<Login/>} />
         <Route exact path="/signup" element={<Signup/>} />
+        <Route exact path="/settings/account" element={<UserAccount/>} />
+        <Route exact path="/settings/profile" element={<Profile/>} />
         <Route exact path="/*" element={<ErrorPage />} />
       </Routes>
     </>

@@ -18,6 +18,11 @@ const thread_schema = new Schema({
         type: Boolean,
         default: false
     },
+    visibility:{
+        type: String,
+        enum: ["me", "everyone"],
+        default: "everyone"
+    },
     viewers: [
         {
             type: Types.ObjectId,

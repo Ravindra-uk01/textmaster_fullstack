@@ -34,6 +34,13 @@
 
 .home_navbar_div3Icons:hover{
     opacity: 0.5;
+    background-color: grey;
+}
+
+.home_navbar_div3Icons > span{
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
 }
 
 .small_home_navbar{

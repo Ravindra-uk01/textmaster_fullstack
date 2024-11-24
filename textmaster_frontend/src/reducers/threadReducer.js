@@ -64,6 +64,29 @@ export const getThreadById = createAsyncThunk(
   }
 )
 
+export const updateThreadVisibility = createAsyncThunk(
+  "thread/updateThreadVisibility",
+  async({slug, visibility})=>{
+    try{
+        console.log('slug is ', slug)
+        console.log('visibility is ', visibility)
+        const response = await newRequest.patch(`/thread/slug/${slug}`, {visibility} );
+        console.log('response ', response.data)
+    }catch(error) {
+        const {status, message} = error.response.data;
+        if(status === 'success'){
+            toast.warn(message, {
+                ...toastData
+            })
+        }else{
+            toast.error(message, {
+                ...toastData
+            })
+        }
+    }
+  }
+)
+
 const initialState = {
   myThreads: {
     allThreads: [],
@@ -93,6 +116,12 @@ const threadReducer = createSlice({
       const {status, thread } = action.payload;
       if(status === 'success'){
         state.currentThread = thread;
+      }
+    })
+    builder.addCase(updateThreadVisibility.fulfilled, (state, action) => {
+      const {status , updatedThread } = action.payload;
+      if(status === 'success'){
+        state.currentThread = updatedThread;
       }
     })
   },

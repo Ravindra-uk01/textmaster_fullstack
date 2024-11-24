@@ -160,7 +160,7 @@ const Base = ({ children }) => {
                   : "User@9556"}
               </span>
             </span>
-            <IoSettingsOutline size={20} className="sidebar_settings" />
+            <IoSettingsOutline size={20} className="sidebar_settings" onClick={()=>navigate('/settings/account')} />
           </div>
           <div style={{ justifyContent: collapsed ? "center" : "" }}>
             <span style={{ display: collapsed ? "none" : "" }}>Contact Me</span>

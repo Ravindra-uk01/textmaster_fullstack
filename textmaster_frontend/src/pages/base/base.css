@@ -53,8 +53,12 @@
 .siderbarHeadline{
     font-size: 1.4rem;
     font-weight: 600;
-    color: #21808d;
     text-decoration: none;
+    color: #13343b;
+}
+
+.siderbarHeadline:hover{
+    color: #21808d;
 }
 
 .sidebarNewThread{

@@ -1,0 +1,16 @@
+.setting_navbar{
+    display : flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 64px;
+    width: 100%;
+    border-bottom: 1px solid rgb(206, 205, 205);
+    padding: 0.5rem 1rem;
+    color:  #13343b;
+}
+
+.setting_navbar-menu{
+    display: flex;
+    align-items: center;
+    
+}

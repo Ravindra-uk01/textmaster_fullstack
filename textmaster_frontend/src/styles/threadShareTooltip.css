@@ -1,0 +1,88 @@
+.tooltip_container2{
+    position: absolute;
+    top: 45px;
+    right: 0px;
+    width: 350px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.tooltip_shareContent{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(192, 187, 187);
+    border-radius: 0.5rem;
+}
+
+.tooltip_shareContent > div{
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.1rem;
+    flex-direction: column;
+}
+
+.tooltip_shareContent > div:hover{
+    background-color: #ece6e8;
+}
+
+.tooltip_shareContent-secret{
+    border-bottom: 1px solid rgb(192, 187, 187);
+}
+
+.tooltip_shareContent-heading{
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.3rem;
+    cursor: pointer;
+}
+
+.tooltip_shareContent-heading.active{
+    color: #21808d;
+}
+
+.tooltip_shareContent-heading > span{
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.tooltip_desc{
+    font-size: 14px;
+    color: #686263;
+}
+
+.tooltip_linkCopied{
+    color: #21808d;
+    font-size: 14px;
+    margin: 0.3rem 0;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.tooltip_shareSocial{
+    display: grid;
+    gap: 0.2rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.tooltip_shareSocial > div{
+    background-color:#e5e7eb;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #13343b;
+}
+
+.tooltip_shareSocial > div:hover{
+    color: grey;
+}

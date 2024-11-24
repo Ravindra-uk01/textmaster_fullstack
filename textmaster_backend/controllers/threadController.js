@@ -74,6 +74,9 @@ export const updateThread = catchAsync(async(req, res, next) => {
     const {slug} = req.params;
     const {...allData} = req.body;
 
+    console.log('req.body is ', req.body);
+    console.log('allData is ', allData);
+
     const thread = await Thread.findOne({slug: slug});
 
     if(!thread){
@@ -93,6 +96,8 @@ export const updateThread = catchAsync(async(req, res, next) => {
             runValidators: true
         }
     )
+
+    console.log("updated is ", updatedThread);
 
     return res.status(200).json({
         status : "success",
