@@ -5,12 +5,101 @@
     height: 64px;
     width: 100%;
     border-bottom: 1px solid rgb(206, 205, 205);
-    padding: 0.5rem 1rem;
+    padding: 0rem 1rem;
     color:  #13343b;
 }
 
 .setting_navbar-menu{
     display: flex;
     align-items: center;
-    
+    gap: 0.5rem;
+    height: 100%;
+}
+
+.setting_navbar-menuItem{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    font-weight: 600;
+}
+
+.setting_navbar-menuItem > a {
+    text-decoration: none;
+    color: #686263;
+}
+
+.setting_navbar-menuItem.active {
+    color: #13343b;
+    border-bottom: 2px solid #13343b;
+}
+
+.setting_navbar-menuItem.active > a{
+    color: #13343b;
+}
+
+.main_account_div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0.5rem;
+    width : 70%;
+}
+
+.account_generalDiv{
+    width: 100%;
+}
+
+.account_generalDivItems{
+    width: 100%;
+    background-color:#d9d9d080;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.account_generalDiv-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0rem;
+    border-bottom: 1px solid grey;
+}
+
+.account_generalDivItems .account_generalDiv-item:last-child {
+    border: none; 
+}
+
+.account_generalDiv-itemHead > span{
+    font-weight: 600;
+    color: #13343b;
+    font-size: 1.1rem;
+}
+
+.account_generalDiv-itemHead > p{
+    color: #686263;
+}
+
+.account_general_colorThemeButton{
+    padding: 0.2rem 0.4rem;
+    color: #13343b;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    background-color: #d9d9d080;
+    border: 0px solid #e5e7eb;
+}
+
+.account_general_colorThemeButton > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
 }
