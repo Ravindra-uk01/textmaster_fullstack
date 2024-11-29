@@ -72,6 +72,7 @@
     justify-content: space-between;
     padding: 1rem 0rem;
     border-bottom: 1px solid grey;
+    position: relative;
 }
 
 .account_generalDivItems .account_generalDiv-item:last-child {
@@ -91,10 +92,12 @@
 .account_general_colorThemeButton{
     padding: 0.2rem 0.4rem;
     color: #13343b;
+    font-weight: 500;
     border-radius: 0.2rem;
     cursor: pointer;
     background-color: #d9d9d080;
     border: 0px solid #e5e7eb;
+    transition: background-color 0.3s ease;
 }
 
 .account_general_colorThemeButton > div{
@@ -102,4 +105,54 @@
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
+}
+
+.account_general_themeOuterDiv{
+    position: absolute;
+    display: none;
+    top: 70px;
+    right: 0px;
+    z-index: 5;
+}
+
+.account_general_themeOuterDiv.active{
+    display: block;
+}
+
+.account_general_themeMainDiv{
+    /* position: relative; */
+    background-color: white;
+    padding: 0.5rem;
+    width: 170px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0.3rem;
+}
+
+.account_general_themeMainDivItem{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    color: #13343b;
+    font-weight: 500;
+    border-radius: 0.2rem;
+}
+
+.account_general_themeMainDivItem:hover{
+    background-color: #e7e3e4;
+}
+
+.goog-te-combo{
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.goog-te-gadget > span{
+    display: none !important;
+}
+
+.goog-te-gadget{
+    color: transparent !important;
 }

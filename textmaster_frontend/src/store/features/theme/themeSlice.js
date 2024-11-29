@@ -21,12 +21,12 @@ const themeSlice = createSlice({
         },
         setDarkTheme(state, action){
             state.mode = 'dark';
-            state.backgroundColor = '#042743';
-            state.color = 'white';
-            document.body.style.backgroundColor = state.backgroundColor;
+            // state.backgroundColor = '#042743';
+            // state.color = 'white';
+            // document.body.style.backgroundColor = state.backgroundColor;
         }
     }
 })
 
-export const themeActions = themeSlice.actions;
+export const {setLightTheme, setDarkTheme } = themeSlice.actions;
 export default themeSlice.reducer;

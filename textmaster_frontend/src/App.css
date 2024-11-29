@@ -2,3 +2,28 @@ html, body {
   height: 100%;
   margin: 0; /* Ensure there's no default margin */
 }
+
+/* .skiptranslate{
+  display: none;
+} */
+
+/* .skiptranslate > iframe{
+  display: none;
+} */
+
+.translated-ltr{
+  margin-top: -40px;
+}
+
+.translated-ltr{
+  margin-top: -40px;
+}
+
+.goog-te-banner-frame{
+  display: none;
+  margin-top: -20px;
+}
+
+.goog-logo-link{
+  display: none !important;
+}
