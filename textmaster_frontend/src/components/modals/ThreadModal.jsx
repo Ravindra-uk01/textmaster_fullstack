@@ -111,7 +111,7 @@ const ThreadModal = ({ visible, onClose, threadData, setThreadData }) => {
   return (  
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div>
+        <div className="modal-contentHeading" >
           <h4> Thread Details</h4>
           <div className="close-button" onClick={onClose}>
             X
@@ -149,8 +149,8 @@ const ThreadModal = ({ visible, onClose, threadData, setThreadData }) => {
           </div>
 
           <div className="threadModal_button" >
-            <button type="submit">Submit</button>
             <button type="button" onClick={onClose}>Close</button>
+            <button type="submit">Submit</button>
           </div>
         </form>
       </div>

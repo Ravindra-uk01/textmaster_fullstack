@@ -41,6 +41,32 @@ export const addUser = createAsyncThunk("user/addUser", async (data) => {
   }
 });
 
+export const removeUser = createAsyncThunk("user/removeUser", async () => {
+  try {
+    const response = await axios.post(`${API}/auth/logout`, {} );
+
+    const { status, message } = response.data;
+    if (status === "success") {
+      toast.success(message, { ...toastData });
+    } else {
+      toast.warn(message, { ...toastData });
+    }
+    return response.data;
+  } catch (error) {
+    const { status, message } = error.response.data;
+
+    if (status === "warning") {
+      toast.warn(message, {
+        ...toastData,
+      });
+    } else {
+      toast.error(message, {
+          ...toastData
+      })
+    }
+  }
+});
+
 export const getProfile = createAsyncThunk(
   "user/getProfile",
   async() => {
@@ -64,10 +90,10 @@ const userReducer = createSlice({
   reducers: {
     setProfile: (state, action)=>{
       const {user} = action.payload;
-      console.log('user is frontend reducer', user);
       state.user = user;
       state.loggedIn = true;
-    }
+    },
+
   },
   extraReducers: (builder) => {
     builder.addCase(addUser.fulfilled , (state, action) => {
@@ -75,6 +101,13 @@ const userReducer = createSlice({
         if(status === "success"){
             state.user = user;
             state.loggedIn = true;
+        }
+    })
+    builder.addCase(removeUser.fulfilled , (state, action) => {
+        const {status} = action.payload;
+        if(status === "success"){
+            state.user = {};
+            state.loggedIn = false;
         }
     })
     builder.addCase(getProfile.fulfilled, (state, action) => {

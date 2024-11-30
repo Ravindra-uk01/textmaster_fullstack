@@ -83,8 +83,7 @@ export const signup = catchAsync(async(req, res, next)=>{
 export const logout = async(req, res, next) => {
 
     res.clearCookie("accessToken", {
-        sameSite : "none",
-        secure: true,
+        httpOnly: true,
     })
     .status(200).json({
         status : "success",
@@ -209,6 +208,8 @@ export const getMyProfile = catchAsync(async(req, res, next) => {
     if(!token){
         return next(new AppError("You are not logged in! please log in to get access.", 401));
     }
+
+    console.log('token is ', token)
 
     // Verification of token
     const decode = jwt.verify(token, process.env.JWT_SECRET_KEY);

@@ -1,97 +1,122 @@
-.modal-overlay{
-   position: fixed;
-   top: 0;
-   left: 0;
-   bottom: 0;
-   right: 0;
-   background-color: rgba(0, 0, 0, 0.5);
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   z-index: 555;
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 555;
 }
 
-.modal-content{
-    width: 500px;
-    height: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    position: relative;
+.modal-content {
+  width: 500px;
+  height: auto;
+  background: white;
+  padding: 1rem;
+  border-radius: 5px;
+  position: relative;
 }
 
 .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: red;
-    font-weight: bold;
-} 
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
 
-.close-button:hover{
-    color:rgb(219, 21, 21);
+.close-button:hover {
+  color:  #13343b;
 }
 
 .threadModal_form {
-    display: flex;
-    flex-direction: column; 
-    margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
 }
 
-.threadModal_form > div {
+/* .threadModal_form > div {
+  margin-bottom: 15px;
+} */
+
+ .modal_title{
     margin-bottom: 15px;
-}
+ }
 
 .modal_title > label {
-    font-size: large;
-    font-weight: bold;
-    margin-bottom: 5px;
+  font-size: large;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .threadModal_form input[type="text"] {
-    padding: 10px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-    width: 100%; 
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
 }
 
 .threadModal_form input[type="radio"] {
-    margin-right: 5px; 
+  margin-right: 5px;
 }
 
-.modal_bookmark{
-    display: flex;
-    gap: 1rem;
+.modal_bookmark {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 15px;
 }
 
-.modal_bookmark > span{
-    font-size: large;
-    font-weight: bold;
+.modal_bookmark > span {
+  font-size: large;
+  font-weight: bold;
 }
 
 /* Button Styles */
+.threadModal_button {
+  border-top: 1px solid rgb(216, 213, 213);
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0;
+  gap: 0.5rem;
+}
+
 .threadModal_button > button {
-    padding: 10px 15px; 
-    border: none; 
-    border-radius: 4px; 
-    cursor: pointer; 
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .threadModal_button > button[type="submit"] {
-    background-color: #28a745; 
-    color: white; 
-    margin-right: 1rem;
+  background-color: #21808d;
+  color: white;
 }
 
-.threadModal_button >button[type="submit"]:hover {
-    background-color: #218838; 
+.threadModal_button > button[type="submit"]:hover {
+   opacity: 0.7;
 }
 
-.threadModal_button >button[type="button"] {
-    background-color: #dc3545; 
-    color: white;
+.threadModal_button > button[type="button"] {
+  background-color: #ece6e8;
+  color: #13343b;
+  font-weight: 500;
 }
 
-.threadModal_button >button[type="button"]:hover {
-    background-color: #c82333; 
+.threadModal_button > button[type="button"]:hover {
+  color: #8a8484;
+}
+
+/* for sign out form  */
+
+.signout_content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
 }
