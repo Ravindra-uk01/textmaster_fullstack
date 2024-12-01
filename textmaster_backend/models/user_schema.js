@@ -43,6 +43,9 @@ const user_schema = new Schema({
         min: 1000000000, 
         max: 9999999999
     },
+    bio:{
+        type: String
+    },
     photo:{
         type : String,
     },

@@ -1,13 +1,23 @@
-import Base from '../Base/Base'
-import "./settings.css"
+import Settings from "./Settings";
+import "./settings.css";
 
 const Profile = () => {
   return (
-    <Base>
-        <div>Profile</div>
-        
-    </Base>
-  )
-}
+    <Settings currentTab={"profile"}>
+      <div className="main_account_div">
+        {/* <SignoutModal
+        visible={openSignoutForm}
+        onClose={()=>setOpenSignoutForm(false)}
+      /> */}
+        <div className="profile_div">
+           <div>
+              <label>First Name</label>
+              <input></input>
+           </div>
+        </div>
+      </div>
+    </Settings>
+  );
+};
 
-export default Profile
+export default Profile;

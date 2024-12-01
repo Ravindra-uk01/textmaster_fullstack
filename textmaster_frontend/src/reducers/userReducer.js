@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import newRequest from "../utils/newRequest";
 
 const API = import.meta.env.VITE_API;
 const toastData = {
@@ -43,7 +44,7 @@ export const addUser = createAsyncThunk("user/addUser", async (data) => {
 
 export const removeUser = createAsyncThunk("user/removeUser", async () => {
   try {
-    const response = await axios.post(`${API}/auth/logout`, {} );
+    const response = await newRequest.post(`/auth/logout`, {});
 
     const { status, message } = response.data;
     if (status === "success") {

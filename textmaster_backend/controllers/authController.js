@@ -205,11 +205,14 @@ export const getMyProfile = catchAsync(async(req, res, next) => {
         token = req.headers[token] || req.cookies.accessToken;
     }
 
+    // console.log('req.headers is ', req.headers[token]);
+    // console.log('req.cookies is ', req.cookies.accessToken);
+
     if(!token){
         return next(new AppError("You are not logged in! please log in to get access.", 401));
     }
 
-    console.log('token is ', token)
+    // console.log('token is ', token)
 
     // Verification of token
     const decode = jwt.verify(token, process.env.JWT_SECRET_KEY);

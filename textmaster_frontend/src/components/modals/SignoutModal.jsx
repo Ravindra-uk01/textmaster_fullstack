@@ -25,9 +25,7 @@ const SignoutModal = ({ visible, onClose }) => {
     e.preventDefault();
     console.log('came here buddy ')
     dispatch(removeUser());
-    //   window.setTimeout(() => {
-    //     navigate('/home');
-    //   }, 1500);
+    onClose();
   }
 
   return (

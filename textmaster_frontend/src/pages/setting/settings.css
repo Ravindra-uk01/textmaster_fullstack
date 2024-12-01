@@ -25,7 +25,7 @@
     font-weight: 600;
 }
 
-.setting_navbar-menuItem > a {
+.setting_navbar-menuItem > span {
     text-decoration: none;
     color: #686263;
 }
@@ -35,7 +35,7 @@
     border-bottom: 2px solid #13343b;
 }
 
-.setting_navbar-menuItem.active > a{
+.setting_navbar-menuItem.active > span{
     color: #13343b;
 }
 
@@ -160,4 +160,16 @@
 .account_systemDiv{
     width: 100%;
     margin-top: 1rem;
+}
+
+
+/* profile page */
+
+.profile_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0.5rem;
+    width : 70%;
 }

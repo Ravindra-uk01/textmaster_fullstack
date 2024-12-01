@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import Base from "../Base/Base";
+
 import "./settings.css";
 import { useEffect, useRef, useState } from "react";
 import { MdLightMode } from "react-icons/md";
@@ -11,41 +10,10 @@ import {
 } from "../../store/features/theme/themeSlice";
 import Switch from "../../components/ui/Switch";
 import SignoutModal from "../../components/modals/SignoutModal";
+import Settings from "./Settings";
 
 const UserAccount = () => {
-  const [tab, setTab] = useState("account");
-
-  return (
-    <Base>
-      <div className="setting_navbar">
-        <div className="setting_navbar-heading">
-          <h2>Settings</h2>
-        </div>
-        <div className="setting_navbar-menu">
-          {["account", "profile"].map((menuItem, idx) => {
-            return (
-              <div
-                key={menuItem - idx}
-                className={`setting_navbar-menuItem ${
-                  tab == menuItem ? "active" : ""
-                }`}
-                onClick={() => setTab(menuItem)}
-              >
-                <Link className="capitalize">{menuItem}</Link>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="px-2">
-        {tab === "account" ? <AccountPage /> : <Profile />}
-      </div>
-    </Base>
-  );
-};
-
-const AccountPage = () => {
+ 
   const themeState = useSelector((state) => state.theme);
   const {user} = useSelector((state) => state.user);
   const [themeOpen, setThemeOpen] = useState(false);
@@ -112,11 +80,12 @@ const AccountPage = () => {
     };
   }, []);
 
-  console.log("themeopen is ", themeOpen);
-  console.log('openSignoutForm is ', openSignoutForm)
+  // console.log("themeopen is ", themeOpen);
+  // console.log('openSignoutForm is ', openSignoutForm)
 
   return (
-    <div className="main_account_div">
+    <Settings currentTab={"account"} >
+      <div className="main_account_div">
       <SignoutModal
         visible={openSignoutForm}
         onClose={()=>setOpenSignoutForm(false)}
@@ -214,11 +183,20 @@ const AccountPage = () => {
         </div>
       </div>
     </div>
+    </Settings>
   );
 };
 
-const Profile = () => {
-  return <h1>Profile </h1>;
-};
+// const AccountPage = () => {
+ 
+
+//   return (
+    
+//   );
+// };
+
+// const Profile = () => {
+//   return <h1>Profile </h1>;
+// };
 
 export default UserAccount;

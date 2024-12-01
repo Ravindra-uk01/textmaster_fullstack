@@ -1,0 +1,39 @@
+.aboutComp_mainDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aboutComp_Div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0.5rem;
+    width : 70%;
+}
+
+.aboutComp_Head > h2{
+    color: #13343b;
+}
+
+.aboutComp_Head > h2:hover{
+    color: #21808d;
+}
+
+.aboutComp_Head > p{
+    color: #686263;
+}
+
+#accordionExample{
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.accordion-button{
+    color: #13343b;
+}
+
+.accordion-body{
+    color: #686263;
+}
