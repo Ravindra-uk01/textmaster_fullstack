@@ -42,7 +42,6 @@ const Base = ({ children }) => {
     },
   ];
 
-
   return (
     <div className="rootBody">
       <ToastContainer
@@ -97,7 +96,7 @@ const Base = ({ children }) => {
         <div
           className="sidebarNewThread"
           style={{ display: collapsed ? "none" : "" }}
-          onClick={()=>navigate('/home')}
+          onClick={() => navigate("/home")}
         >
           New Thread
           <span className="ms-1">
@@ -131,72 +130,88 @@ const Base = ({ children }) => {
           })}
         </div>
 
-        {loggedIn ? 
-        <div className="sidebar_endDiv">
-          <div
-            style={{
-              display: collapsed ? "" : "none",
-              justifyContent: collapsed ? "center" : "",
-            }}
-          >
-            <div className="siderbar_expand">
-              <BiArrowToRight
+        {loggedIn ? (
+          <div className="sidebar_endDiv">
+            <div
+              style={{
+                display: collapsed ? "" : "none",
+                justifyContent: collapsed ? "center" : "",
+              }}
+            >
+              <div className="siderbar_expand">
+                <BiArrowToRight
+                  size={20}
+                  color="#454545"
+                  title="expand"
+                  onClick={() => setCollapsed(false)}
+                />
+              </div>
+            </div>
+            <div style={{ justifyContent: collapsed ? "center" : "" }}>
+              <span
+                style={{ display: collapsed ? "none" : "" }}
+                className="sidebar_user"
+              >
+                <FaUser />
+                <span className="ms-2 capitalize">
+                  {user.first_name
+                    ? user?.first_name + " " + user?.last_name?.charAt(0) + "."
+                    : "User@9556"}
+                </span>
+              </span>
+              <IoSettingsOutline
                 size={20}
-                color="#454545"
-                title="expand"
-                onClick={() => setCollapsed(false)}
+                className="sidebar_settings"
+                onClick={() => navigate("/settings/account")}
               />
             </div>
-          </div>
-          <div style={{ justifyContent: collapsed ? "center" : "" }}>
-            <span
-              style={{ display: collapsed ? "none" : "" }}
-              className="sidebar_user"
-            >
-              <FaUser />
-              <span className="ms-2 capitalize">
-                {user.first_name
-                  ? user?.first_name + " " + user?.last_name?.charAt(0) + "."
-                  : "User@9556"}
+            <div style={{ justifyContent: collapsed ? "center" : "" }}>
+              <span style={{ display: collapsed ? "none" : "" }}>
+                Contact Me
               </span>
-            </span>
-            <IoSettingsOutline size={20} className="sidebar_settings" onClick={()=>navigate('/settings/account')} />
+              <div className="sidebar_contactMe-Icons">
+                <Link
+                  to="https://x.com/Ravindra_uk01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <RiTwitterXLine size={20} />
+                </Link>
+                <Link
+                  to="https://www.linkedin.com/in/ravindra-singh-rayal/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ display: collapsed ? "none" : "" }}
+                >
+                  <FaLinkedinIn size={20} />
+                </Link>
+                <Link
+                  to="https://ravindra-uk01.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ display: collapsed ? "none" : "" }}
+                >
+                  <GiCircleCage size={20} />
+                </Link>
+              </div>
+            </div>
           </div>
-          <div style={{ justifyContent: collapsed ? "center" : "" }}>
-            <span style={{ display: collapsed ? "none" : "" }}>Contact Me</span>
-            <Link
-              to="https://x.com/Ravindra_uk01"
-              target="_blank"
-              rel="noopener noreferrer"
+        ) : (
+          <div className="sidebar_endDiv2 ">
+            <div
+              className="sidebar_loginDiv"
+              onClick={() => navigate("/login")}
             >
-              <RiTwitterXLine size={23} />
-            </Link>
-            <Link
-              to="https://www.linkedin.com/in/ravindra-singh-rayal/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: collapsed ? "none" : "" }}
+              Login
+            </div>
+            <div
+              className="siderbar_signupDiv"
+              onClick={() => navigate("/signup")}
             >
-              <FaLinkedinIn size={25} />
-            </Link>
-            <Link
-              to="https://ravindra-uk01.netlify.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: collapsed ? "none" : "" }}
-            >
-              <GiCircleCage size={25} />
-            </Link>
+              SignUp
+            </div>
           </div>
-        </div>
-        :
-        <div className="sidebar_endDiv2 " >
-          <div className="sidebar_loginDiv" onClick={()=>navigate("/login")} >Login</div>
-          <div className="siderbar_signupDiv" onClick={()=>navigate("/signup")} >SignUp</div>
-        </div>
-        }
-
-
+        )}
       </div>
 
       <div className={`p-0 mainSection ${collapsed ? "collapsed" : ""}`}>

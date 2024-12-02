@@ -3,8 +3,10 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import newRequest from "../utils/newRequest";
+import { useNavigate } from "react-router-dom";
 
 const API = import.meta.env.VITE_API;
+// const navigate = useNavigate();
 const toastData = {
   position: "top-right",
   autoClose: 5000,
@@ -49,6 +51,7 @@ export const removeUser = createAsyncThunk("user/removeUser", async () => {
     const { status, message } = response.data;
     if (status === "success") {
       toast.success(message, { ...toastData });
+      // navigate('/home');
     } else {
       toast.warn(message, { ...toastData });
     }

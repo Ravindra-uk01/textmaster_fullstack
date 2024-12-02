@@ -28,7 +28,7 @@ const About = () => {
             <span className="ms-0">1h</span>
           </div>
         </div>
-        <div className="home_navbar_div2 fs-5">Textmaster</div>
+        <div className="home_navbar_div2 fs-5">About - Textmaster</div>
         <div className="home_navbar_div3">
           <div>
             <IoSettingsOutline size={20} className="sidebar_settings" onClick={()=>navigate('/settings/account')} />

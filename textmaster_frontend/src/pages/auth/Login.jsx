@@ -149,7 +149,7 @@ const Login = () => {
               </div>
               <p className="err_msg">{errors.password?.message}</p>
             </div>
-            <Link>forgor password?</Link>
+            <Link to={"/forgot_password"} >forgor password?</Link>
             <button className="btn btn-secondary " type="submit">
               Log In
             </button>

@@ -92,18 +92,17 @@ export const logout = async(req, res, next) => {
 }
 
 export const forgetPassword = catchAsync(async(req, res, next) =>{
-    
+
     // 1) Get user whose password needs to be changed
         const currentUser = await User.findOne({email: req.body.email});
+
         if(!currentUser){
-            return new AppError("No user found with this email Id.", 404);
+            return next(new AppError("No user found with this email Id.", 404));
         }
 
     // 2) Generate the resetToken 
         const resetToken = currentUser.createPasswordResetToken();
         currentUser.save({validateBeforeSave: false});
-
-        console.log('reset token is ', resetToken);
 
     // 3) Send the resetToken in mail 
         try {
@@ -119,7 +118,7 @@ export const forgetPassword = catchAsync(async(req, res, next) =>{
 
             res.status(200).json({
                 status : 'success',
-                message : "Token sent to email" 
+                message : "We have sent you an e-mail. Please contact us if you do not receive it within a few minutes." 
             })
         } catch (error) {
             currentUser.passwordResetToken = undefined;
