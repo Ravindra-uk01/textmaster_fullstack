@@ -7,13 +7,14 @@ import "react-toastify/dist/ReactToastify.css";
 import ThreadModal from "./modals/ThreadModal";
 import { useParams } from "react-router-dom";
 import { clearCurrentThread, getThreadById } from "../reducers/threadReducer";
+import "../styles/textformComp.css"
 
 export default function TextForm(props) {
   const textState = useSelector((state) => state.text);
   const themeState = useSelector((state) => state.theme);
-  const {user, loggedIn} = useSelector(state => state.user);
-  const {currentThread } = useSelector(state => state.thread);
-  const {slug} = useParams();
+  const { user, loggedIn } = useSelector((state) => state.user);
+  const { currentThread } = useSelector((state) => state.thread);
+  const { slug } = useParams();
   const dispatch = useDispatch();
 
   const [isListening, setIsListening] = useState(false);
@@ -35,7 +36,7 @@ export default function TextForm(props) {
   };
 
   const handleOnChange = (event) => {
-    setThreadData((prev)=>({...prev, description: event.target.value}));
+    setThreadData((prev) => ({ ...prev, description: event.target.value }));
     dispatch(textActions.updateText({ text: event.target.value }));
   };
 
@@ -292,125 +293,143 @@ export default function TextForm(props) {
   // }
 
   const handleAddThread = () => {
-
-    if(!loggedIn){
+    if (!loggedIn) {
       toast.warn("To proceed, please log in to your account. ", {
-        ...toastData
-      })
+        ...toastData,
+      });
       return;
     }
 
-    if(threadData.description === ''){
-      toast.warn("Please ensure that content is added to the text analyzer thread before saving it.", {
-        ...toastData
-      })
+    if (threadData.description === "") {
+      toast.warn(
+        "Please ensure that content is added to the text analyzer thread before saving it.",
+        {
+          ...toastData,
+        }
+      );
       return;
     }
-    setShowThreadForm(true)
-  }
+    setShowThreadForm(true);
+  };
 
-  useEffect(()=>{
-    if(slug){
-      dispatch(getThreadById({slug}));
+  useEffect(() => {
+    if (slug) {
+      dispatch(getThreadById({ slug }));
     }
     // else {
     //   dispatch(clearCurrentThread());
     // }
-  },[slug, dispatch])
+  }, [slug, dispatch]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setThreadData(currentThread);
     dispatch(textActions.updateText({ text: threadData.description || "" }));
-  },[currentThread])
+  }, [currentThread]);
 
-  console.log('thread Data is ', threadData);
-  console.log('currentThread Data is ', currentThread);
+  console.log("thread Data is ", threadData);
+  console.log("currentThread Data is ", currentThread);
 
   return (
     <>
       <ThreadModal
         visible={showThreadForm}
-        onClose={()=>setShowThreadForm(false)}
+        onClose={() => setShowThreadForm(false)}
         threadData={threadData}
         setThreadData={setThreadData}
       />
-      <div
-        className="container mt-4"
-        style={{
-          color: themeState.color,
-        }}
-      >
-        <h2 className="mb-2 ">Enter The Text To Analyze Below</h2>
-        <div className="mb-3 ">
-          <textarea
-            className="form-control"
-            id="myBox"
-            rows="9"
-            value={textState.text}
-            onChange={handleOnChange}
+
+      <div className="main_textformDiv" >
+        <div className="textformDiv" >
+          <div
+            className="container mt-2"
             style={{
-              backgroundColor: themeState.backgroundColor,
               color: themeState.color,
             }}
-          ></textarea>
+          >
+            <h2 className="mb-2 ">Enter The Text To Analyze Below</h2>
+            <div className="mb-3 ">
+              <textarea
+                className="form-control"
+                id="myBox"
+                rows="9"
+                value={textState.text}
+                onChange={handleOnChange}
+                style={{
+                  backgroundColor: themeState.backgroundColor,
+                  color: themeState.color,
+                }}
+              ></textarea>
+            </div>
+            {availableActions.map((action) => {
+              const supported = action?.supported;
+
+              if (supported === false) {
+                return;
+              }
+              return <Button key={action.label} action={action} />;
+            })}
+          </div>
+
+          <div className="m-3">
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={handleAddThread}
+            >
+              {" "}
+              {slug ? "Update Thread" : "Add Thread"}{" "}
+            </button>
+          </div>
+
+          <div
+            className="container my-3"
+            style={{
+              color: themeState.color,
+            }}
+          >
+            <h3 className="my-2" >Your Text Summary</h3>
+            <p>
+              <b>
+                {
+                  textState.text
+                    .trim()
+                    .split(" ")
+                    .filter((value) => value !== "").length
+                }
+              </b>{" "}
+              words,
+              <b> {textState.text.trim().length}</b> characters,
+              <b>
+                {" "}
+                {
+                  textState.text
+                    .trim()
+                    .replace(/\n/g, ".")
+                    .split(".")
+                    .filter((value) => value !== "").length
+                }
+              </b>{" "}
+              statements,
+              <b> {textState.text.split("?").length - 1}</b> questions,{" "}
+              <b>{textState.text.split("!").length - 1}</b> exclamations.
+            </p>
+            <p>
+              {(
+                0.08 *
+                textState.text.split(" ").filter((element) => {
+                  return element.length !== 0;
+                }).length
+              ).toFixed(2)}{" "}
+              Minutes read
+            </p>
+            <h3 className="my-2">Preview</h3>
+            <p>
+              {textState.text.length > 0
+                ? textState.text
+                : "Nothing to preview!!"}
+            </p>
+          </div>
         </div>
-        {availableActions.map((action) => {
-          const supported = action?.supported;
-
-          if (supported === false) {
-            return;
-          }
-          return <Button key={action.label} action={action} />;
-        })}
-      </div>
-
-      <div className="m-3">
-        <button type="button" className="btn btn-danger" onClick={handleAddThread} > { slug ? "Update Thread" : "Add Thread"} </button>
-      </div>
-
-
-      <div
-        className="container my-3"
-        style={{
-          color: themeState.color,
-        }}
-      >
-        <h3>Your Text Summary</h3>
-        <p>
-          <b>
-            {
-              textState.text
-                .trim()
-                .split(" ")
-                .filter((value) => value !== "").length
-            }
-          </b>{" "}
-          words,
-          <b> {textState.text.trim().length}</b> characters,
-          <b>
-            {" "}
-            {
-              textState.text.trim()
-                .replace(/\n/g, ".")
-                .split(".")
-                .filter((value) => value !== "").length
-            }
-          </b>{" "}
-          statements,
-          <b> {textState.text.split("?").length - 1}</b> questions,{" "}
-          <b>{textState.text.split("!").length - 1}</b> exclamations.
-        </p>
-        <p>
-          {(0.08 *
-            textState.text.split(" ").filter((element) => {
-              return element.length !== 0;
-            }).length).toFixed(2)}{" "}
-          Minutes read
-        </p>
-        <h3>Preview</h3>
-        <p>
-          {textState.text.length > 0 ? textState.text : "Nothing to preview!!"}
-        </p>
       </div>
     </>
   );

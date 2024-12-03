@@ -15,7 +15,7 @@ export class Footer extends Component {
           <div className="container text-center">
             <span className="text-muted">
               Made with ❤️ by Ravindra Singh Rayal.
-              <a style={styles} href="https://github.com/Ravindra-uk01/TextMaster">
+              <a style={styles} href="https://github.com/Ravindra-uk01/textmaster_fullstack">
                 <AiOutlineGithub />
               </a>
             </span>

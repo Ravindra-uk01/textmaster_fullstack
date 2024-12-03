@@ -2,9 +2,9 @@ import { useState } from "react";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./forgot_password.css";
 import newRequest from "../../utils/newRequest";
 import { useNavigate } from "react-router-dom";
+import "./forgot_password.css";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");

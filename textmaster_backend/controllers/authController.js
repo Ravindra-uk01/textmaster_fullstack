@@ -106,9 +106,12 @@ export const forgetPassword = catchAsync(async(req, res, next) =>{
 
     // 3) Send the resetToken in mail 
         try {
-            const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/auth/resetPassword/${resetToken}`;
+            // const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/auth/resetPassword/${resetToken}`;
+            const resetUrl = `${process.env.FRONTEND_URL}/reset_password/${resetToken}`;
             // const message = `Forgot your password ? click here : ${resetUrl}. \n If you didn't forget your password , Please Ignore this mail.`
             const message =  `<p>You requested a password reset. Click the link below to reset your password:</p><p><a href="${resetUrl}">Reset Password</a></p>`;
+
+            console.log('reset url is ', resetUrl)
 
             await sendEmail({
                 email : currentUser.email,
@@ -166,7 +169,7 @@ export const resetPassword = catchAsync( async(req, res, next) =>{
         user.passwordChangedAt = new Date();
 
     // 4) Log the user in , send Jwt
-        createAndSendToken(user, 200, res, "logged in Successfully");
+        createAndSendToken(user, 200, res, "Your password has been reset successfully.");
         
 })
 

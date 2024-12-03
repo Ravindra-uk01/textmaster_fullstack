@@ -26,6 +26,7 @@ const SignoutModal = ({ visible, onClose }) => {
     console.log('came here buddy ')
     dispatch(removeUser());
     onClose();
+    navigate('/home');
   }
 
   return (

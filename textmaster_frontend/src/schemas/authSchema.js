@@ -34,3 +34,16 @@ export const registrationSchema = yup.object({
     .required('Confirm Password is required') 
     .oneOf([yup.ref('password'), null], 'Passwords must match'), 
 })
+
+export const resetPasswordSchema = yup.object({
+  password: yup.string()
+   .min(8, 'Password must be at least 8 characters long') // Minimum length
+   .matches(
+     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
+     'Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.'
+   )
+   .required('Password is required'), 
+   confirm_password: yup.string()
+   .required('Confirm Password is required') 
+   .oneOf([yup.ref('password'), null], 'Passwords must match'), 
+})
