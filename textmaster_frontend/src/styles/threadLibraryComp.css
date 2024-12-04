@@ -137,3 +137,32 @@
     background-color: #ece6e8;
     color:black;
 }
+
+
+/* thread library model css */
+
+.threadLibrary_ModelContent > div{
+    padding: 0.5rem;
+}
+
+.threadLibrary_ModelContent > div:hover{
+    background-color: #ece6e8;
+}
+
+.tl_modalHeading{
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.3rem;
+    cursor: pointer;
+}
+
+.tl_modalHeading.active{
+    color: #21808d;
+}
+
+.tl_modelHeadingDesc{
+    font-size: 14px;
+    color: #686263;
+}

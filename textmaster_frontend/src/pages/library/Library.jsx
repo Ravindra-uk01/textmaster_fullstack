@@ -14,7 +14,7 @@ const Library = () => {
       <div className="library_navbar">
             <div className="library_navbar-heading" >
                 <RiStackLine size={25} />
-                <h2>Library</h2>
+                <h3>Library</h3>
             </div>
             <div className="library_navbar-search" >
                 <IoSearch size={20} color="grey" />

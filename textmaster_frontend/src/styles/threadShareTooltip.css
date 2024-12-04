@@ -59,10 +59,11 @@
 .tooltip_linkCopied{
     color: #21808d;
     font-size: 14px;
-    margin: 0.3rem 0;
+    margin: 0.3rem 0.2rem 0.6rem 0.3rem;
     font-weight: 500;
     display: flex;
     align-items: center;
+    gap:0.3rem;
 }
 
 .tooltip_shareSocial{
