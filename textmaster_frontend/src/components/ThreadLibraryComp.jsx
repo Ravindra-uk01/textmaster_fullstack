@@ -12,6 +12,10 @@ import { timesAgo } from "../utils/dateFormat";
 import { useNavigate } from "react-router-dom";
 import NoDataFound from "../utils/NoDataFound";
 import ModalForm from "./modals/ModalForm";
+import newRequest from "../utils/newRequest";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ThreeDotsTooltip from "./ThreeDotsTooltip";
 
 const ThreadLibraryComp = () => {
   const {
@@ -22,13 +26,54 @@ const ThreadLibraryComp = () => {
   const [showModelForm, setShowModelForm] = useState(false);
   const [threadType, setThreadType] = useState("all");
 
+  const toastData = {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
+
   useEffect(() => {
     dispatch(getMyThreads());
   }, [dispatch]);
 
-  const deleteAllThreads = () => {
-    if(confirm(`All your ${threadType==='all' ? "" : "Bookmarked "} threads will be deleted. This cannot be undone.`)){
-      console.log("yupp do this deletion");
+  const deleteAllThreads = async () => {
+    try {
+      if (
+        confirm(
+          `All your ${
+            threadType === "all" ? "" : "Bookmarked "
+          } threads will be deleted. This cannot be undone.`
+        )
+      ) {
+        const response = await newRequest.delete(
+          `/thread/threadType/${threadType}`
+        );
+        const { status, message } = response.data;
+        if (status === "success") {
+          toast.success(message, {
+            ...toastData,
+          });
+          setThreadType("all");
+          window.location.reload();
+        }
+      }
+    } catch (error) {
+      console.log("error is ", error);
+      const { status, message } = error.response.data;
+      if (status === "warning") {
+        toast.warn(message, {
+          ...toastData,
+        });
+      } else {
+        toast.error(message, {
+          ...toastData,
+        });
+      }
     }
   };
 
@@ -44,23 +89,31 @@ const ThreadLibraryComp = () => {
         confirmText={"Delete Threads"}
       >
         <div className="threadLibrary_ModelContent">
-          <div onClick={()=>setThreadType("all")} >
-            <p className={`tl_modalHeading ${
-                  threadType === "all" ?  "active" : ""
-                }`} >
+          <div onClick={() => setThreadType("all")}>
+            <p
+              className={`tl_modalHeading ${
+                threadType === "all" ? "active" : ""
+              }`}
+            >
               <span>All Threads</span>
               {threadType === "all" ? <FaRegCircleCheck /> : ""}
             </p>
-            <p className="tl_modelHeadingDesc" >All your threads will be deleted. </p>
-          </div>
-          <div onClick={()=>setThreadType("unBookmarked")} >
-            <p className={`tl_modalHeading ${
-                  threadType === "unBookmarked" ?  "active" : ""
-                }`}>
-              <span>Unbookmarked Threads</span>
-              {threadType === "unBookmarked"  ? <FaRegCircleCheck /> : ""}
+            <p className="tl_modelHeadingDesc">
+              All your threads will be deleted.{" "}
             </p>
-            <p className="tl_modelHeadingDesc" >All unbookmarked threads will be permanently deleted. </p>
+          </div>
+          <div onClick={() => setThreadType("unBookmarked")}>
+            <p
+              className={`tl_modalHeading ${
+                threadType === "unBookmarked" ? "active" : ""
+              }`}
+            >
+              <span>Unbookmarked Threads</span>
+              {threadType === "unBookmarked" ? <FaRegCircleCheck /> : ""}
+            </p>
+            <p className="tl_modelHeadingDesc">
+              All unbookmarked threads will be permanently deleted.{" "}
+            </p>
           </div>
         </div>
       </ModalForm>
@@ -74,7 +127,7 @@ const ThreadLibraryComp = () => {
             <div onClick={() => setShowModelForm(true)}>
               <BsThreeDots />
             </div>
-            <div onClick={() => navigate("/home")} >
+            <div onClick={() => navigate("/home")}>
               <FaPlus />
             </div>
           </div>
@@ -114,7 +167,9 @@ const ThreadLibraryComp = () => {
                       )}
 
                       <div className="thread_library-menuIcons">
-                        <BsThreeDots size={15} />
+                        <ThreeDotsTooltip threadSlug={thread.slug} >
+                          <BsThreeDots size={15} />
+                        </ThreeDotsTooltip>
                       </div>
                     </div>
                   </div>

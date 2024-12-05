@@ -152,3 +152,24 @@ export const toggleThreadBookmark = catchAsync(async(req, res, next) => {
         thread
     })
 })
+
+export const deleteMultipleThreads = catchAsync(async(req, res , next) => {
+    const {_id, role} = req.user;
+    const {threadType} = req.params;
+
+    const query = {
+        created_by : _id
+    }
+
+    if(threadType === 'unBookmarked'){
+        query.bookmarked = false;
+    }
+
+    const allThreads = await Thread.deleteMany(query);
+
+    if (allThreads.deletedCount > 0) {
+        return res.status(200).json({  status: "success", message: `${allThreads.deletedCount} threads deleted successfully.` });
+    } else {
+        return res.status(404).json({  status: "success", message: 'No threads found to delete.' });
+    }
+})

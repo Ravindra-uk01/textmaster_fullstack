@@ -10,13 +10,14 @@ import { setCurrentThread } from '../reducers/threadReducer';
 import { useDispatch } from 'react-redux';
 import { textActions } from '../store/features/text/textSlice';
 
-const ThreeDotsTooltip = ({children}) => {
+const ThreeDotsTooltip = ({children, threadSlug}) => {
 
     const [isVisible, setIsVisible] = useState(false);
     const tooltipRef = useRef(null);
-    const {slug} = useParams();
+    const {slug: paramSlug} = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const slug = paramSlug || threadSlug;
 
     const toastData = {
         position: "top-center",
@@ -83,7 +84,8 @@ const ThreeDotsTooltip = ({children}) => {
     <div className='tooltip_mainContainer' >
         <div onClick={()=>setIsVisible(!isVisible)} >{children}</div>
         {
-            isVisible && slug && 
+            // isVisible && slug && 
+            isVisible &&
              <div className='tooltip_container' ref={tooltipRef} >
                 <div onClick={handleAddToSpace} >
                     <FiPlus />
