@@ -1,11 +1,11 @@
 .setting_navbar{
     display : flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 64px;
     width: 100%;
     border-bottom: 1px solid rgb(206, 205, 205);
-    padding: 0rem 1rem;
+    padding: 0rem 3rem;
     color:  #13343b;
 }
 

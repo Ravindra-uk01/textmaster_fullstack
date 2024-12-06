@@ -64,7 +64,8 @@ const ThreeDotsTooltip = ({children, threadSlug}) => {
                 })
                 dispatch(setCurrentThread({}));
                 dispatch(textActions.updateText({ text: "" }));
-                navigate('/home');
+                window.location.reload();
+                // navigate('/home');
             }
         } catch (error) {
             const {status, message} = error.response.data;

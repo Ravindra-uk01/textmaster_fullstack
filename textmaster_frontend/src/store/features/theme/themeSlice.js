@@ -14,7 +14,7 @@ const themeSlice = createSlice({
     initialState, 
     reducers: {
         setLightTheme(state, action){
-            // state.mode = 'light';
+            state.mode = 'light';
             // state.backgroundColor = 'white';
             // state.color = '#042743';
             // document.body.style.backgroundColor = state.backgroundColor;

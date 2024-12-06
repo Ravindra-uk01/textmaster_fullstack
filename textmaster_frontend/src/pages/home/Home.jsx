@@ -49,6 +49,8 @@ const Home = () => {
   };
 
   useEffect(() => {
+
+    console.log('freqqq come ');
     if (slug) {
       dispatch(getThreadById({ slug }));
     }

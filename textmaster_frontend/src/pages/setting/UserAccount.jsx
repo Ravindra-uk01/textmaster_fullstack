@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setDarkTheme,
   setLightTheme,
-} from "../../store/features/theme/themeSlice";
+} from "../../store/features/theme/themeSlice.js";
 import Switch from "../../components/ui/Switch";
 import SignoutModal from "../../components/modals/SignoutModal";
 import Settings from "./Settings";
@@ -40,8 +40,8 @@ const UserAccount = () => {
     };
   }, []);
 
-  const handleToggleTheme = () => {
-    if (themeState.mode === "light") dispatch(setDarkTheme());
+  const handleToggleTheme = (mode) => {
+    if (mode === "light") dispatch(setDarkTheme());
     else dispatch(setLightTheme());
   };
 
@@ -127,14 +127,14 @@ const UserAccount = () => {
                   <div className="account_general_themeMainDiv">
                     <div
                       className="account_general_themeMainDivItem"
-                      onClick={handleToggleTheme}
+                      onClick={()=>handleToggleTheme("light")}
                     >
                       <MdLightMode />
                       Light
                     </div>
                     <div
                       className="account_general_themeMainDivItem"
-                      onClick={handleToggleTheme}
+                      onClick={()=>handleToggleTheme("dark")}
                     >
                       <MdDarkMode />
                       Dark

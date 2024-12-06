@@ -2,11 +2,11 @@
 .library_navbar{
     display : flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 64px;
     width: 100%;
     border-bottom: 1px solid rgb(206, 205, 205);
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 3rem;
 }
 
 .library_navbar-heading{

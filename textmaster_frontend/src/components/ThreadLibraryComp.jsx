@@ -1,10 +1,10 @@
 import { BsThreeDots } from "react-icons/bs";
-import { FaPlus, FaRegCircleCheck } from "react-icons/fa6";
+import { FaBookmark, FaPlus, FaRegBookmark, FaRegCircleCheck } from "react-icons/fa6";
 import { GrNotes } from "react-icons/gr";
 import "../styles/threadLibraryComp.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getMyThreads } from "../reducers/threadReducer";
+import { getMyThreads, toggleThreadBookmarkStatus } from "../reducers/threadReducer";
 import { IoMdTime } from "react-icons/io";
 import { IoBookmarks } from "react-icons/io5";
 import { GoPlus } from "react-icons/go";
@@ -16,6 +16,7 @@ import newRequest from "../utils/newRequest";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ThreeDotsTooltip from "./ThreeDotsTooltip";
+import { BiBookmarkPlus } from "react-icons/bi";
 
 const ThreadLibraryComp = () => {
   const {
@@ -25,6 +26,7 @@ const ThreadLibraryComp = () => {
   const navigate = useNavigate();
   const [showModelForm, setShowModelForm] = useState(false);
   const [threadType, setThreadType] = useState("all");
+  const [filter, setFilter] = useState("")
 
   const toastData = {
     position: "top-center",
@@ -38,8 +40,8 @@ const ThreadLibraryComp = () => {
   };
 
   useEffect(() => {
-    dispatch(getMyThreads());
-  }, [dispatch]);
+    dispatch(getMyThreads(filter));
+  }, [dispatch, filter ]);
 
   const deleteAllThreads = async () => {
     try {
@@ -75,6 +77,23 @@ const ThreadLibraryComp = () => {
         });
       }
     }
+  };
+
+  const handleThreadFilterBookmark = () => {
+    if(filter === ''){
+      setFilter("bookmarked");
+      dispatch(getMyThreads("bookmarked"))
+    }else{
+      setFilter("");
+      dispatch(getMyThreads(""))
+    }
+  }
+
+  const handleThreadBookmark = async (slug) => {
+    if (!confirm("Are you sure you want to change the bookmark status?"))
+      return;
+
+    dispatch(toggleThreadBookmarkStatus({slug}))
   };
 
   console.log("allThreads are ", allThreads);
@@ -121,9 +140,22 @@ const ThreadLibraryComp = () => {
         <div className="thread_library-headers">
           <div className="thread_library-headersName">
             {/* <GrNotes size={18} /> */}
-            <h4>Threads </h4>
+            <h4>Threads {filter === 'bookmarked' ? "(Bookmarked)" : ""}  </h4>
           </div>
           <div className="thread_library-headersIcons">
+            <div onClick={()=>handleThreadFilterBookmark()} >
+            {filter === 'bookmarked' ? (
+              <FaBookmark
+                title="Bookmarked"
+                className="fw-bold text-lg"
+              />
+            ) : (
+              <FaRegBookmark
+                title="Not Bookmarked"
+                className="fw-bold text-lg"
+              />
+            )}
+            </div>
             <div onClick={() => setShowModelForm(true)}>
               <BsThreeDots />
             </div>
@@ -156,19 +188,19 @@ const ThreadLibraryComp = () => {
                     </div>
                     <div className="thread_library-itemDetailIcons">
                       {thread.bookmarked ? (
-                        <div className="thread_library-itemBookmarkIcon">
+                        <div className="thread_library-itemBookmarkIcon" onClick={()=> handleThreadBookmark(thread.slug) }  >
                           <IoBookmarks />
                           <p>Bookmarks</p>
                         </div>
                       ) : (
-                        <div className="thread_library-menuIcons">
-                          <GoPlus size={18} />
+                        <div className="thread_library-menuIcons" onClick={()=> handleThreadBookmark(thread.slug) }  >
+                          <BiBookmarkPlus size={18} title="Not Bookmarked" />
                         </div>
                       )}
 
                       <div className="thread_library-menuIcons">
                         <ThreeDotsTooltip threadSlug={thread.slug} >
-                          <BsThreeDots size={15} />
+                          <BsThreeDots size={16} />
                         </ThreeDotsTooltip>
                       </div>
                     </div>
