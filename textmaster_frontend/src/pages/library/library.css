@@ -7,6 +7,7 @@
     width: 100%;
     border-bottom: 1px solid rgb(206, 205, 205);
     padding: 0.5rem 3rem;
+    position: relative;
 }
 
 .library_navbar-heading{
@@ -24,10 +25,13 @@
 .library_navbar-search{
     position: relative;
     width: 300px;
+
+    display: flex;
+    align-items: center;
 }
 
 .library_navbar-search input{
-    padding: 6px 10px;
+    padding: 6px 10px 6px 35px;
     border-radius: 1.5rem;
     border: 1px solid rgb(201, 194, 194);
     width: 100%;
@@ -37,11 +41,13 @@
     position: absolute;
     left: 10px;
     top: 10px;
+    margin-right: 8px;
 }
 
-.library_navbar-search > label{
+/* .library_navbar-search > label{
     position: absolute;
     left: 35px;
     top: 6px;
     color: grey;
-}
+} */
+ 

@@ -13,7 +13,9 @@ export const getAllThreads = catchAsync(async(req, res, next) => {
         })
     }
 
-    const {filter} = req.query;
+    const {search, filter} = req.query;
+    console.log("search is ", search);
+    console.log("filter is ", filter);
     const query = {
         created_by : _id
     }

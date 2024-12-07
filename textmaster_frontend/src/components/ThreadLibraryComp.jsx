@@ -20,7 +20,7 @@ import { BiBookmarkPlus } from "react-icons/bi";
 
 const ThreadLibraryComp = () => {
   const {
-    myThreads: { allThreads },
+    myThreads: { allThreads , search},
   } = useSelector((state) => state.thread);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,8 +40,8 @@ const ThreadLibraryComp = () => {
   };
 
   useEffect(() => {
-    dispatch(getMyThreads(filter));
-  }, [dispatch, filter ]);
+    dispatch(getMyThreads(search, filter));
+  }, [dispatch, filter, search ]);
 
   const deleteAllThreads = async () => {
     try {
@@ -97,6 +97,7 @@ const ThreadLibraryComp = () => {
   };
 
   console.log("allThreads are ", allThreads);
+  console.log("search value  is ", search);
 
   return (
     <div className="thread_library-mainDiv">
