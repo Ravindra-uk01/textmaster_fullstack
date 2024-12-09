@@ -73,6 +73,7 @@
     padding: 1rem 0rem;
     border-bottom: 1px solid grey;
     position: relative;
+    gap: 1rem;
 }
 
 .account_generalDivItems .account_generalDiv-item:last-child {
@@ -82,7 +83,7 @@
 .account_generalDiv-itemHead > span{
     font-weight: 600;
     color: #13343b;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .account_generalDiv-itemHead > p{
@@ -172,4 +173,31 @@
     justify-content: center;
     padding: 1rem 0.5rem;
     width : 70%;
+}
+
+@media only screen and (max-width: 1000px){
+
+    .setting_navbar{
+        padding: 0 2rem;
+    }
+
+    .account_div{
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 550px){
+
+    .setting_navbar{
+        padding: 0 1rem;
+    }
+
+    .account_div{
+        width: 100%;
+    }
+
+    .goog-te-combo{
+        width: 100px;
+        padding: 0.2rem;
+    }
 }

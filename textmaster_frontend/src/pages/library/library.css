@@ -25,7 +25,6 @@
 .library_navbar-search{
     position: relative;
     width: 300px;
-
     display: flex;
     align-items: center;
 }
@@ -44,10 +43,34 @@
     margin-right: 8px;
 }
 
-/* .library_navbar-search > label{
-    position: absolute;
-    left: 35px;
-    top: 6px;
-    color: grey;
-} */
+@media only screen and (max-width: 1000px){
+
+    .library_navbar-search{
+       width: 210px;
+    }
+
+    .library_navbar{
+        padding : 0.5rem 2rem;
+    }
+}
+
+@media only screen and (max-width: 550px){
+
+    .library_navbar-search{
+       width: 180px;
+    }
+
+    .library_navbar{
+        padding : 0.5rem 1rem;
+    }
+
+    .library_navbar-search input{
+        padding: 4px 5px 4px 30px ;
+    }
+
+    .library_navbar-search > svg{
+        left: 8px;
+        top: 8px;
+    }
+}
  

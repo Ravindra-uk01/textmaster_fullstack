@@ -41,8 +41,8 @@ const UserAccount = () => {
   }, []);
 
   const handleToggleTheme = (mode) => {
-    if (mode === "light") dispatch(setDarkTheme());
-    else dispatch(setLightTheme());
+    if (mode === "light") dispatch(setLightTheme());
+    else dispatch(setDarkTheme());
   };
 
   const googleTranslateElementInit = () => {

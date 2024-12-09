@@ -74,6 +74,7 @@ export const updateThreadVisibility = createAsyncThunk(
         visibility,
       });
       console.log("response ", response.data);
+      return response.data;
     } catch (error) {
       const { status, message } = error.response.data;
       if (status === "success") {

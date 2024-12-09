@@ -17,7 +17,7 @@ const About = () => {
       {/* <AboutComp/> */}
 
       <ToastContainer />
-      <div className="home_navbar">
+      <div className="about_navbar">
         <div className="home_navbar_div1">
           <div>
             <FaUser size={18} />
@@ -31,42 +31,16 @@ const About = () => {
         <div className="home_navbar_div2 fs-5">About - Textmaster</div>
         <div className="home_navbar_div3">
           <div>
-            <IoSettingsOutline size={20} className="sidebar_settings" onClick={()=>navigate('/settings/account')} />
+            <IoSettingsOutline size={24} className="sidebar_settings" onClick={()=>navigate('/settings/account')} />
           </div>
         </div>
-        {/* <div className="home_navbar_div3">
-          <div>
-            <BsThreeDots />
-          </div>
-          <div title="Save to Bookmarks">
-            <FaRegBookmark className="fw-bold text-lg" />
-          </div>
-          <div title="Copy Link">
-            <FaLink />
-          </div>
-          <div>
-            <FaShare />
-            <span className="ms-1">Share</span>
-          </div>
-        </div> */}
       </div>
 
       <div className="small_home_navbar">
         <div className="small_home_navbar_logo">T</div>
-        {/* <div className="small_home_navbar_icons" >
-          <div>
-            <BsThreeDots />
+        <div>
+            <IoSettingsOutline size={24} className="sidebar_settings" onClick={()=>navigate('/settings/account')} />
           </div>
-          <div title="Save to Bookmarks">
-            <FaRegBookmark className="fw-bold text-lg" />
-          </div>
-          <div title="Copy Link">
-            <FaLink />
-          </div>
-          <div title="Share">
-            <FaShare />
-          </div>
-        </div> */}
       </div>
       <div className="px-2">
         <AboutComp />

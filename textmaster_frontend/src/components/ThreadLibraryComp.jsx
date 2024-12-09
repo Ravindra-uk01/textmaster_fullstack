@@ -141,7 +141,7 @@ const ThreadLibraryComp = () => {
         <div className="thread_library-headers">
           <div className="thread_library-headersName">
             {/* <GrNotes size={18} /> */}
-            <h4>Threads {filter === 'bookmarked' ? "(Bookmarked)" : ""}  </h4>
+            <h3>Threads {filter === 'bookmarked' ? "(Bookmarked)" : ""}  </h3>
           </div>
           <div className="thread_library-headersIcons">
             <div onClick={()=>handleThreadFilterBookmark()} >

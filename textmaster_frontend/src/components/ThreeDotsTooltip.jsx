@@ -85,8 +85,7 @@ const ThreeDotsTooltip = ({children, threadSlug}) => {
     <div className='tooltip_mainContainer' >
         <div onClick={()=>setIsVisible(!isVisible)} >{children}</div>
         {
-            // isVisible && slug && 
-            isVisible &&
+            isVisible && slug && 
              <div className='tooltip_container' ref={tooltipRef} >
                 <div onClick={handleAddToSpace} >
                     <FiPlus />

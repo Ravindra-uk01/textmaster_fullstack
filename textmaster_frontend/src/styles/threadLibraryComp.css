@@ -72,7 +72,7 @@
 }
 
 .thread_library-itemtTitle{
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     margin-bottom: 0.25rem;
     color:  #13343b;
@@ -163,4 +163,30 @@
 .tl_modelHeadingDesc{
     font-size: 14px;
     color: #686263;
+}
+
+@media only screen and (max-width: 1000px){
+    .thread_library{
+        width : 80%;
+    }
+}
+
+@media only screen and (max-width: 550px){
+    .thread_library{
+        width : 100%;
+        padding: 0.5rem;
+    }
+
+    .thread_library-headers{
+        margin: 0.5rem 0;
+        padding: 0.5rem 0;
+    }
+
+    .thread_library-item{
+        padding: 0.5rem 0;
+    }
+
+    .thread_library-itemDetails{
+        margin: 0;
+    }
 }

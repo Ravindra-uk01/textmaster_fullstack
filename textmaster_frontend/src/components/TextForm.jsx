@@ -284,14 +284,6 @@ export default function TextForm(props) {
     },
   ];
 
-  // const handleInputChange = (e) => {
-  //   const {name, value} = e.target;
-  //   setThreadData((prev)=> ({
-  //     ...prev,
-  //     [name]: value
-  //   }))
-  // }
-
   const handleAddThread = () => {
     if (!loggedIn) {
       toast.warn("To proceed, please log in to your account. ", {
@@ -313,21 +305,10 @@ export default function TextForm(props) {
   };
 
   useEffect(() => {
-    if (slug) {
-      dispatch(getThreadById({ slug }));
-    }
-    // else {
-    //   dispatch(clearCurrentThread());
-    // }
-  }, [slug, dispatch]);
-
-  useEffect(() => {
     setThreadData(currentThread);
-    dispatch(textActions.updateText({ text: threadData.description || "" }));
+    dispatch(textActions.updateText({ text: currentThread.description || "" }));
   }, [currentThread]);
 
-  console.log("thread Data is ", threadData);
-  console.log("currentThread Data is ", currentThread);
 
   return (
     <>

@@ -8,6 +8,16 @@
     padding: 0.5rem 1rem;
 }
 
+.about_navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    width: 100%;
+    border-bottom: 1px solid rgb(206, 205, 205);
+    padding: 0.5rem 3rem;
+}
+
 .home_navbar_div1{
     display: flex;
 }
@@ -45,12 +55,64 @@
 
 .small_home_navbar{
     display: none;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(206, 205, 205);
+    padding: 1rem;
+}
+
+.small_home_navbar_icons{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.small_home_navbar_logo{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    font-size: 2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.small_home_navbar_icons{
+     cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.small_home_navbar_icons.withSlug{
+    cursor: pointer;
+    opacity: 1;
+}
+
+.small_home_navbar_icons > div{
+    padding: 0.4rem 0.6rem;
+    background-color: #21808d;
+    border-radius: 0.3rem;
+    font-weight: bold;
+    /* color: white; */
+}
+
+.small_home_navbar_iconsDiv{
+    color: white;
+}
+
+.small_home_navbar_icons > div:hover{
+    background-color: rgb(206, 205, 205);
 }
 
 @media only screen and (max-width: 1000px){
 
     .home_navbar_div2{
         display: none;
+    }
+
+    .about_navbar{
+        padding: 0.5rem 2rem;
     }
 }
 
@@ -59,37 +121,11 @@
         display: none;
     }
 
+    .about_navbar{
+        display: none;
+    }
+
     .small_home_navbar{
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid rgb(206, 205, 205);
-        padding: 1rem;
-    }
-
-    .small_home_navbar_icons{
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .small_home_navbar_logo{
-        height: 50px;
-        width: 50px;
-        border-radius: 50%;
-        background-color: black;
-        color: white;
-        font-size: 2rem;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .small_home_navbar_icons > div{
-        padding: 0.4rem 0.6rem;
-        background-color: rgb(206, 205, 205);
-        cursor: pointer;
-        border-radius: 0.3rem;
-        font-weight: bold;
     }
 }

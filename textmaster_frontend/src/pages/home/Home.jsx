@@ -30,6 +30,7 @@ import "react-toastify/dist/ReactToastify.css";
 import newRequest from "../../utils/newRequest";
 import ThreadShareTooltip from "../../components/ThreadShareTooltip";
 import { GoLock } from "react-icons/go";
+import { textActions } from "../../store/features/text/textSlice";
 
 const Home = () => {
   const { user } = useSelector((state) => state.user);
@@ -49,14 +50,12 @@ const Home = () => {
   };
 
   useEffect(() => {
-
-    console.log('freqqq come ');
     if (slug) {
       dispatch(getThreadById({ slug }));
+    } else {
+      dispatch(clearCurrentThread());
+      dispatch(textActions.updateText({ text: "" }));
     }
-    // else {
-    //   dispatch(clearCurrentThread());
-    // }
   }, [slug, dispatch]);
 
   const handleThreadBookmark = async () => {
@@ -100,8 +99,6 @@ const Home = () => {
     }
   };
 
-  console.log("hey ", navigator.clipboard);
-
   return (
     <Base>
       <div className="home_navbar">
@@ -139,7 +136,7 @@ const Home = () => {
                 opacity: slug ? 1 : 0.5,
               }}
             >
-              <BsThreeDots disabled={!slug} />
+              <BsThreeDots />
             </div>
           </ThreeDotsTooltip>
           <div
@@ -151,19 +148,14 @@ const Home = () => {
               cursor: slug ? "pointer" : "not-allowed",
               opacity: slug ? 1 : 0.5,
             }}
-            onClick={handleThreadBookmark}
+            onClick={slug ? handleThreadBookmark : undefined}
           >
             {currentThread?.bookmarked ? (
-              <FaBookmark
-                title="Bookmarked"
-                className="fw-bold text-lg"
-                disabled={!slug}
-              />
+              <FaBookmark title="Bookmarked" className="fw-bold text-lg" />
             ) : (
               <FaRegBookmark
                 title="Not Bookmarked"
                 className="fw-bold text-lg"
-                disabled={!slug}
               />
             )}
           </div>
@@ -179,7 +171,7 @@ const Home = () => {
                 cursor: slug ? "pointer" : "not-allowed",
                 opacity: slug ? 1 : 0.5,
               }}
-              onClick={copyToClipboard}
+              onClick={slug ? copyToClipboard : undefined}
             >
               {copyLink ? (
                 <IoMdCheckmarkCircle size={18} />
@@ -203,11 +195,7 @@ const Home = () => {
               }}
             >
               <span>
-                {currentThread.visibility === "me" ? (
-                  <FaLock />
-                ) : (
-                  <FaShare disabled={!slug} />
-                )}
+                {currentThread.visibility === "me" ? <FaLock /> : <FaShare />}
                 Share
               </span>
             </div>
@@ -217,19 +205,68 @@ const Home = () => {
 
       <div className="small_home_navbar">
         <div className="small_home_navbar_logo">T</div>
-        <div className="small_home_navbar_icons">
-          <div>
-            <BsThreeDots />
+        <div className={`small_home_navbar_icons ${slug ? "withSlug" : ""} `}>
+          <ThreeDotsTooltip>
+            <div
+              className="small_home_navbar_iconsDiv"
+              title={
+                slug
+                  ? ""
+                  : "Please add the thread before accessing this feature."
+              }
+            >
+              <BsThreeDots />
+            </div>
+          </ThreeDotsTooltip>
+          <div
+            className="small_home_navbar_iconsDiv"
+            title={
+              slug ? "" : "Please add the thread before accessing this feature."
+            }
+            onClick={slug ? handleThreadBookmark : undefined}
+          >
+            {currentThread?.bookmarked ? (
+              <FaBookmark title="Bookmarked" className="fw-bold text-lg" />
+            ) : (
+              <FaRegBookmark
+                title="Not Bookmarked"
+                className="fw-bold text-lg"
+              />
+            )}
           </div>
-          <div title="Save to Bookmarks">
-            <FaRegBookmark className="fw-bold text-lg" />
-          </div>
-          <div title="Copy Link">
-            <FaLink />
-          </div>
-          <div title="Share">
-            <FaShare />
-          </div>
+
+          {currentThread.visibility === "everyone" && (
+            <div
+              className="small_home_navbar_iconsDiv"
+              title={
+                slug
+                  ? "Copy Link"
+                  : "Please add the thread before accessing this feature."
+              }
+              onClick={slug ? copyToClipboard : undefined}
+            >
+              {copyLink ? (
+                <IoMdCheckmarkCircle size={18} />
+              ) : (
+                <FaLink disabled={!slug} />
+              )}
+            </div>
+          )}
+          
+          <ThreadShareTooltip>
+            <div
+              className="small_home_navbar_iconsDiv"
+              title={
+                slug
+                  ? ""
+                  : "Please add the thread before accessing this feature."
+              }
+            >
+              <span>
+                {currentThread.visibility === "me" ? <FaLock /> : <FaShare />}
+              </span>
+            </div>
+          </ThreadShareTooltip>
         </div>
       </div>
       <div className="px-2">

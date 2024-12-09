@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import newRequest from "../utils/newRequest";
@@ -44,65 +44,9 @@ const ThreadShareTooltip = ({ children }) => {
     };
   }, []);
 
-  const handleAddToSpace = () => {
-    toast.warn("This functionality is under development.", {
-      ...toastData,
-    });
+  const handleThreadVisibility = async (value) => {
+    dispatch(updateThreadVisibility({ slug, visibility: value }));
   };
-
-  const handleThreadDelete = async () => {
-    if (!confirm("Are you sure you want to delete this thread?")) {
-      return;
-    }
-
-    try {
-      const response = await newRequest.delete(`/thread/slug/${slug}`);
-      const { status, message } = response.data;
-      if (status === "success") {
-        toast.success(message, {
-          ...toastData,
-        });
-        // dispatch(setCurrentThread({}));
-        // dispatch(textActions.updateText({ text: "" }));
-        navigate("/home");
-      }
-    } catch (error) {
-      const { status, message } = error.response.data;
-      if (status === "warning") {
-        toast.warn(message, {
-          ...toastData,
-        });
-      } else {
-        toast.error(message, {
-          ...toastData,
-        });
-      }
-    }
-  };
-
-  const handleThreadVisibility = async(value) =>{
-    await navigator.clipboard.writeText(window.location.href);
-    dispatch(updateThreadVisibility({ slug, visibility: value}));
-
-    // try{
-    //     const response = await newRequest.patch(`/thread/slug/${slug}`, {visibility: value} );
-    // }catch(error) {
-    //     const {status, message} = error.response.data;
-    //     if(status === 'success'){
-    //         toast.warn(message, {
-    //             ...toastData
-    //         })
-    //     }else{
-    //         toast.error(message, {
-    //             ...toastData
-    //         })
-    //     }
-    // }
-  }
-
-  useEffect(()=>{
-   
-  },[currentThread])
 
   console.log("current thread ", currentThread);
 
@@ -113,7 +57,10 @@ const ThreadShareTooltip = ({ children }) => {
         <div className="tooltip_container2" ref={tooltipRef}>
           <h5>View Access</h5>
           <div className="tooltip_shareContent">
-            <div className="tooltip_shareContent-secret" onClick={()=>handleThreadVisibility("me")} >
+            <div
+              className="tooltip_shareContent-secret"
+              onClick={() => handleThreadVisibility("me")}
+            >
               <p
                 className={`tooltip_shareContent-heading ${
                   currentThread.visibility === "me" ? "active" : ""
@@ -127,7 +74,10 @@ const ThreadShareTooltip = ({ children }) => {
               </p>
               <p className="tooltip_desc">Only Author can view.</p>
             </div>
-            <div className="tooltip_shareContent-shareable" onClick={()=>handleThreadVisibility('everyone')} >
+            <div
+              className="tooltip_shareContent-shareable"
+              onClick={() => handleThreadVisibility("everyone")}
+            >
               <p
                 className={`tooltip_shareContent-heading ${
                   currentThread.visibility === "everyone" ? "active" : ""
@@ -153,25 +103,48 @@ const ThreadShareTooltip = ({ children }) => {
             Link copied
           </p>
 
-          { currentThread.visibility === "everyone" && <div>
-            <h5>Share</h5>
-            <div className="tooltip_shareSocial">
-              <div>
-                <FaXTwitter />
-                Twitter
-              </div>
-              <div>
-                <HiLink /> Copy Link
-              </div>
-              <div>
-                <FaWhatsapp /> Whatsapp
-              </div>
-              <div>
-                <FaFacebook />
-                Facebook
+          {currentThread.visibility === "everyone" && (
+            <div>
+              <h5>Share</h5>
+              <div className="tooltip_shareSocial">
+                <div>
+                  <Link
+                    to="https://x.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    <FaXTwitter />
+                    Twitter
+                  </Link>
+                </div>
+                <div>
+                  <HiLink /> Copy Link
+                </div>
+                <div>
+                  <Link
+                    to="https://www.whatsapp.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    <FaWhatsapp /> Whatsapp
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    to="https://www.facebook.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    <FaFacebook />
+                    Facebook
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>}
+          )}
         </div>
       )}
     </div>

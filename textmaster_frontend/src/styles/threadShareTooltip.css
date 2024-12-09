@@ -72,7 +72,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.tooltip_shareSocial > div{
+.tooltip_shareSocial > div {
     background-color:#e5e7eb;
     padding: 0.5rem;
     display: flex;
@@ -82,6 +82,12 @@
     font-weight: 600;
     cursor: pointer;
     color: #13343b;
+}
+
+.tooltip_shareSocial > div >a{
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
 }
 
 .tooltip_shareSocial > div:hover{
