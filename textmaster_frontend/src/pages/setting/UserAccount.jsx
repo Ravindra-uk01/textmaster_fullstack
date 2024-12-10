@@ -175,7 +175,7 @@ const UserAccount = () => {
             <div className="account_generalDiv-item">
               <div className="account_generalDiv-itemHead">
                 <span>Active Account</span>
-                <p>{`You are signed in as ${user.email} `}</p>
+                <p>{ user.email ? `  You are signed in as ${user.email} ` : `You are not signed in. `}</p>
               </div>
               <button className="account_general_colorThemeButton" onClick={()=>setOpenSignoutForm(true)} > Sign out</button>
             </div>

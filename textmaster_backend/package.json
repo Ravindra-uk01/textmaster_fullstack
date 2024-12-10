@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch --env-file .env server.js",
+    "start": "nodemon --env-file .env server.js",
     "devs": "nodemon --env-file .env server.js",
     "prod": "nodemon --env-file .env NODE_ENV=production server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
