@@ -1,5 +1,4 @@
 import { RiStackLine } from 'react-icons/ri';
-import Base from '../Base/Base.jsx';
 import { useEffect, useState } from 'react';
 import "./library.css";
 import { IoSearch } from 'react-icons/io5';
@@ -7,6 +6,7 @@ import ThreadLibraryComp from '../../components/ThreadLibraryComp.jsx';
 import { setFilters } from '../../reducers/threadReducer.js';
 import { useDispatch } from 'react-redux';
 import useDebounce from '../../hooks/UseDebounce.jsx';
+import Base from '../base/Base.jsx';
 
 const Library = () => {
 

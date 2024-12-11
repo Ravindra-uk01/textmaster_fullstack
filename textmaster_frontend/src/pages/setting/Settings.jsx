@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Base from "../Base/Base";
+import Base from "../base/Base";
 import { useEffect, useState } from "react";
 
 const Settings = ({ children, currentTab }) => {

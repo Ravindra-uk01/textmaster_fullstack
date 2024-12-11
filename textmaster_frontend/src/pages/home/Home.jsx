@@ -1,6 +1,6 @@
 import Navbar from "../../components/Navbar";
 import TextForm from "../../components/TextForm";
-import Base from "../Base/Base";
+import Base from "../base/Base";
 import { LiaUserCircle } from "react-icons/lia";
 import { IoMdCheckmarkCircle, IoMdTime } from "react-icons/io";
 import "./home.css";
