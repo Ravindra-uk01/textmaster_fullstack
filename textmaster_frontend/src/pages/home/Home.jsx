@@ -12,11 +12,9 @@ import {
   FaRegBookmark,
   FaShare,
   FaUser,
-  FaUserCircle,
 } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
-import { IoBookmarkOutline, IoBookmarkSharp } from "react-icons/io5";
-import { useLocation, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   clearCurrentThread,
@@ -29,7 +27,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import newRequest from "../../utils/newRequest";
 import ThreadShareTooltip from "../../components/ThreadShareTooltip";
-import { GoLock } from "react-icons/go";
 import { textActions } from "../../store/features/text/textSlice";
 
 const Home = () => {

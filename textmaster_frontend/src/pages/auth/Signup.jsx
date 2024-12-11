@@ -5,7 +5,7 @@ import { registrationSchema } from "../../schemas/authSchema";
 import { useState } from "react";
 import { Link, useNavigate,  } from "react-router-dom";
 import "./login.css";
-import "./Signup.css";
+import "./signup.css";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../reducers/userReducer";
 import { ToastContainer } from "react-toastify";
