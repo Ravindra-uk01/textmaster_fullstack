@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import "./App.css";
 import "./styles/common.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
 import ErrorPage from "./components/ErrorPage";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
@@ -37,6 +37,7 @@ function App() {
         <Route exact path="/forgot_password" element={<ForgotPassword/>} />
         <Route exact path="/reset_password/:token" element={<ResetPassword/>} />
         <Route exact path="/settings/account" element={<UserAccount/>} />
+        <Route path="/" element={<Navigate to="/home" replace />} />
         {/* <Route exact path="/settings/profile" element={<Profile/>} /> */}
         <Route exact path="/*" element={<ErrorPage />} />
       </Routes>
