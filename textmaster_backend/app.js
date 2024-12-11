@@ -52,7 +52,7 @@ app.use(express.static(`../textmaster_frontend/index.html`));  // for serving st
 // // Use CORS middleware with options
 // app.use(cors(corsOptions));
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true}));        // enable secure cross-origin requests between web applications
+app.use(cors({ origin: process.env.FRONTEND_URL , credentials: true}));        // enable secure cross-origin requests between web applications
 app.use(helmet());      // Set security HTTP headers
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'));
