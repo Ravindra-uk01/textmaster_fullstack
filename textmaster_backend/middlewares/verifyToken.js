@@ -11,6 +11,7 @@ export const verifyToken = catchAsync(async(req, res, next) =>{
     // }
 
     token = req.cookies.accessToken;
+    console.log('token is ', token);
 
     if(!token){
         return next(new AppError("You are not logged in! please log in to get access.", 401));

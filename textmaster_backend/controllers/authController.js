@@ -27,6 +27,8 @@ const createAndSendToken = (user, statusCode, res, message)=>{
     // res.set('Authorization', `Bearer ${token}`);
     res.cookie("accessToken", token, {
         httpOnly: true,
+        sameSite: "none",
+        secure: process.env.NODE_ENV === 'production',
     })
 
     return res.status(statusCode).json({
@@ -40,6 +42,8 @@ const createAndSendToken = (user, statusCode, res, message)=>{
 export const login = catchAsync(async(req, res, next)=>{
 
     const {email , password } = req.body;
+
+    console.log('came in login route')
     
     if(!email || !password){
         return next(new AppError("Email and password is required", 401));

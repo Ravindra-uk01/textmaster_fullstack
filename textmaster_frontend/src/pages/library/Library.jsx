@@ -18,6 +18,8 @@ const Library = () => {
       dispatch(setFilters({entity: "myThreads", value: debouncedValue }));
     },[dispatch, debouncedValue])
 
+    console.log('in library route')
+
   return (
     <Base> 
       <div className="library_navbar">

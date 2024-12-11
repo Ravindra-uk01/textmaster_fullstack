@@ -57,6 +57,7 @@ app.use(helmet());      // Set security HTTP headers
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'));
 }
+app.use(morgan('dev'));  // for test only 
 
 // Limit requests from same API
 const limiter = rateLimit({
