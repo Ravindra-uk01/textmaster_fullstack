@@ -15,10 +15,8 @@ const Library = () => {
     const debouncedValue = useDebounce(searchValue, 300);
 
     useEffect(()=> {
-      dispatch(setFilters({entity: "myThreads", value: debouncedValue }));
+      dispatch(setFilters({entity: "myThreads", search: debouncedValue }));
     },[dispatch, debouncedValue])
-
-    console.log('in library route')
 
   return (
     <Base> 

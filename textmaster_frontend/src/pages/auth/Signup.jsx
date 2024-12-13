@@ -58,20 +58,22 @@ const Signup = () => {
       <div className="login_container">
         <div className="container_div1">
         
-          <form className="login_content" onSubmit={handleSubmit(onSubmit)}>
+          <form className="login_content signup_content" onSubmit={handleSubmit(onSubmit)}>
             
             <div className="login_content_msg_div signup_msg_div">
               <span>Welcome to Textmaster</span>
             </div>
     
-            <div className="login_input_tags">
-              <div className="login_input_tags_div signup_input_tags_div"> 
-                <input type="text" name="first_name" id="first_name" {...register("first_name")}  />
-                <label className={isFocus == "first_name" ? 'active' : ''} onBlur={handleBlur} onClick={()=>handleFocus('first_name')} >First name</label>
-              </div>
-              <div className="login_input_tags_div signup_input_tags_div"> 
-                <input type="text" name="last_name" id="last_name" {...register("last_name")}  />
-                <label className={isFocus == "last_name" ? 'active' : ''} onBlur={handleBlur} onClick={()=>handleFocus('last_name')} >Last name</label>
+            <div className="login_input_tags signup_input_tags">
+              <div className="d-flex gap-2" >
+                <div className="login_input_tags_div signup_input_tags_div"> 
+                  <input type="text" name="first_name" id="first_name" {...register("first_name")}  />
+                  <label className={isFocus == "first_name" ? 'active' : ''} onBlur={handleBlur} onClick={()=>handleFocus('first_name')} >First name</label>
+                </div>
+                <div className="login_input_tags_div signup_input_tags_div"> 
+                  <input type="text" name="last_name" id="last_name" {...register("last_name")}  />
+                  <label className={isFocus == "last_name" ? 'active' : ''} onBlur={handleBlur} onClick={()=>handleFocus('last_name')} >Last name</label>
+                </div>
               </div>
               <div className="login_input_tags_div signup_input_tags_div"> 
                 {/* <input type="text" name="email" id="email" {...register("email")} value={formData.email} onChange={handleInputChange} /> */}
@@ -103,8 +105,10 @@ const Signup = () => {
                   {isConfirmPasswordVisible ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </div>
+              <p className="err_msg">{errors.confirm_password?.message}</p>
+
             </div>
-            <Link>forgor password?</Link>
+            <Link to={"/forgot_password"}>forgot password?</Link>
             <button className="btn btn-secondary " type="submit" >Sign Up</button>
             <p>
               Already have an account? <Link to={'/login'} >Login</Link>

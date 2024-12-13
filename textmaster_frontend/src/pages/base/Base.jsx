@@ -156,6 +156,7 @@ const Base = ({ children }) => {
                 <span className="ms-2 capitalize">
                   {user.first_name
                     ? user?.first_name + " " + user?.last_name?.charAt(0) + "."
+                    // ? user?.first_name + " " + user?.last_name
                     : "User@9556"}
                 </span>
               </span>

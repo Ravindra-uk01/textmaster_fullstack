@@ -11,9 +11,6 @@ const Settings = ({ children, currentTab }) => {
 //     setTab(tab);
 //   }, [tab]);
 
-  console.log("tab is ", tab);
-  console.log('currentTab is ', currentTab);
-
   return (
     <Base>
       <div className="setting_navbar">

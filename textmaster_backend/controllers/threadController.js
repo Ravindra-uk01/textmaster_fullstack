@@ -7,15 +7,11 @@ export const getAllThreads = catchAsync(async (req, res, next) => {
   const { _id, role } = req.user;
 
   if (!validType(role, ["user", "admin"])) {
-    res.status(401).json({
-      status: "warning",
-      message: "Unauthorized User",
-    });
+    return next(new AppError(401, "Unauthorized User"));
   }
 
   const { search, filter } = req.query;
-//   console.log("search is ", search);
-//   console.log("filter is ", filter);
+
   const query = {
     created_by: _id,
   };
@@ -33,14 +29,6 @@ export const getAllThreads = catchAsync(async (req, res, next) => {
 
   const allThreads = await Thread.find(query).sort({ createdAt: -1 });
 
-//   if (allThreads.length <= 0) {
-//     return next(
-//       new AppError(
-//         "Currently, you do not have any threads in your account.",
-//         401
-//       )
-//     );
-//   }
 
   return res.status(200).json({
     status: "success",
@@ -51,10 +39,22 @@ export const getAllThreads = catchAsync(async (req, res, next) => {
 
 export const getThread = catchAsync(async (req, res, next) => {
   const { slug } = req.params;
-  const thread = await Thread.findOne({ slug: slug });
+  const { _id, role } = req.user;
+
+  if (!validType(role, ["user", "admin"])) {
+    return next(new AppError(401, "Unauthorized User"));
+  }
+
+  const thread = await Thread.findOne({ 
+    slug: slug , 
+    $or: [
+      { created_by: _id }, // If created_by is me
+      { visibility: "everyone" } // If not created by me, must be "everyone"
+  ]
+  });
 
   if (!thread) {
-    return next(new AppError("No Thread found.", 400));
+    return next(new AppError(404, "No Thread found."));
   }
 
   return res.status(200).json({
@@ -68,10 +68,7 @@ export const addThread = catchAsync(async (req, res, next) => {
   const { _id, role } = req.user;
 
   if (!validType(role, ["user", "admin"])) {
-    res.status(401).json({
-      status: "warning",
-      message: "Unauthorized User",
-    });
+    return next(new AppError(401, "Unauthorized User"));
   }
 
   const { title } = req.body;
@@ -93,21 +90,22 @@ export const addThread = catchAsync(async (req, res, next) => {
 export const updateThread = catchAsync(async (req, res, next) => {
   const { _id, role } = req.user;
 
+  if (!validType(role, ["user", "admin"])) {
+    return next(new AppError(401, "Unauthorized User"));
+  }
+
   const { slug } = req.params;
   const { ...allData } = req.body;
-
-  console.log("req.body is ", req.body);
-  console.log("allData is ", allData);
 
   const thread = await Thread.findOne({ slug: slug });
 
   if (!thread) {
-    return next(new AppError("No Thread found.", 400));
+    return next(new AppError(404, "No Thread found."));
   }
 
   if (thread.created_by.toString() !== _id.toString()) {
     return next(
-      new AppError("You are not authorised to update this thread.", 400)
+      new AppError(400, "You are not authorised to update this thread.")
     );
   }
 
@@ -122,7 +120,6 @@ export const updateThread = catchAsync(async (req, res, next) => {
     }
   );
 
-  console.log("updated is ", updatedThread);
 
   return res.status(200).json({
     status: "success",
@@ -138,12 +135,12 @@ export const deleteThread = catchAsync(async (req, res, next) => {
   const thread = await Thread.findOne({ slug: slug });
 
   if (!thread) {
-    return next(new AppError("No Thread found.", 400));
+    return next(new AppError(404, "No Thread found."));
   }
 
   if (thread.created_by.toString() !== _id.toString()) {
     return next(
-      new AppError("You are not authorised to Delete this thread.", 400)
+      new AppError(400, "You are not authorised to Delete this thread.")
     );
   }
 
@@ -162,12 +159,12 @@ export const toggleThreadBookmark = catchAsync(async (req, res, next) => {
   const thread = await Thread.findOne({ slug: slug });
 
   if (!thread) {
-    return next(new AppError("No Thread found.", 400));
+    return next(new AppError(404, "No Thread found."));
   }
 
   if (thread.created_by.toString() !== _id.toString()) {
     return next(
-      new AppError("You are not authorised to update this thread.", 400)
+      new AppError(400, "You are not authorised to update this thread.")
     );
   }
 

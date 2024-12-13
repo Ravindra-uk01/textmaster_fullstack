@@ -2,29 +2,29 @@ import AppError from "../utils/appError.js";
 
 const handleCasteErrorDb = (error)=>{
     let message = `Invalid ${error.path} = ${error.value}`;
-    return new AppError(message, 400);
+    return new AppError(400, message);
 }
 
 const handleDuplicateFieldDb = (error)=>{
     const value = error.errorResponse.errmsg.match(/(?<=(["']))(?:(?=(\\?))\2.)*?(?=\1)/)[0];
     let message = `Duplicate field value : ${value}. Please use another value `;
-    return new AppError(message, 400);
+    return new AppError(400, message);
 }
 
 const handleValidationErrorDb = (error) =>{
     const errors = Object.values(error.errors).map((err)=> err.message);
     const message = `Invalid Input Data. ${errors.join(' ')} `;
-    return new AppError(message, 400);
+    return new AppError(400, message);
 }
 
 const handleJsonWebTokenError = () => {
     const message = `Invalid Token , Please login Again!`;
-    return new AppError(message, 400);
+    return new AppError(400, message);
 }
 
 const handleTokenExpiredError = () => {
     const message = `Token Expired , Please login Again!`;
-    return new AppError(message, 400);
+    return new AppError(400, message);
 }
 
 const sendErrorToDev = (err, res) =>{

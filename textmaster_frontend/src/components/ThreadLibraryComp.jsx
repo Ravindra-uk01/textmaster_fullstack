@@ -4,7 +4,7 @@ import { GrNotes } from "react-icons/gr";
 import "../styles/threadLibraryComp.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getMyThreads, toggleThreadBookmarkStatus } from "../reducers/threadReducer";
+import { getMyThreads, setFilters, toggleThreadBookmarkStatus } from "../reducers/threadReducer";
 import { IoMdTime } from "react-icons/io";
 import { IoBookmarks } from "react-icons/io5";
 import { GoPlus } from "react-icons/go";
@@ -20,13 +20,13 @@ import { BiBookmarkPlus } from "react-icons/bi";
 
 const ThreadLibraryComp = () => {
   const {
-    myThreads: { allThreads , search},
+    myThreads: { allThreads , search, filter},
   } = useSelector((state) => state.thread);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showModelForm, setShowModelForm] = useState(false);
   const [threadType, setThreadType] = useState("all");
-  const [filter, setFilter] = useState("")
+  const [filterValue, setFilterValue] = useState("")
 
   const toastData = {
     position: "top-center",
@@ -40,7 +40,7 @@ const ThreadLibraryComp = () => {
   };
 
   useEffect(() => {
-    dispatch(getMyThreads(search, filter));
+    dispatch(getMyThreads({search, filter}));
   }, [dispatch, filter, search ]);
 
   const deleteAllThreads = async () => {
@@ -79,13 +79,17 @@ const ThreadLibraryComp = () => {
     }
   };
 
+  // useEffect(()=> {
+  //   dispatch(setFilters({entity: "myThreads", search: debouncedValue }));
+  // },[dispatch, debouncedValue])
+
   const handleThreadFilterBookmark = () => {
-    if(filter === ''){
-      setFilter("bookmarked");
-      dispatch(getMyThreads("bookmarked"))
+    if(filterValue === ''){
+      setFilterValue("bookmarked");
+      dispatch(setFilters({entity: "myThreads", filter: "bookmarked" }));
     }else{
-      setFilter("");
-      dispatch(getMyThreads(""))
+      setFilterValue("");
+      dispatch(setFilters({entity: "myThreads", filter: "" }));
     }
   }
 

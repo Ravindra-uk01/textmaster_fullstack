@@ -11,16 +11,18 @@ import {
 import Switch from "../../components/ui/Switch";
 import SignoutModal from "../../components/modals/SignoutModal";
 import Settings from "./Settings";
+import { useNavigate } from "react-router-dom";
 
 const UserAccount = () => {
  
   const themeState = useSelector((state) => state.theme);
-  const {user} = useSelector((state) => state.user);
+  const {user, loggedIn} = useSelector((state) => state.user);
   const [themeOpen, setThemeOpen] = useState(false);
   const [autoSuggest, setAutoSuggest] = useState(false);
   const [openSignoutForm, setOpenSignoutForm] = useState(false);
   const themeRef = useRef(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const toggleThemeOptions = (event) => {
     event.stopPropagation();
@@ -177,7 +179,10 @@ const UserAccount = () => {
                 <span>Active Account</span>
                 <p>{ user.email ? `  You are signed in as ${user.email} ` : `You are not signed in. `}</p>
               </div>
-              <button className="account_general_colorThemeButton" onClick={()=>setOpenSignoutForm(true)} > Sign out</button>
+              {
+                loggedIn ?
+                <button className="account_general_colorThemeButton" onClick={()=>setOpenSignoutForm(true)} > Sign out</button>
+               : <button className="account_general_colorThemeButton" onClick={()=>navigate('/login')} > Login</button>}
             </div>
           </div>
         </div>

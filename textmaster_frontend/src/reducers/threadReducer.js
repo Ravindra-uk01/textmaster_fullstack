@@ -16,8 +16,10 @@ const toastData = {
 
 export const getMyThreads = createAsyncThunk(
   "thread/getMyThreads",
-  async (search, filter = "") => {
+  async ({search, filter} ) => {
     try {
+      console.log('in frontend search is ', search)
+      console.log('in frontend filter is ', filter)
       const response = await newRequest.get(`/thread?search=${search}&filter=${filter}`);
 
       // const { status, message } = response.data;
@@ -124,7 +126,8 @@ export const toggleThreadBookmarkStatus = createAsyncThunk(
 const initialState = {
   myThreads: {
     allThreads: [],
-    search: ""
+    search: "",
+    filter: ""
   },
   currentThread: {},
 };
@@ -140,8 +143,13 @@ const threadReducer = createSlice({
       state.currentThread = action.payload;
     },
     setFilters: (state, action) => {
-      const {entity, value} = action.payload;
-      state[entity].search = value;
+      const {entity,search,  filter} = action.payload;
+      if(search !== undefined){
+        state[entity].search = search ;
+      }
+      if(filter !== undefined){
+        state[entity].filter = filter ;
+      }
     }
   },
   extraReducers: (builder) => {

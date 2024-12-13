@@ -27,6 +27,12 @@ export const createUser = catchAsync(async (req, res, next) => {
 });
 
 export const getAllUsers = catchAsync(async (req, res, next) => {
+
+  const {_id, role} = req.user;
+
+  if (!validType(role, ["admin"])) {
+    return next(new AppError(401, "Unauthorized User"));
+  }
   const users = await User.find({});
 
   return res.status(200).json({
@@ -55,13 +61,14 @@ export const deleteUser = catchAsync(async (req, res, next)=>{
     const {id} = req.params;
     const {_id, role} = req.user;
 
-    // write a validtype function for authorization so that only admin can delete it 
-    // if(validType)
+    if (!validType(role, ["admin"])) {
+      return next(new AppError(401, "Unauthorized User"));
+    }
 
     const user = await User.findByIdAndDelete(id);
 
     if(!user) {
-      return next(new AppError("No User found with this Id.", 400));
+      return next(new AppError(400, "No User found with this Id."));
     }
 
     return res.status(200).json({
@@ -80,7 +87,7 @@ export const updateProfile = catchAsync(async(req, res, next)=>{
 
       if(req.body.password || req.body.confirm_password){
         return next(
-          new AppError("Please use forget password link to change the password. ", 400)
+          new AppError(400, "Please use forget password link to change the password. ")
         )
       }
 

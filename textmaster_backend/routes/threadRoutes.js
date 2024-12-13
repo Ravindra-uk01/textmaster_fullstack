@@ -13,7 +13,7 @@ router
     .post(verifyToken , addThread)
 
 router.route('/slug/:slug')
-    .get(getThread)
+    .get(verifyToken, getThread)
     .patch(verifyToken, updateThread)
     .delete(verifyToken, deleteThread)
 

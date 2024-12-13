@@ -18,12 +18,14 @@ import loginImg4 from "../../assets/loginImages/loginImg4.webp";
 
 // Default theme
 import "@splidejs/react-splide/css";
+import Loader from "../../components/ui/Loader";
 
 const Login = () => {
   const [isFocus, setIsFocus] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false)
 
   const API = import.meta.env.VITE_API;
   const toastData = {
@@ -46,8 +48,8 @@ const Login = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
     try {
+      setLoading(true);
       const res = await axios.post(`${API}/auth/login`, data, {
         withCredentials: true
       });
@@ -64,6 +66,7 @@ const Login = () => {
       } else {
         toast.warn(message, { ...toastData });
       }
+
     } catch (err) {
       const { status, message } = err.response.data;
       if (status === "warning") {
@@ -75,6 +78,9 @@ const Login = () => {
           ...toastData,
         });
       }
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -149,9 +155,9 @@ const Login = () => {
               </div>
               <p className="err_msg">{errors.password?.message}</p>
             </div>
-            <Link to={"/forgot_password"} >forgor password?</Link>
+            <Link to={"/forgot_password"} >forgot password?</Link>
             <button className="btn btn-secondary " type="submit">
-              Log In
+              { loading ? <Loader/> :"Log In"}
             </button>
             <p>
               Don't have an account? <Link to={"/signup"}>Sign up</Link>

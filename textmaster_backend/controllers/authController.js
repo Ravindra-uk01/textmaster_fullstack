@@ -27,7 +27,7 @@ const createAndSendToken = (user, statusCode, res, message)=>{
     // res.set('Authorization', `Bearer ${token}`);
     res.cookie("accessToken", token, {
         httpOnly: true,
-        sameSite: "none",
+        sameSite: process.env.NODE_ENV === 'production' ? "none":"",
         secure: process.env.NODE_ENV === 'production',
     })
 
@@ -42,17 +42,15 @@ const createAndSendToken = (user, statusCode, res, message)=>{
 export const login = catchAsync(async(req, res, next)=>{
 
     const {email , password } = req.body;
-
-    console.log('came in login route')
     
     if(!email || !password){
-        return next(new AppError("Email and password is required", 401));
+        return next(new AppError(400, "Email and password is required"));
     }
 
     const user = await User.findOne({email}).select('+password');
 
     if(!user || !(await user.checkPassword(password, user.password))){
-        return next(new AppError("Invalid login Credentials!! ", 401));
+        return next(new AppError(400, "Invalid login Credentials!! "));
     }
 
     createAndSendToken(user, 200, res, "logged in Successfully")
@@ -66,7 +64,7 @@ export const signup = catchAsync(async(req, res, next)=>{
     const exists = await User.findOne({email});
 
     if(exists){
-        return next(new AppError("This email is already registered.", 400));
+        return next(new AppError(400, "This email is already registered."));
     }
 
     const newUser = await User.create({
@@ -101,7 +99,7 @@ export const forgetPassword = catchAsync(async(req, res, next) =>{
         const currentUser = await User.findOne({email: req.body.email});
 
         if(!currentUser){
-            return next(new AppError("No user found with this email Id.", 404));
+            return next(new AppError(404, "No user found with this email Id."));
         }
 
     // 2) Generate the resetToken 
@@ -133,8 +131,8 @@ export const forgetPassword = catchAsync(async(req, res, next) =>{
             currentUser.save({validateBeforeSave: false});
 
             return next(
+                500,
                 new AppError(`There was an error sending the email, please try again later! , ${error}`),
-                500
             )
         }
 })
@@ -159,7 +157,7 @@ export const resetPassword = catchAsync( async(req, res, next) =>{
     // 2) if token has not expired and there is user, set the new password
         if(!user){
             return next(
-                new AppError("Reset Token is Invalid or Expired ", 400)
+                new AppError(400, "Reset Token is Invalid or Expired " )
             )
         }
         
@@ -187,7 +185,7 @@ export const updatePasssword = catchAsync(async(req, res, next)=>{
     // match the current password 
     if(!(await user.checkPassword(older_password, user.password))){
         return next(
-            new AppError('Your current password is wrong ',401)
+            new AppError(400, 'Your current password is wrong ')
         )
     }
 
@@ -211,19 +209,14 @@ export const getMyProfile = catchAsync(async(req, res, next) => {
         token = req.headers[token] || req.cookies.accessToken;
     }
 
-    // console.log('req.headers is ', req.headers[token]);
-    // console.log('req.cookies is ', req.cookies.accessToken);
-
     if(!token){
-        return next(new AppError("You are not logged in! please log in to get access.", 401));
+        return next(new AppError(401, "You are not logged in! please log in to get access." ));
     }
-
-    // console.log('token is ', token)
 
     // Verification of token
     const decode = jwt.verify(token, process.env.JWT_SECRET_KEY);
     if(!decode){
-        return next(new AppError("Token is not valid.", 401));
+        return next(new AppError(400, "Token is not valid."));
     }
 
     // checking if user exists 
@@ -231,12 +224,12 @@ export const getMyProfile = catchAsync(async(req, res, next) => {
     const user = await User.findById(_id);
 
     if(!user){
-        return next(new AppError("The user belonging to this token does no longer exists.", 401));
+        return next(new AppError( 400, "The user belonging to this token does no longer exists."));
     }
 
     // checking if user has changed the password after the token is assigned
     if(user.changedPasswordAfter(iat)){
-        return next(new AppError("User Changed the password, Please login again.", 401));
+        return next(new AppError(400, "User Changed the password, Please login again."));
     }
 
     return res.status(200).json({
