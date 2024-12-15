@@ -266,7 +266,7 @@ const Home = () => {
           </ThreadShareTooltip>
         </div>
       </div>
-      <div className="px-2">
+      <div className="px-2 scrollableContent ">
         <TextForm />
       </div>
     </Base>

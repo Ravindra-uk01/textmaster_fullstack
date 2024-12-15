@@ -119,6 +119,7 @@ const Login = () => {
                   name="email"
                   id="email"
                   {...register("email")}
+                  placeholder="testuser@gmail.com"
                 />
                 <label
                   className={isFocus == "email" ? "active" : ""}
@@ -137,6 +138,7 @@ const Login = () => {
                   id="password"
                   {...register("password")}
                   className="password-input-container"
+                  placeholder="Test@123"
                 />
                 <label
                   className={isFocus === "password" ? "active" : ""}

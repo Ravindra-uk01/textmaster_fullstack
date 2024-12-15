@@ -33,7 +33,7 @@ const Library = () => {
       </div>
 
       
-      <div className="px-2">
+      <div className="px-2 scrollableContent">
         <ThreadLibraryComp/>
       </div>
     </Base>

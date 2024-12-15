@@ -6,3 +6,41 @@
 .capitalize{
     text-transform: capitalize;
 }
+
+.scrollableContent {
+    overflow-y: scroll;
+    max-height: 85vh;
+}
+
+.footerIcon{
+    font-size: 2em;
+    color: black;
+    margin: 0 0 0.9rem 0.9rem;
+}
+
+@media only screen and (max-height: 1000px){
+    .scrollableContent {
+        max-height: 75vh;
+    }
+}
+
+@media only screen and (max-width: 650px){
+
+    .footer{
+        padding: 0.25rem;
+    }
+
+    .footerText{
+        font-size: 0.9rem;
+    }
+
+    .footerIcon{
+        font-size: 1.5em;
+        margin: 0 0 0.2rem 0.2rem;
+    }
+
+    .scrollableContent {
+        max-height: 70vh;
+    }
+
+}

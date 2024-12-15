@@ -1,5 +1,5 @@
 #root {
-  min-height: 100vh; /* Ensure it takes at least full viewport height */
+  min-height: 100%; /* Ensure it takes at least full viewport height */
 }
 
 .accordian-button::after{

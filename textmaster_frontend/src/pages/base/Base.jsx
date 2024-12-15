@@ -83,14 +83,14 @@ const Base = ({ children }) => {
           >
             <p className="siderbarHeadline">Textmaster</p>
           </Link>
-          <p style={{ display: collapsed ? "none" : "" }}>
+          {loggedIn && <p style={{ display: collapsed ? "none" : "" }}>
             <BiArrowToLeft
               size={20}
               color="#454545"
               title="collapse"
               onClick={() => setCollapsed(true)}
             />
-          </p>
+          </p>}
         </div>
 
         <div

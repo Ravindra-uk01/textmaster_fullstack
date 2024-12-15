@@ -36,7 +36,7 @@ const Settings = ({ children, currentTab }) => {
         </div>
       </div>
 
-      <div className="px-2">
+      <div className="px-2 scrollableContent">
         {children}
         {/* {tab === "account" ? <AccountPage /> : <Profile />} */}
       </div>

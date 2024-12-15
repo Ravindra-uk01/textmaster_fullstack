@@ -42,7 +42,7 @@ const About = () => {
             <IoSettingsOutline size={24} className="sidebar_settings" onClick={()=>navigate('/settings/account')} />
           </div>
       </div>
-      <div className="px-2">
+      <div className="px-2 scrollableContent" >
         <AboutComp />
       </div>
     </Base>

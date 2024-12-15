@@ -6,6 +6,7 @@
     width: 100%;
     border-bottom: 1px solid rgb(206, 205, 205);
     padding: 0.5rem 1rem;
+    position: sticky;
 }
 
 .about_navbar{
@@ -59,6 +60,7 @@
     justify-content: space-between;
     border-bottom: 1px solid rgb(206, 205, 205);
     padding: 1rem;
+    position: sticky;
 }
 
 .small_home_navbar_icons{
