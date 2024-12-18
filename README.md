@@ -1,6 +1,6 @@
 # TextMaster: Your Text Processing Companion - [TextMaster](https://textmaster-fullstack.onrender.com/home)
 
-Welcome to the GitHub repository of our project, **TextMaster**. This project is a ReactJS website built primarily to perform various operations on regular typed text.
+Welcome to the GitHub repository of our project, **TextMaster**. This project is a ReactJS full stack application built primarily to perform various operations on regular typed text.
 
 ## About
 
@@ -15,6 +15,12 @@ TextMaster is more than just a simple text drafting and formatting tool. It offe
 - **Whitespace Removal**: Remove whitespaces from your scripted documents.
 - **Text-to-Speech**: Wear up your earphones to listen to your text, instead of straining your eyes!
 - **Detailed Text Analysis**: Provides an output of words, and characters, along with reading time.
+- **User Authentication**: Users can log in, log out, and manage their accounts with password recovery and reset options.
+- **Document Management**: Save documents for later retrieval, ensuring easy access to important files.
+- **Bookmarking**: Users can bookmark important components for quick reference.
+- **Theme Support**: Switch between light mode and dark mode for a personalized user experience.
+- **Multilingual Support**: View content in multiple languages to enhance accessibility.
+- **Responsive Design**: The application is fully responsive and accessible on any device format.
 
 ## Open Source
 
