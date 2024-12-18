@@ -8,19 +8,19 @@ TextMaster is more than just a simple text drafting and formatting tool. It offe
 
 ## Features
 
-- **Case Conversion**: Convert your text to any case in just one simple click.
-- **Link and Number Extraction**: Safely extract links and numbers from a labyrinth of random text or sophisticated documentation.
-- **Base64 Encoding**: Improved property of base64 encoding.
-- **Text Reversal**: Reverse your inputted text.
-- **Whitespace Removal**: Remove whitespaces from your scripted documents.
-- **Text-to-Speech**: Wear up your earphones to listen to your text, instead of straining your eyes!
-- **Detailed Text Analysis**: Provides an output of words, and characters, along with reading time.
 - **User Authentication**: Users can log in, log out, and manage their accounts with password recovery and reset options.
 - **Document Management**: Save documents for later retrieval, ensuring easy access to important files.
 - **Bookmarking**: Users can bookmark important components for quick reference.
 - **Theme Support**: Switch between light mode and dark mode for a personalized user experience.
 - **Multilingual Support**: View content in multiple languages to enhance accessibility.
 - **Responsive Design**: The application is fully responsive and accessible on any device format.
+- **Text-to-Speech**: Wear up your earphones to listen to your text, instead of straining your eyes!
+- **Case Conversion**: Convert your text to any case in just one simple click.
+- **Link and Number Extraction**: Safely extract links and numbers from a labyrinth of random text or sophisticated documentation.
+- **Base64 Encoding**: Improved property of base64 encoding.
+- **Text Reversal**: Reverse your inputted text.
+- **Whitespace Removal**: Remove whitespaces from your scripted documents.
+- **Detailed Text Analysis**: Provides an output of words, and characters, along with reading time.
 
 ## Open Source
 
