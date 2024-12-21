@@ -40,6 +40,7 @@
     background-color: var(--background-color3);
 }
 
+/* can do it better later */
 .accordion-button:not(.collapsed){
     color: var(--primary-color);
     background-color: var(--secondary-color);
