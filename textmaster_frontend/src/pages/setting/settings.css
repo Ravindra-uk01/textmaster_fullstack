@@ -4,9 +4,9 @@
     justify-content: space-between;
     height: 64px;
     width: 100%;
-    border-bottom: 1px solid rgb(206, 205, 205);
+    color: var(--text-color2);
+    border-bottom: 1px solid var(--border-color);
     padding: 0rem 3rem;
-    color:  #13343b;
 }
 
 .setting_navbar-menu{
@@ -31,12 +31,12 @@
 }
 
 .setting_navbar-menuItem.active {
-    color: #13343b;
-    border-bottom: 2px solid #13343b;
+    color: var(--text-color2);
+    border-bottom: 2px solid var(--text-color2);
 }
 
 .setting_navbar-menuItem.active > span{
-    color: #13343b;
+    color: var(--text-color2);
 }
 
 .main_account_div{
@@ -56,11 +56,12 @@
 
 .account_generalDiv{
     width: 100%;
+    color: var(--text-color2);
 }
 
 .account_generalDivItems{
     width: 100%;
-    background-color:#d9d9d080;
+    background-color: var( --background-color);
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     margin-top: 0.5rem;
@@ -71,7 +72,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem 0rem;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--border-color);
     position: relative;
     gap: 1rem;
 }
@@ -82,23 +83,27 @@
 
 .account_generalDiv-itemHead > span{
     font-weight: 600;
-    color: #13343b;
+    color: var(--text-color2);
     font-size: 1rem;
 }
 
 .account_generalDiv-itemHead > p{
-    color: #686263;
+    color: var(--text-color);
 }
 
 .account_general_colorThemeButton{
     padding: 0.2rem 0.4rem;
-    color: #13343b;
+    color: var(--text-color2);
     font-weight: 500;
     border-radius: 0.2rem;
     cursor: pointer;
-    background-color: #d9d9d080;
-    border: 0px solid #e5e7eb;
+    background-color: var(--background-color3);
+    border: 0px solid var(--border-color);
     transition: background-color 0.3s ease;
+}
+
+.account_general_colorThemeButton:hover{
+    color: var(--text-color);
 }
 
 .account_general_colorThemeButton > div{
@@ -106,6 +111,10 @@
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
+}
+
+.account_general_colorThemeButton > div:hover{
+    color: var(--text-color);
 }
 
 .account_general_themeOuterDiv{
@@ -122,7 +131,7 @@
 
 .account_general_themeMainDiv{
     /* position: relative; */
-    background-color: white;
+    background-color: var(--background-color2);
     padding: 0.5rem;
     width: 170px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -136,13 +145,13 @@
     gap: 0.5rem;
     padding: 0.2rem 0.5rem;
     cursor: pointer;
-    color: #13343b;
+    color: var(--text-color2);
     font-weight: 500;
     border-radius: 0.2rem;
 }
 
 .account_general_themeMainDivItem:hover{
-    background-color: #e7e3e4;
+    background-color: var(--background-color3)
 }
 
 .goog-te-combo{
@@ -161,6 +170,7 @@
 .account_systemDiv{
     width: 100%;
     margin-top: 1rem;
+    color: var(--text-color2);
 }
 
 

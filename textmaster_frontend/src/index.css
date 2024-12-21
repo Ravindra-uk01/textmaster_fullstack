@@ -1,3 +1,26 @@
+:root {
+  --primary-color: #13343b; 
+  --secondary-color: #21808d; 
+  /* --background-color: #e0e0dc ; #f7f1f2 */
+  --background-color: #d9d9d080; 
+  --background-color2: #ffff; 
+  --background-color3: #e0e0dc; 
+  --text-color: #686263; 
+  --text-color2: #13343b; 
+  --border-color: #d9d9d080;
+}
+
+[data-theme='dark'] {
+  --primary-color: #13343b; 
+  --secondary-color: #21808d; 
+  --background-color: #232121; 
+  --background-color2: #1b191a; 
+  --background-color3: #403e3f80; 
+  --text-color: #938f90; 
+  --text-color2: #eae7e8; 
+  --border-color: #403e3f80;
+}
+
 #root {
   min-height: 100%; /* Ensure it takes at least full viewport height */
 }

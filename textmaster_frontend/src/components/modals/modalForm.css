@@ -2,5 +2,6 @@
 
 
 .modal-header{
-    color: #13343b;
+    color: var(--text-color2);
+    border-bottom: 1px solid var(--border-color);
 }

@@ -31,7 +31,7 @@
     width: 100%;
     padding: 0.5rem;
     margin: 1rem;
-    color:  #13343b;
+    color:  var(--text-color2);
 }
 
 .thread_library-headers > div {
@@ -42,15 +42,15 @@
 }
 
 .thread_library-headersIcons > div{
-    background-color: #ece6e8;
+    background-color: var(--background-color3);
     padding: 0.25rem 0.5rem;
     border-radius: 0.2rem;
-    color: black;
+    color: var(--text-color2);
     cursor: pointer;
 }
 
 .thread_library-headersIcons > div:hover{
-    color: #8a8484;
+    color: var(--text-color);
 }
 
 .thread_library-content {
@@ -60,7 +60,7 @@
 
 .thread_library-item{
     width: 100%;
-    border-top: 1px solid #ece6e8;
+    border-top: 1px solid var(--border-color);
     padding: 1rem;
 }
 
@@ -75,7 +75,7 @@
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 0.25rem;
-    color:  #13343b;
+    color:  var(--text-color2);
 }
 
 .thread_library-itemtTitle:hover{
@@ -90,14 +90,14 @@
     line-clamp: 2;            
     overflow: hidden;               
     text-overflow: ellipsis; 
-    color: #686263;
+    color: var(--text-color)
 }
 
 .thread_library-itemcreationTime{
     display: flex;
     align-items: center;
     justify-content: center;
-    color:  #686263;
+    color:  var(--text-color);
     gap: 0.25rem;
 }
 
@@ -113,11 +113,15 @@
     gap: 0.5rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ece6e8;
+    border: 1px solid var(--border-color);
     padding: 0.2rem 0.5rem;
     border-radius: 1rem;
     cursor: pointer;
     color: #21808d;
+}
+
+.thread_library-itemBookmarkIcon:hover{
+    background-color: var(--background-color3);
 }
 
 
@@ -128,23 +132,27 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: #686263;
+    color: var(--text-color);
 }
 
 .thread_library-menuIcons:hover {
-    background-color: #ece6e8;
-    color:black;
+    background-color: var(--background-color3);
+    color:var(--text-color2);
 }
 
 
 /* thread library model css */
+
+.threadLibrary_ModelContent{
+    background-color: var(--background-color2);
+}
 
 .threadLibrary_ModelContent > div{
     padding: 0.5rem;
 }
 
 .threadLibrary_ModelContent > div:hover{
-    background-color: #ece6e8;
+    background-color: var(--background-color3);
 }
 
 .tl_modalHeading{
@@ -154,6 +162,7 @@
     justify-content: space-between;
     gap: 0.3rem;
     cursor: pointer;
+    color: var(--text-color2);
 }
 
 .tl_modalHeading.active{
@@ -162,7 +171,8 @@
 
 .tl_modelHeadingDesc{
     font-size: 14px;
-    color: #686263;
+    /* color: #686263; */
+    color: var(--text-color);
 }
 
 @media only screen and (max-width: 1000px){

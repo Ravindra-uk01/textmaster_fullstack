@@ -15,15 +15,22 @@ import UserAccount from "./pages/setting/UserAccount";
 import Profile from "./pages/setting/Profile";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 function App() {
 
   const {user, loggedIn} = useSelector(state => state.user);
+  const themeState = useSelector((state) => state.theme);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProfile());
   }, [dispatch, loggedIn]);
+
+  useEffect(() => {
+    document.body.setAttribute('data-theme', themeState.mode === "light" ? 'light' : 'dark');
+}, [themeState.mode]);
  
   return (
     <>
@@ -36,7 +43,7 @@ function App() {
         <Route exact path="/signup" element={<Signup/>} />
         <Route exact path="/forgot_password" element={<ForgotPassword/>} />
         <Route exact path="/reset_password/:token" element={<ResetPassword/>} />
-        <Route exact path="/settings/account" element={<UserAccount/>} />
+        <Route exact path="/settings/account" element={<ProtectedRoute> <UserAccount/> </ProtectedRoute> } />
         <Route path="/" element={<Navigate to="/home" replace />} />
         {/* <Route exact path="/settings/profile" element={<Profile/>} /> */}
         <Route exact path="/*" element={<ErrorPage />} />

@@ -12,7 +12,16 @@
     justify-content: center;
     padding: 1rem 0.5rem;
     width : 75%;
+    color: var(--text-color2);
+    background-color: var(--background-color2);
 }
+
+
+.textform_displayDiv > textarea{
+    color: var(--text-color2);
+    background-color: var(--background-color);
+}
+
 
 @media only screen and (max-width: 850px){
     .textformDiv{

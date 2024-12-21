@@ -323,22 +323,22 @@ export default function TextForm(props) {
         <div className="textformDiv" >
           <div
             className="container mt-2"
-            style={{
-              color: themeState.color,
-            }}
+            // style={{
+            //   color: themeState.color,
+            // }}
           >
             <h2 className="mb-2 ">Enter The Text To Analyze Below</h2>
-            <div className="mb-3 ">
+            <div className="mb-3 textform_displayDiv ">
               <textarea
                 className="form-control"
                 id="myBox"
                 rows="9"
                 value={textState.text}
                 onChange={handleOnChange}
-                style={{
-                  backgroundColor: themeState.backgroundColor,
-                  color: themeState.color,
-                }}
+                // style={{
+                //   backgroundColor: themeState.backgroundColor,
+                //   color: themeState.color,
+                // }}
               ></textarea>
             </div>
             {availableActions.map((action) => {
@@ -364,9 +364,7 @@ export default function TextForm(props) {
 
           <div
             className="container my-3"
-            style={{
-              color: themeState.color,
-            }}
+        
           >
             <h3 className="my-2" >Your Text Summary</h3>
             <p>

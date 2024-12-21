@@ -83,14 +83,18 @@ const Base = ({ children }) => {
           >
             <p className="siderbarHeadline">Textmaster</p>
           </Link>
-          {loggedIn && <p style={{ display: collapsed ? "none" : "" }}>
-            <BiArrowToLeft
-              size={20}
-              color="#454545"
-              title="collapse"
-              onClick={() => setCollapsed(true)}
-            />
-          </p>}
+          {loggedIn && (
+            <div
+              className="siderbar_collapseArrow"
+              style={{ display: collapsed ? "none" : "" }}
+            >
+              <BiArrowToLeft
+                size={20}
+                title="collapse"
+                onClick={() => setCollapsed(true)}
+              />
+            </div>
+          )}
         </div>
 
         <div
@@ -104,7 +108,7 @@ const Base = ({ children }) => {
             <BiCommentAdd size={20} />
           </span>
         </div>
-        <div className="sidebarMenu">
+        <div className={`sidebarMenu ${collapsed ? "collapsed" : ""}`}>
           {menuItem.map((element, idx) => {
             if (element.name === "login" && loggedIn) return null;
             return (
@@ -114,9 +118,10 @@ const Base = ({ children }) => {
                     className="siderbarMenuItem_div "
                     style={{ justifyContent: collapsed ? "center" : "start" }}
                   >
-                    <span>
-                      <element.icon size={25} />
-                    </span>
+                    <element.icon
+                      size={collapsed ? 30 : 25}
+                      title={element.name}
+                    />
                     <span
                       className="capitalize"
                       style={{ display: collapsed ? "none" : "" }}
@@ -141,7 +146,6 @@ const Base = ({ children }) => {
               <div className="siderbar_expand">
                 <BiArrowToRight
                   size={20}
-                  color="#454545"
                   title="expand"
                   onClick={() => setCollapsed(false)}
                 />
@@ -156,17 +160,22 @@ const Base = ({ children }) => {
                 <span className="ms-2 capitalize">
                   {user.first_name
                     ? user?.first_name + " " + user?.last_name?.charAt(0) + "."
-                    // ? user?.first_name + " " + user?.last_name
-                    : "User@9556"}
+                    : // ? user?.first_name + " " + user?.last_name
+                      "User@9556"}
                 </span>
               </span>
-              <IoSettingsOutline
-                size={20}
-                className="sidebar_settings"
-                onClick={() => navigate("/settings/account")}
-              />
+              <div className="siderbar_settingsDiv" >
+                <IoSettingsOutline
+                  size={20}
+                  className="sidebar_settings"
+                  onClick={() => navigate("/settings/account")}
+                />
+              </div>
             </div>
-            <div style={{ justifyContent: collapsed ? "center" : "" }}>
+            <div
+              className="sidebar_contactMeDiv"
+              style={{ justifyContent: collapsed ? "center" : "" }}
+            >
               <span style={{ display: collapsed ? "none" : "" }}>
                 Contact Me
               </span>

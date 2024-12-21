@@ -5,7 +5,8 @@
     justify-content: space-between;
     height: 64px;
     width: 100%;
-    border-bottom: 1px solid rgb(206, 205, 205);
+    color: var(--text-color2);
+    border-bottom: 1px solid var(--border-color);
     padding: 0.5rem 3rem;
     position: relative;
 }
@@ -15,7 +16,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    color:  #13343b;
+    color: var(--text-color2);
 }
 
 .library_navbar-heading > h3{
@@ -32,8 +33,10 @@
 .library_navbar-search input{
     padding: 6px 10px 6px 35px;
     border-radius: 1.5rem;
-    border: 1px solid rgb(201, 194, 194);
+    background-color: var(--background-color3);
+    border: 1px solid var(--border-color);
     width: 100%;
+    color: var(--text-color2);
 }
 
 .library_navbar-search > svg{

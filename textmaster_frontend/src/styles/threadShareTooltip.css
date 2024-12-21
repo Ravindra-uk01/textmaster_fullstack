@@ -3,8 +3,9 @@
     top: 45px;
     right: 0px;
     width: 350px;
-    background-color: white;
-    border: 1px solid #ccc;
+    background-color: var(--background-color2);
+    color: var(--text-color2);
+    border: 2px solid var(--border-color);
     border-radius: 0.5rem;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -13,7 +14,7 @@
 .tooltip_shareContent{
     display: flex;
     flex-direction: column;
-    border: 1px solid rgb(192, 187, 187);
+    border: 2px solid var(--border-color);
     border-radius: 0.5rem;
 }
 
@@ -25,11 +26,11 @@
 }
 
 .tooltip_shareContent > div:hover{
-    background-color: #ece6e8;
+    background-color: var(--background-color3)
 }
 
 .tooltip_shareContent-secret{
-    border-bottom: 1px solid rgb(192, 187, 187);
+    border-bottom: 2px solid var(--border-color);
 }
 
 .tooltip_shareContent-heading{
@@ -53,7 +54,7 @@
 
 .tooltip_desc{
     font-size: 14px;
-    color: #686263;
+    color: var(--text-color)
 }
 
 .tooltip_linkCopied{
@@ -73,7 +74,7 @@
 }
 
 .tooltip_shareSocial > div {
-    background-color:#e5e7eb;
+    background-color: var(--background-color);
     padding: 0.5rem;
     display: flex;
     align-items: center;
@@ -81,7 +82,7 @@
     border-radius: 0.5rem;
     font-weight: 600;
     cursor: pointer;
-    color: #13343b;
+    color: var(--text-color2);
 }
 
 .tooltip_shareSocial > div >a{
@@ -91,5 +92,5 @@
 }
 
 .tooltip_shareSocial > div:hover{
-    color: grey;
+    color: var(--text-color);
 }

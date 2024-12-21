@@ -111,7 +111,7 @@ const ThreadModal = ({ visible, onClose, threadData, setThreadData }) => {
   return (  
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-contentHeading" >
+        <div className="modal-header" >
           <h4> Thread Details</h4>
           <div className="close-button" onClick={onClose}>
             X

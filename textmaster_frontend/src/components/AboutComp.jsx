@@ -4,11 +4,6 @@ import "../styles/aboutComp.css";
 export default function AboutComp() {
   const { color, backgroundColor } = useSelector((state) => state.theme);
 
-  const myStyle = {
-    color,
-    backgroundColor,
-  };
-
   // console.log('color is ', color)
   // console.log('backgroundColor is ', backgroundColor)
 

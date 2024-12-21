@@ -7,7 +7,7 @@ export class Footer extends Component {
     
     return (
      
-        <footer className="footer mt-auto  bg-light">
+        <footer className="footer">
           <div className="container  text-center">
             <span className="footerText text-muted d-flex align-items-center justify-content-center">
               Made with ❤️ by Ravindra Singh Rayal.

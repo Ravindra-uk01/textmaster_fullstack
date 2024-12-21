@@ -4,7 +4,7 @@
     justify-content: space-between;
     height: 64px;
     width: 100%;
-    border-bottom: 1px solid rgb(206, 205, 205);
+    border-bottom: 1px solid var(--border-color);
     padding: 0.5rem 1rem;
     position: sticky;
 }
@@ -15,12 +15,13 @@
     justify-content: space-between;
     height: 64px;
     width: 100%;
-    border-bottom: 1px solid rgb(206, 205, 205);
+    border-bottom: 1px solid var(--border-color);
     padding: 0.5rem 3rem;
 }
 
 .home_navbar_div1{
     display: flex;
+    color: var(--text-color2);
 }
 
 .home_navbar_div1 > div{
@@ -28,6 +29,10 @@
     align-items: center;
     justify-content: center; 
     margin-right: 0.5rem;
+}
+
+.home_navbar_div2{
+    color: var(--text-color2);
 }
 
 .home_navbar_div3{
@@ -58,7 +63,7 @@
     display: none;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid rgb(206, 205, 205);
+    border-bottom: 1px solid var(--border-color);
     padding: 1rem;
     position: sticky;
 }
@@ -72,8 +77,8 @@
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    background-color: black;
-    color: white;
+    background-color: var(--text-color2);
+    color:  var(--background-color2);
     font-size: 2rem;
     font-weight: 600;
     display: flex;
@@ -82,7 +87,7 @@
 }
 
 .small_home_navbar_icons{
-     cursor: not-allowed;
+    cursor: not-allowed;
     opacity: 0.5;
 }
 

@@ -8,8 +8,9 @@
     top: 37px;
     right: 0px;
     width: 180px;
-    background-color: white;
-    border: 1px solid #ccc;
+    background-color: var(--background-color2);
+    border: 2px solid var(--border-color);
+    color: var(--text-color2);
     border-radius: 0.5rem;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -28,5 +29,5 @@
 }
 
 .tooltip_container >div:hover{
-    background-color:#dad4d5;
+    background-color: var(--background-color3);
 }

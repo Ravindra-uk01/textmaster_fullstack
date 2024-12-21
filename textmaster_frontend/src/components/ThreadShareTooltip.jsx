@@ -11,6 +11,7 @@ import { FaRegCircleCheck, FaXTwitter } from "react-icons/fa6";
 import { LuClipboardCheck } from "react-icons/lu";
 import { HiLink } from "react-icons/hi";
 import { updateThreadVisibility } from "../reducers/threadReducer";
+import { IoMdCheckmarkCircle } from "react-icons/io";
 
 const ThreadShareTooltip = ({ children }) => {
   const { currentThread } = useSelector((state) => state.thread);
@@ -18,6 +19,7 @@ const ThreadShareTooltip = ({ children }) => {
   const tooltipRef = useRef(null);
   const { slug } = useParams();
   const navigate = useNavigate();
+  const [copyLink, setCopyLink] = useState("");
   const dispatch = useDispatch();
 
   const toastData = {
@@ -46,6 +48,16 @@ const ThreadShareTooltip = ({ children }) => {
 
   const handleThreadVisibility = async (value) => {
     dispatch(updateThreadVisibility({ slug, visibility: value }));
+  };
+
+  const handleCopyId = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopyLink(window.location.href);
+      alert("URL copied to clipboard!"); // Feedback for the user
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+    }
   };
 
   console.log("current thread ", currentThread);
@@ -118,8 +130,8 @@ const ThreadShareTooltip = ({ children }) => {
                     Twitter
                   </Link>
                 </div>
-                <div>
-                  <HiLink /> Copy Link
+                <div onClick={handleCopyId}>
+                  {copyLink ? <IoMdCheckmarkCircle size={18} /> : <HiLink />}  Copy Link
                 </div>
                 <div>
                   <Link

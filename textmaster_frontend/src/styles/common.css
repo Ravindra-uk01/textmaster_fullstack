@@ -12,10 +12,15 @@
     max-height: 85vh;
 }
 
+footer{
+    margin-top: auto;
+    background-color: var(--background-color);
+}
+
 .footerIcon{
     font-size: 2em;
     color: black;
-    margin: 0 0 0.9rem 0.9rem;
+    margin: 0 0 0.8rem 0.8rem;
 }
 
 @media only screen and (max-height: 1000px){
