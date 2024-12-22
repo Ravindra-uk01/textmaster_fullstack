@@ -33,6 +33,7 @@ footer{
 
     .footer{
         padding: 0.25rem;
+        display: none;
     }
 
     .footerText{
