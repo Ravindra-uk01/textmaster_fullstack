@@ -42,7 +42,7 @@
 
 /* can do it better later */
 .accordion-button:not(.collapsed){
-    color: var(--primary-color);
+    color: #fff;
     background-color: var(--secondary-color);
     box-shadow: inset 0 -1px 0 rgba(210, 233, 231, 0.125);
 }

@@ -11,7 +11,7 @@ export class Footer extends Component {
           <div className="container  text-center">
             <span className="footerText text-muted d-flex align-items-center justify-content-center">
               Made with ❤️ by Ravindra Singh Rayal.
-              <a className='footerIcon'  href="https://github.com/Ravindra-uk01/textmaster_fullstack">
+              <a className='footerIcon'  href="https://github.com/Ravindra-uk01/textmaster_fullstack" target="_blank" rel="noopener noreferrer">
                 <AiOutlineGithub />
               </a>
             </span>

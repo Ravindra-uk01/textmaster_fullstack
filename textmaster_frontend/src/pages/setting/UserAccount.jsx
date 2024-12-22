@@ -5,8 +5,7 @@ import { MdLightMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  setDarkTheme,
-  setLightTheme,
+  setTheme,
 } from "../../store/features/theme/themeSlice.js";
 import Switch from "../../components/ui/Switch";
 import SignoutModal from "../../components/modals/SignoutModal";
@@ -42,10 +41,15 @@ const UserAccount = () => {
     };
   }, []);
 
+  // const handleToggleTheme = (mode) => {
+  //   if (mode === "light") dispatch(setLightTheme());
+  //   else dispatch(setDarkTheme());
+  // };
+
   const handleToggleTheme = (mode) => {
-    if (mode === "light") dispatch(setLightTheme());
-    else dispatch(setDarkTheme());
-  };
+    dispatch(setTheme(mode)); 
+};
+
 
   const googleTranslateElementInit = () => {
     new window.google.translate.TranslateElement(

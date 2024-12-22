@@ -1,16 +1,10 @@
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux'
-import { setDarkTheme, setLightTheme } from "../store/features/theme/themeSlice";
 
 export default function Navbar() {
 
   const theme = useSelector((state) => state.theme);
   const dispatch = useDispatch();
-
-  const handleToggleTheme = ()=>{
-    if (theme.mode === 'light') dispatch(setDarkTheme());
-    else dispatch(setLightTheme());
-  }
 
   return (
     <nav

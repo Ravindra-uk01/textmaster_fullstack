@@ -1,40 +1,27 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-    mode: 'light',
-    // color : '#686263',
-    // backgroundColor : '#13343b'
-
-    color : '#042743',
-    backgroundColor : 'white'
-
-    // mode: 'dark',
-    // color : 'white',
-    // backgroundColor : '#042743'
+    mode: localStorage.getItem('theme') || 'light',
 }
 
 const themeSlice = createSlice({
     name : 'theme', 
     initialState, 
     reducers: {
-        setLightTheme(state, action){
-            state.mode = 'light';
-            state.backgroundColor = 'white';
-            state.color = '#042743';
-            document.body.style.backgroundColor = state.backgroundColor;
-            
-            // new
-            // state.color = '#686263';
-            // state.backgroundColor = '#13343b';
+        setTheme(state, action) {
+            state.mode = action.payload; // Set mode based on payload
+            localStorage.setItem('theme', action.payload); // Save to localStorage
         },
-        setDarkTheme(state, action){
-            state.mode = 'dark';
-            // state.backgroundColor = '#042743';
-            // state.color = 'white';
-            // document.body.style.backgroundColor = state.backgroundColor;
-        }
+        // setLightTheme(state, action){
+        //     state.mode = 'light';
+        //     localStorage.setItem('theme', "light");
+        // },
+        // setDarkTheme(state, action){
+        //     state.mode = 'dark';
+        //     localStorage.setItem('theme', "dark");
+        // }
     }
 })
 
-export const {setLightTheme, setDarkTheme } = themeSlice.actions;
+export const {setTheme } = themeSlice.actions;
 export default themeSlice.reducer;

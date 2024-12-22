@@ -164,11 +164,11 @@ const Base = ({ children }) => {
                       "User@9556"}
                 </span>
               </span>
-              <div className="siderbar_settingsDiv" >
+              <div className="siderbar_settingsDiv" onClick={() => navigate("/settings/account")} >
                 <IoSettingsOutline
                   size={20}
                   className="sidebar_settings"
-                  onClick={() => navigate("/settings/account")}
+                  
                 />
               </div>
             </div>

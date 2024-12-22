@@ -292,7 +292,8 @@ export default function TextForm(props) {
       return;
     }
 
-    if (threadData.description === "") {
+    // if (threadData.description === "") {
+    if (!threadData  || (typeof threadData === 'object' && Object.keys(threadData).length === 0)) {
       toast.warn(
         "Please ensure that content is added to the text analyzer thread before saving it.",
         {
@@ -305,10 +306,14 @@ export default function TextForm(props) {
   };
 
   useEffect(() => {
+    
     setThreadData(currentThread);
     dispatch(textActions.updateText({ text: currentThread.description || "" }));
   }, [currentThread]);
 
+
+  console.log('thread data is ', threadData)
+  console.log('currentThread data is ', currentThread)
 
   return (
     <>

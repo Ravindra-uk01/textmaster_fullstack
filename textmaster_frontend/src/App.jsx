@@ -16,6 +16,7 @@ import Profile from "./pages/setting/Profile";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import ProtectedRoute from "./utils/ProtectedRoute";
+import { setTheme } from "./store/features/theme/themeSlice";
 
 function App() {
 
@@ -28,9 +29,20 @@ function App() {
     dispatch(getProfile());
   }, [dispatch, loggedIn]);
 
-  useEffect(() => {
-    document.body.setAttribute('data-theme', themeState.mode === "light" ? 'light' : 'dark');
+//   useEffect(() => {
+//     document.body.setAttribute('data-theme', localStorage.getItem("theme") === "light" ? 'light' : 'dark');
+// }, [themeState.mode]);
+
+useEffect(() => {
+  document.body.setAttribute('data-theme', themeState.mode);
 }, [themeState.mode]);
+
+useEffect(() => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+      dispatch(setTheme(savedTheme)); 
+  }
+}, [dispatch]);
  
   return (
     <>
