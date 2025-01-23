@@ -26,7 +26,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProfile());
+    if(loggedIn)
+      dispatch(getProfile());
   }, [dispatch, loggedIn]);
 
 //   useEffect(() => {
