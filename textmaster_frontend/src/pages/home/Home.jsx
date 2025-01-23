@@ -100,13 +100,13 @@ const Home = () => {
     <Base>
       <div className="home_navbar">
         <div className="home_navbar_div1">
-          <div>
+          {user.loggedIn && <div>
             <FaUser size={18} />
             <span className="ms-1 capitalize">
               {" "}
-              {user?.display_name || "User@9556"}
+              {user?.display_name || ""}
             </span>
-          </div>
+          </div>}
           <div>
             <IoMdTime size={20} />
             <span className="ms-1">
